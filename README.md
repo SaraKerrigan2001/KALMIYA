@@ -1,5 +1,7 @@
 # KALMIYA
 
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE) [![Issues](https://img.shields.io/github/issues/SaraKerrigan2001/KALMIYA)](https://github.com/SaraKerrigan2001/KALMIYA/issues) [![Repo Size](https://img.shields.io/github/repo-size/SaraKerrigan2001/KALMIYA)](https://github.com/SaraKerrigan2001/KALMIYA)
+
 KALMIYA es un asistente autónomo de escritorio desarrollado por Sara Kerrigan. Combina IA local y en la nube, síntesis y reconocimiento de voz, control de audio, automatización del sistema y soporte para múltiples dispositivos.
 
 ## 🚀 Qué hace KALMIYA
