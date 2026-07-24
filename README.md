@@ -70,6 +70,16 @@ python 01_systems\KALMIYA_System\main.py
 - Guarda y revisa `KALMIYA_DASHBOARD.md` para ver el estado del sistema
 - Asegúrate de no subir credenciales ni archivos sensibles al repositorio
 
+## 🤝 Cómo contribuir
+
+- Clona el repositorio y crea una rama de trabajo:
+  ```powershell
+git checkout -b feature/nombre-de-tu-funcion
+```
+- Añade cambios claros y pequeños
+- Usa mensajes de commit descriptivos
+- Envía un pull request con descripción de los cambios
+
 ## 📌 Advertencia
 
 El proyecto puede incluir archivos grandes, configuraciones locales y datos personales. Revisa `.gitignore` antes de compartir o clonar el repositorio.
