@@ -1,36 +1,75 @@
 # KALMIYA
 
-KALMIYA es un sistema de asistente autónomo desarrollado por Sara Kerrigan que combina IA, control de audio, reconocimiento de voz y automatización de tareas. Este repositorio contiene el núcleo del asistente, módulos de integración, documentación y herramientas de configuración.
+KALMIYA es un asistente autónomo de escritorio desarrollado por Sara Kerrigan. Combina IA local y en la nube, síntesis y reconocimiento de voz, control de audio, automatización del sistema y soporte para múltiples dispositivos.
 
-## 🚀 Características principales
+## 🚀 Qué hace KALMIYA
 
-- Chat con IA y asistente de voz
-- Control de audio y modo silencioso
-- Integración con hardware y dispositivos móviles
-- Módulos de seguridad, productividad, hogar inteligente y entretenimiento
-- Sistema de memoria y registro de comandos
+- Chat con IA y asistente de voz en Windows
+- Modo silencioso y control de audio
+- Reconocimiento de órdenes por voz y comandos de texto
+- Módulos de seguridad, productividad, hogar inteligente, finanzas y entretenimiento
+- Integración con teléfono móvil, Telegram y servicios en línea
+- Registro de memoria y auditoría de comandos
 
-## 📁 Estructura del repositorio
+## 🧩 Estructura del repositorio
 
-- `01_systems/` — Núcleo principal de KALMIYA y módulos de sistema
-- `02_infrastructure/` — Entorno virtual y archivos de infraestructura
-- `03_launchers/` — Scripts de lanzamiento y accesos directos
-- `04_config/` — Configuración de dependencias y empaquetado
-- `05_tests/` — Pruebas y auditorías
+- `01_systems/` — Código principal de KALMIYA y módulos del asistente
+- `02_infrastructure/` — Entorno virtual, dependencias y archivos de infraestructura
+- `03_launchers/` — Scripts para iniciar el asistente rápidamente
+- `04_config/` — Configuración de Python, dependencias y empaquetado
+- `05_tests/` — Pruebas, auditorías y utilidades de verificación
 
-## 🛠️ Uso básico
+## 🛠️ Requisitos
 
-1. Abre PowerShell en `env`
-2. Activa el entorno virtual si es necesario
-3. Ejecuta el asistente desde `01_systems/KALMIYA_System/main.py` o `03_launchers/run_kalmiya.bat`
+- Windows 10/11
+- Python 3.11+ recomendado
+- Entorno virtual de Python (opcional pero recomendado)
+- Altavoz y micrófono configurados en Windows para voz activa
 
-## 📝 Documentación
+## 📥 Instalación rápida
 
-- `CHAT_GUIA.md` — Guía de comandos del chat
-- `KALMIYA_FUNCIONES.md` — Funciones de KALMIYA
-- `MODULOS_IMPLEMENTADOS.md` — Módulos instalados y estado
+```powershell
+cd C:\Users\maria\env
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r 04_config\requirements.txt
+```
+
+> Si ya tienes un entorno, asegúrate de usar `python` desde el intérprete correcto.
+
+## ▶️ Cómo iniciar KALMIYA
+
+### Opción 1: desde PowerShell
+
+```powershell
+cd C:\Users\maria\env
+python 01_systems\KALMIYA_System\main.py
+```
+
+### Opción 2: con el lanzador
+
+- Ejecuta `03_launchers\run_kalmiya.bat`
+- O bien usa `Chat_KALMIYA.bat` para iniciar sólo el chat
+
+## 📚 Documentación útil
+
 - `WELCOME.md` — Guía de bienvenida y arranque
+- `CHAT_GUIA.md` — Comandos y uso del chat
+- `KALMIYA_FUNCIONES.md` — Funciones disponibles en el asistente
+- `MODULOS_IMPLEMENTADOS.md` — Módulos instalados y estado del proyecto
+- `OBSIDIAN_SETUP.md` — Integración con Obsidian
 
-## 📌 Nota
+## 🔧 Configuración de voz
 
-Este repositorio incluye componentes de voz y audio que pueden requerir configuración adicional en Windows para funcionar correctamente.
+- `01_systems/KALMIYA_System/voz.py` controla la síntesis y el modo silencioso
+- Para desactivar temporalmente la voz, se usa la memoria interna `voice_enabled=false`
+
+## 💡 Recomendaciones
+
+- Usa el modo silencioso si no quieres salida de audio mientras pruebas
+- Guarda y revisa `KALMIYA_DASHBOARD.md` para ver el estado del sistema
+- Asegúrate de no subir credenciales ni archivos sensibles al repositorio
+
+## 📌 Advertencia
+
+El proyecto puede incluir archivos grandes, configuraciones locales y datos personales. Revisa `.gitignore` antes de compartir o clonar el repositorio.
