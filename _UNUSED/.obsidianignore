@@ -1,0 +1,16 @@
+# Excluir carpetas de dependencias Python
+Lib/site-packages/
+Lib/.pytest_cache/
+.pytest_cache/
+__pycache__/
+
+# Excluir archivos de configuración del sistema
+.git/
+.env
+*.pyc
+
+# Excluir archivos temporales
+scratch/*/
+temp_audio/
+temp/
+*.tmp

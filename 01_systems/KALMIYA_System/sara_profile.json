@@ -1,0 +1,129 @@
+{
+  "identidad": {
+    "nombre_completo": "Sara Kerrigan",
+    "nombre_real": "Sara Kerigan",
+    "apodo": "Sara",
+    "alias_cultural": "Sara Kerrigan (referencia a StarCraft — personaje ficticio)",
+    "fecha_nacimiento": "07/12/2001",
+    "ciudad": "Cúcuta",
+    "pais": "Colombia",
+    "ocupacion": "Aprendiz SENA — Programa ADSO (Análisis y Desarrollo de Software)",
+    "idiomas": [
+      "Español"
+    ]
+  },
+  "contacto": {
+    "telefonos": [],
+    "emails": [],
+    "direccion": ""
+  },
+  "redes_sociales": {
+    "instagram": "",
+    "facebook": "",
+    "twitter": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "whatsapp": "",
+    "telegram": "",
+    "otros": {}
+  },
+  "cuentas_digitales": {
+    "google": [],
+    "microsoft": [],
+    "apple": [],
+    "gaming": [],
+    "streaming": [],
+    "otros": []
+  },
+  "familia": {},
+  "dispositivos": {
+    "pc": {
+      "nombre": "PC de Sara",
+      "os": "Windows",
+      "ip_local": ""
+    },
+    "celulares": []
+  },
+  "preferencias": {
+    "color_favorito": "Negro",
+    "musica": "",
+    "peliculas": "",
+    "comida": "",
+    "hobbies": [
+      "Dibujo",
+      "Cocina",
+      "Programación"
+    ],
+    "app_favorita": ""
+  },
+  "seguridad": {
+    "palabras_clave_emergencia": [
+      "ayuda",
+      "peligro",
+      "socorro"
+    ],
+    "contactos_emergencia": [],
+    "modo_proteccion": "activo"
+  },
+  "notas_kalmiya": [],
+  "ultima_actualizacion": "2026-07-09T00:04:55.884561",
+  "companeros_adso": {
+    "sara_kerrigan": {
+      "nombre": "Sara Kerrigan",
+      "rol": "Creadora / Administradora",
+      "grupo": "3115418 ADSO 201",
+      "biometria_id": "BIO-SARA-001",
+      "nivel_acceso": "NIVEL 5 (Acceso Total)",
+      "firma_biometrica": "SHA-256-SARA-KERRIGAN-SECURE-KEY"
+    },
+    "estiven_rua": {
+      "nombre": "Estiven Rúa",
+      "rol": "Compañero / Desarrollador",
+      "grupo": "3115418 ADSO 201",
+      "biometria_id": "BIO-ADSO-101",
+      "nivel_acceso": "NIVEL 2 (Invitado ADSO - Uso de PC)",
+      "firma_biometrica": "SHA-256-ESTIVEN-RUA-ADSO-KEY"
+    },
+    "mateo_ospina": {
+      "nombre": "Mateo Ospina",
+      "rol": "Compañero / Desarrollador",
+      "grupo": "3115418 ADSO 201",
+      "biometria_id": "BIO-ADSO-102",
+      "nivel_acceso": "NIVEL 2 (Invitado ADSO - Uso de PC)",
+      "firma_biometrica": "SHA-256-MATEO-OSPINA-ADSO-KEY"
+    },
+    "camila_gomez": {
+      "nombre": "Camila Gómez",
+      "rol": "Compañera / Desarrolladora",
+      "grupo": "3115418 ADSO 201",
+      "biometria_id": "BIO-ADSO-103",
+      "nivel_acceso": "NIVEL 2 (Invitado ADSO - Uso de PC)",
+      "firma_biometrica": "SHA-256-CAMILA-GOMEZ-ADSO-KEY"
+    },
+    "juan_diego_cardona": {
+      "nombre": "Juan Diego Cardona",
+      "rol": "Compañero / Desarrollador",
+      "grupo": "3115418 ADSO 201",
+      "biometria_id": "BIO-ADSO-104",
+      "nivel_acceso": "NIVEL 2 (Invitado ADSO - Uso de PC)",
+      "firma_biometrica": "SHA-256-JUAN-DIEGO-ADSO-KEY"
+    },
+    "sofia_tobon": {
+      "nombre": "Sofía Tobón",
+      "rol": "Compañera / Desarrolladora",
+      "grupo": "3115418 ADSO 201",
+      "biometria_id": "BIO-ADSO-105",
+      "nivel_acceso": "NIVEL 2 (Invitado ADSO - Uso de PC)",
+      "firma_biometrica": "SHA-256-SOFIA-TOBON-ADSO-KEY"
+    },
+    "sebastian_munoz": {
+      "nombre": "Sebastián Muñoz",
+      "rol": "Compañero / Desarrollador",
+      "grupo": "3115418 ADSO 201",
+      "biometria_id": "BIO-ADSO-106",
+      "nivel_acceso": "NIVEL 2 (Invitado ADSO - Uso de PC)",
+      "firma_biometrica": "SHA-256-SEBASTIAN-MUNOZ-ADSO-KEY"
+    }
+  }
+}

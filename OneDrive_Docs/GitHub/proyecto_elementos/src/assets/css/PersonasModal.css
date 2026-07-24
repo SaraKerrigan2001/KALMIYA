@@ -1,0 +1,244 @@
+/* personasModal Overlay */
+.personas-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+
+/* Modal Container */
+.personas-modal-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 28rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.dark .personas-modal-container {
+  background-color: #1e293b;
+}
+
+/* Header */
+.personas-modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .personas-modal-header {
+  border-bottom-color: #374151;
+}
+
+.personas-modal-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.personas-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .personas-modal-title {
+  color: white;
+}
+
+.personas-modal-close {
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+}
+
+.personas-modal-close:hover {
+  color: #4b5563;
+}
+
+.dark .personas-modal-close:hover {
+  color: #d1d5db;
+}
+
+.personas-modal-close-icon {
+  font-size: 1.5rem;
+}
+
+/* Form */
+.personas-modal-form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.personas-modal-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.dark .personas-modal-error {
+  background-color: rgba(220, 38, 38, 0.2);
+  border-color: #991b1b;
+  color: #fca5a5;
+}
+
+/* Form Field */
+.personas-modal-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.personas-modal-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.dark .personas-modal-label {
+  color: #d1d5db;
+}
+
+.personas-modal-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.personas-modal-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}
+
+.dark .personas-modal-input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: white;
+}
+
+.personas-modal-input.error {
+  border-color: #fca5a5;
+}
+
+.dark .personas-modal-input.error {
+  border-color: #991b1b;
+}
+
+.personas-modal-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.personas-modal-select:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}
+
+.dark .personas-modal-select {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: white;
+}
+
+.personas-modal-select.error {
+  border-color: #fca5a5;
+}
+
+.dark .personas-modal-select.error {
+  border-color: #991b1b;
+}
+
+.personas-modal-error-text {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.dark .personas-modal-error-text {
+  color: #fca5a5;
+}
+
+/* Footer Buttons */
+.personas-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.personas-modal-btn-cancel {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.personas-modal-btn-cancel:hover {
+  background-color: #f9fafb;
+}
+
+.dark .personas-modal-btn-cancel {
+  color: #d1d5db;
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.dark .personas-modal-btn-cancel:hover {
+  background-color: #4b5563;
+}
+
+.personas-modal-btn-cancel:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}
+
+.personas-modal-btn-submit {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background-color: #059669;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.personas-modal-btn-submit:hover {
+  background-color: #047857;
+}
+
+.personas-modal-btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}
+
+.personas-modal-btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

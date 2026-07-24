@@ -1,0 +1,420 @@
+/* AsignacionModal Overlay */
+.asignacion-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+
+/* Modal Container */
+.asignacion-modal-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 56rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.dark .asignacion-modal-container {
+  background-color: #1e293b;
+}
+
+/* Header */
+.asignacion-modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .asignacion-modal-header {
+  border-bottom-color: #374151;
+}
+
+.asignacion-modal-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.asignacion-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .asignacion-modal-title {
+  color: white;
+}
+
+.asignacion-modal-close {
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.asignacion-modal-close:hover {
+  color: #4b5563;
+}
+
+.dark .asignacion-modal-close:hover {
+  color: #d1d5db;
+}
+
+.asignacion-modal-close-icon {
+  font-size: 1.5rem;
+}
+
+/* Form */
+.asignacion-modal-form {
+  padding: 1.5rem;
+}
+
+.asignacion-modal-error {
+  margin-bottom: 1rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.dark .asignacion-modal-error {
+  background-color: rgba(220, 38, 38, 0.2);
+  border-color: #991b1b;
+  color: #fca5a5;
+}
+
+.asignacion-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .asignacion-modal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Section */
+.asignacion-modal-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.asignacion-modal-section-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .asignacion-modal-section-title {
+  color: white;
+}
+
+.asignacion-modal-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Form Elements */
+.asignacion-modal-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.dark .asignacion-modal-label {
+  color: #d1d5db;
+}
+
+.asignacion-modal-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.asignacion-modal-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.dark .asignacion-modal-select {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: white;
+}
+
+.asignacion-modal-select.error {
+  border-color: #fca5a5;
+}
+
+.dark .asignacion-modal-select.error {
+  border-color: #991b1b;
+}
+
+.asignacion-modal-error-text {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.dark .asignacion-modal-error-text {
+  color: #fca5a5;
+}
+
+/* Info Box */
+.asignacion-modal-info-box {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.375rem;
+}
+
+.dark .asignacion-modal-info-box {
+  background-color: rgba(59, 130, 246, 0.2);
+  border-color: #1e40af;
+}
+
+.asignacion-modal-info-title {
+  font-weight: 500;
+  color: #1e3a8a;
+}
+
+.dark .asignacion-modal-info-title {
+  color: #93c5fd;
+}
+
+.asignacion-modal-info-text {
+  font-size: 0.875rem;
+  color: #1d4ed8;
+}
+
+.dark .asignacion-modal-info-text {
+  color: #60a5fa;
+}
+
+/* Search Input */
+.asignacion-modal-search {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.asignacion-modal-search:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.dark .asignacion-modal-search {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: white;
+}
+
+/* Bienes List */
+.asignacion-modal-bienes-container {
+  max-height: 16rem;
+  overflow-y: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+}
+
+.dark .asignacion-modal-bienes-container {
+  border-color: #4b5563;
+}
+
+.asignacion-modal-bienes-empty {
+  padding: 1rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.dark .asignacion-modal-bienes-empty {
+  color: #9ca3af;
+}
+
+.asignacion-modal-bienes-list {
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .asignacion-modal-bienes-list {
+  border-top-color: #4b5563;
+}
+
+.asignacion-modal-bien-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.asignacion-modal-bien-item:hover {
+  background-color: #f9fafb;
+}
+
+.dark .asignacion-modal-bien-item {
+  border-bottom-color: #4b5563;
+}
+
+.dark .asignacion-modal-bien-item:hover {
+  background-color: #374151;
+}
+
+.asignacion-modal-bien-checkbox {
+  height: 1rem;
+  width: 1rem;
+  color: #2563eb;
+  border-color: #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.asignacion-modal-bien-checkbox:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.asignacion-modal-bien-info {
+  margin-left: 0.75rem;
+  flex: 1;
+}
+
+.asignacion-modal-bien-code {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.dark .asignacion-modal-bien-code {
+  color: white;
+}
+
+.asignacion-modal-bien-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dark .asignacion-modal-bien-description {
+  color: #9ca3af;
+}
+
+.asignacion-modal-bien-details {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.dark .asignacion-modal-bien-details {
+  color: #6b7280;
+}
+
+/* Success Box */
+.asignacion-modal-success-box {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.375rem;
+}
+
+.dark .asignacion-modal-success-box {
+  background-color: rgba(22, 163, 74, 0.2);
+  border-color: #166534;
+}
+
+.asignacion-modal-success-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #14532d;
+}
+
+.dark .asignacion-modal-success-text {
+  color: #86efac;
+}
+
+/* Footer Buttons */
+.asignacion-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .asignacion-modal-footer {
+  border-top-color: #374151;
+}
+
+.asignacion-modal-btn-cancel {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.asignacion-modal-btn-cancel:hover {
+  background-color: #f9fafb;
+}
+
+.dark .asignacion-modal-btn-cancel {
+  color: #d1d5db;
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.dark .asignacion-modal-btn-cancel:hover {
+  background-color: #4b5563;
+}
+
+.asignacion-modal-btn-cancel:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.asignacion-modal-btn-submit {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background-color: #39A900;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.asignacion-modal-btn-submit:hover {
+  background-color: #2d8000;
+}
+
+.asignacion-modal-btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(57, 169, 0, 0.5);
+}
+
+.asignacion-modal-btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

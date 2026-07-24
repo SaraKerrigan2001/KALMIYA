@@ -1,0 +1,328 @@
+/* ============================================
+   AUTHSCREEN.CSS - Pantalla de autenticación
+   
+   Este archivo contiene los estilos para:
+   - Pantalla de login y registro
+   - Formularios de autenticación
+   - Tabs (Iniciar Sesión / Registrarse)
+   - Validación de errores
+   ============================================ */
+
+/* ============================================
+   AUTH SCREEN CONTAINER - Contenedor principal
+   Pantalla completa con fondo animado
+   ============================================ */
+.auth-screen-container {
+  min-height: 100vh; /* Altura mínima de toda la pantalla */
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  padding: 1rem;
+  /* Fondo con gradiente animado */
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, var(--bg-secondary) 100%);
+  background-size: 400% 400%;
+  animation: epic-gradient-shift 8s ease infinite; /* Animación de 8 segundos */
+}
+
+/* ============================================
+   BACKGROUND PARTICLES - Partículas decorativas
+   Círculos verdes animados en el fondo
+   ============================================ */
+.auth-particles {
+  position: absolute;
+  inset: 0; /* Ocupa toda la pantalla */
+  overflow: hidden;
+}
+
+/* Partícula 1 - Esquina superior derecha */
+.auth-particle-1 {
+  position: absolute;
+  top: -10rem;
+  right: -10rem;
+  width: 24rem; /* 384px */
+  height: 24rem;
+  background-color: #39A900; /* Verde SENA */
+  border-radius: 9999px; /* Círculo perfecto */
+  mix-blend-mode: screen; /* Efecto de mezcla */
+  opacity: 0.2; /* Semi-transparente */
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; /* Animación de pulso */
+  filter: blur(3rem); /* Desenfoque para efecto suave */
+}
+
+/* Partícula 2 - Esquina inferior izquierda */
+.auth-particle-2 {
+  position: absolute;
+  bottom: -10rem;
+  left: -10rem;
+  width: 24rem;
+  height: 24rem;
+  background-color: #39A900;
+  border-radius: 9999px;
+  mix-blend-mode: screen;
+  opacity: 0.2;
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1s; /* Empieza 1 segundo después */
+  filter: blur(3rem);
+}
+
+/* ============================================
+   CONTENT WRAPPER - Contenedor del formulario
+   ============================================ */
+.auth-content-wrapper {
+  width: 100%;
+  max-width: 28rem; /* 448px - Ancho máximo */
+  position: relative;
+  z-index: 10; /* Por encima de las partículas */
+}
+
+/* ============================================
+   LOGO SECTION - Sección del logo y título
+   ============================================ */
+.auth-logo-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Logo SENA animado */
+.auth-logo-img {
+  width: 6rem; /* 96px */
+  height: 6rem;
+  margin: 0 auto 1rem;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; /* Pulso continuo */
+  object-fit: contain;
+}
+
+.auth-subtitle {
+  color: #6b7280;
+}
+
+.dark .auth-subtitle {
+  color: #9ca3af;
+}
+
+/* ============================================
+   FORM CARD - Tarjeta del formulario
+   ============================================ */
+.auth-form-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); /* Sombra pronunciada */
+  padding: 2rem;
+}
+
+.dark .auth-form-card {
+  background-color: #1e293b;
+}
+
+/* ============================================
+   TAB BUTTONS - Botones de pestaña
+   Iniciar Sesión / Registrarse
+   ============================================ */
+.auth-tabs-container {
+  display: flex;
+  margin-bottom: 1.5rem;
+  background-color: #f3f4f6; /* Fondo gris claro */
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.dark .auth-tabs-container {
+  background-color: #374151;
+}
+
+.auth-tab-button {
+  flex: 1; /* Ambos botones ocupan el mismo espacio */
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+/* Tab activo - seleccionado */
+.auth-tab-button.active {
+  background-color: #39A900; /* Verde SENA */
+  color: white;
+}
+
+/* Tab inactivo */
+.auth-tab-button.inactive {
+  color: #6b7280;
+  background-color: transparent;
+}
+
+.auth-tab-button.inactive:hover {
+  color: #111827; /* Más oscuro al pasar el mouse */
+}
+
+.dark .auth-tab-button.inactive {
+  color: #9ca3af;
+}
+
+.dark .auth-tab-button.inactive:hover {
+  color: white;
+}
+
+/* ============================================
+   FORM - Formulario de autenticación
+   ============================================ */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espacio entre campos */
+}
+
+/* Mensaje de error general */
+.auth-error-message {
+  background-color: #fef2f2; /* Rojo muy claro */
+  border: 1px solid #fecaca;
+  color: #dc2626; /* Rojo */
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.dark .auth-error-message {
+  background-color: rgba(220, 38, 38, 0.2);
+  border-color: #991b1b;
+  color: #fca5a5;
+}
+
+/* ============================================
+   FORM FIELDS - Campos del formulario
+   ============================================ */
+.auth-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Etiqueta del campo */
+.auth-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.dark .auth-label {
+  color: #d1d5db;
+}
+
+/* Input de texto/email/password */
+.auth-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none; /* Sin borde al enfocar (usamos box-shadow) */
+}
+
+/* Input enfocado */
+.auth-input:focus {
+  border-color: #39A900; /* Borde verde SENA */
+  box-shadow: 0 0 0 2px rgba(57, 169, 0, 0.5); /* Sombra verde */
+}
+
+.dark .auth-input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: white;
+}
+
+/* Input con error */
+.auth-input.error {
+  border-color: #fca5a5; /* Borde rojo */
+}
+
+.dark .auth-input.error {
+  border-color: #991b1b;
+}
+
+/* Texto de error del campo */
+.auth-error-text {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc2626; /* Rojo */
+}
+
+.dark .auth-error-text {
+  color: #fca5a5;
+}
+
+/* ============================================
+   SUBMIT BUTTON - Botón de envío
+   Iniciar Sesión / Registrarse
+   ============================================ */
+.auth-submit-button {
+  width: 100%;
+  background-color: #39A900; /* Verde SENA */
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.auth-submit-button:hover {
+  background-color: #2d8000; /* Verde más oscuro */
+}
+
+/* Botón deshabilitado (mientras carga) */
+.auth-submit-button:disabled {
+  opacity: 0.5; /* Semi-transparente */
+  cursor: not-allowed; /* Cursor de "no permitido" */
+}
+
+/* ============================================
+   FORGOT PASSWORD LINK - Enlace olvidaste contraseña
+   ============================================ */
+.auth-forgot-password {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.auth-forgot-password-button {
+  font-size: 0.875rem;
+  color: #39A900; /* Verde SENA */
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.auth-forgot-password-button:hover {
+  color: #2d8000; /* Verde más oscuro */
+}
+
+.dark .auth-forgot-password-button {
+  color: #39A900;
+}
+
+.dark .auth-forgot-password-button:hover {
+  color: #4bc200; /* Verde más claro */
+}
+
+/* ============================================
+   FOOTER INFO - Información del pie
+   Versión y copyright
+   ============================================ */
+.auth-footer-info {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dark .auth-footer-info {
+  color: #9ca3af;
+}
+
+.auth-footer-info p {
+  margin-top: 0.25rem;
+}

@@ -1,0 +1,28 @@
+{
+  "baseFontFamily": "",
+  "showInlineTitle": false,
+  "lineWidth": 40,
+  "maxWidth": 88,
+  "livePreview": true,
+  "showLineNumber": true,
+  "defaultViewMode": "preview",
+  "strictLineBreaks": true,
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "spellcheck": true,
+  "cursorBlinkInterval": 0,
+  "showFrontmatter": true,
+  "autoConvertHtml": true,
+  "newFileLocation": "root",
+  "newFileFolderPath": "docs",
+  "excludeFolders": [
+    "Lib/site-packages",
+    "02_infrastructure/Lib",
+    "02_infrastructure/Scripts",
+    ".pytest_cache",
+    "Lib/.pytest_cache",
+    "__pycache__",
+    "_TEMP",
+    "_UNUSED"
+  ]
+}

@@ -1,0 +1,364 @@
+/* NotificationCenter Container */
+.notification-center-container {
+  position: relative;
+}
+
+/* Botón de notificaciones */
+.notification-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notification-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.dark .notification-button {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dark .notification-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.notification-icon {
+  font-size: 1.25rem;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: rgb(239, 68, 68);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Overlay */
+.notification-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+/* Panel de notificaciones */
+.notification-panel {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 24rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgb(229, 231, 235);
+  z-index: 50;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .notification-panel {
+  background-color: rgb(31, 41, 55);
+  border-color: rgb(55, 65, 81);
+}
+
+/* Header del panel */
+.notification-header {
+  padding: 1rem;
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.dark .notification-header {
+  border-bottom-color: rgb(55, 65, 81);
+}
+
+.notification-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-header-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(17, 24, 39);
+}
+
+.dark .notification-header-title {
+  color: white;
+}
+
+.notification-clear-button {
+  font-size: 0.875rem;
+  color: rgb(37, 99, 235);
+}
+
+.notification-clear-button:hover {
+  color: rgb(29, 78, 216);
+}
+
+.dark .notification-clear-button {
+  color: rgb(96, 165, 250);
+}
+
+.dark .notification-clear-button:hover {
+  color: rgb(147, 197, 253);
+}
+
+.notification-header-subtitle {
+  font-size: 0.875rem;
+  color: rgb(75, 85, 99);
+  margin-top: 0.25rem;
+}
+
+.dark .notification-header-subtitle {
+  color: rgb(156, 163, 175);
+}
+
+/* Lista de notificaciones */
+.notification-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.notification-empty {
+  padding: 2rem;
+  text-align: center;
+}
+
+.notification-empty-icon {
+  font-size: 3.75rem;
+  margin-bottom: 1rem;
+}
+
+.notification-empty-text {
+  color: rgb(75, 85, 99);
+  font-weight: 500;
+}
+
+.dark .notification-empty-text {
+  color: rgb(156, 163, 175);
+}
+
+.notification-empty-subtext {
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+  margin-top: 0.25rem;
+}
+
+.dark .notification-empty-subtext {
+  color: rgb(107, 114, 128);
+}
+
+.notification-items {
+  border-top: 1px solid rgb(229, 231, 235);
+}
+
+.notification-items > *:not(:last-child) {
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.dark .notification-items {
+  border-top-color: rgb(55, 65, 81);
+}
+
+.dark .notification-items > *:not(:last-child) {
+  border-bottom-color: rgb(55, 65, 81);
+}
+
+/* Item de notificación */
+.notification-item {
+  padding: 1rem;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: rgb(249, 250, 251);
+}
+
+.dark .notification-item:hover {
+  background-color: rgba(55, 65, 81, 0.5);
+}
+
+/* Estilos por tipo */
+.notification-item-success {
+  background-color: rgb(240, 253, 244);
+}
+
+.dark .notification-item-success {
+  background-color: rgba(5, 150, 105, 0.2);
+}
+
+.notification-item-error {
+  background-color: rgb(254, 242, 242);
+}
+
+.dark .notification-item-error {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+.notification-item-warning {
+  background-color: rgb(254, 252, 232);
+}
+
+.dark .notification-item-warning {
+  background-color: rgba(202, 138, 4, 0.2);
+}
+
+.notification-item-info {
+  background-color: rgb(239, 246, 255);
+}
+
+.dark .notification-item-info {
+  background-color: rgba(37, 99, 235, 0.2);
+}
+
+.notification-item-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.notification-item-icon {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.notification-item-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.notification-item-text {
+  flex: 1;
+}
+
+.notification-item-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.notification-item-title-success {
+  color: rgb(21, 128, 61);
+}
+
+.dark .notification-item-title-success {
+  color: rgb(74, 222, 128);
+}
+
+.notification-item-title-error {
+  color: rgb(185, 28, 28);
+}
+
+.dark .notification-item-title-error {
+  color: rgb(248, 113, 113);
+}
+
+.notification-item-title-warning {
+  color: rgb(161, 98, 7);
+}
+
+.dark .notification-item-title-warning {
+  color: rgb(250, 204, 21);
+}
+
+.notification-item-title-info {
+  color: rgb(29, 78, 216);
+}
+
+.dark .notification-item-title-info {
+  color: rgb(96, 165, 250);
+}
+
+.notification-item-message {
+  font-size: 0.875rem;
+  color: rgb(75, 85, 99);
+  margin-top: 0.25rem;
+}
+
+.dark .notification-item-message {
+  color: rgb(156, 163, 175);
+}
+
+.notification-item-time {
+  font-size: 0.75rem;
+  color: rgb(107, 114, 128);
+  margin-top: 0.5rem;
+}
+
+.dark .notification-item-time {
+  color: rgb(107, 114, 128);
+}
+
+.notification-item-close {
+  margin-left: 0.5rem;
+  color: rgb(156, 163, 175);
+}
+
+.notification-item-close:hover {
+  color: rgb(75, 85, 99);
+}
+
+.dark .notification-item-close:hover {
+  color: rgb(209, 213, 219);
+}
+
+.notification-item-close-icon {
+  font-size: 1.25rem;
+}
+
+/* Footer */
+.notification-footer {
+  padding: 0.75rem;
+  border-top: 1px solid rgb(229, 231, 235);
+  background-color: rgb(249, 250, 251);
+}
+
+.dark .notification-footer {
+  border-top-color: rgb(55, 65, 81);
+  background-color: rgba(55, 65, 81, 0.5);
+}
+
+.notification-close-button {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgb(75, 85, 99);
+}
+
+.notification-close-button:hover {
+  color: rgb(17, 24, 39);
+}
+
+.dark .notification-close-button {
+  color: rgb(156, 163, 175);
+}
+
+.dark .notification-close-button:hover {
+  color: white;
+}

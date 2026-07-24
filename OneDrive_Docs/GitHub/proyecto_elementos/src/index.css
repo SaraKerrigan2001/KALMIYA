@@ -1,0 +1,322 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fuente Work Sans para pantallas de autenticación */
+.auth-font {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+} 
+
+/* Fuentes Calibri para Dashboard */
+.dashboard-title {
+  font-family: Calibri, 'Trebuchet MS', sans-serif !important;
+  font-weight: bold !important;
+  font-style: italic !important;
+}
+
+.dashboard-text {
+  font-family: Calibri, 'Trebuchet MS', sans-serif !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+
+.dashboard-subtitle {
+  font-family: Calibri, 'Trebuchet MS', sans-serif !important;
+  font-weight: normal !important;
+  font-style: italic !important;
+}
+
+/* Variables CSS para temas */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --card-bg: #ffffff;
+  --sidebar-bg: linear-gradient(135deg, #059669 0%, #047857 100%);
+  --hover-bg: #f1f5f9;
+  --sidebar-text: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --sidebar-active: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  /* Fondo principal más suave y moderno */
+  --bg-primary: #1a1f2e;
+  /* Fondo secundario con mejor contraste */
+  --bg-secondary: #252b3b;
+  /* Texto principal más brillante */
+  --text-primary: #f8fafc;
+  /* Texto secundario más legible */
+  --text-secondary: #cbd5e1;
+  /* Bordes más sutiles */
+  --border-color: #3d4556;
+  /* Fondo de tarjetas con mejor contraste */
+  --card-bg: #252b3b;
+  /* Sidebar con gradiente verde más vibrante */
+  --sidebar-bg: linear-gradient(135deg, #059669 0%, #047857 100%);
+  /* Hover más visible */
+  --hover-bg: #3d4556;
+  /* Texto del sidebar */
+  --sidebar-text: #ffffff;
+  /* Bordes del sidebar */
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  /* Hover del sidebar más visible */
+  --sidebar-hover: rgba(255, 255, 255, 0.2);
+  /* Estado activo más destacado */
+  --sidebar-active: rgba(255, 255, 255, 0.3);
+  /* Sombras más suaves */
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background: linear-gradient(to bottom right, var(--bg-secondary), var(--bg-primary));
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+}
+
+/* Aplicar Calibri a todo el contenido del dashboard */
+#root > div > div:not(.fixed) {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Asegurar que los títulos usen bold italic */
+#root h1, #root h2, #root h3, #root h4 {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Texto regular para párrafos y spans */
+#root p, #root span, #root button, #root input, #root select, #root textarea, #root label, #root td, #root th {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Componentes personalizados */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.sidebar-item {
+  transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: var(--sidebar-hover);
+  transform: translateX(5px);
+}
+
+.sidebar-item.active {
+  background-color: var(--sidebar-active);
+}
+
+.gradient-green {
+  background: var(--sidebar-bg);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+}
+
+.gradient-orange {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+}
+
+.gradient-red {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+}
+
+.btn-animate {
+  transition: all 0.3s ease;
+}
+
+.btn-animate:hover {
+  transform: scale(1.05);
+}
+
+.btn-animate:active {
+  transform: scale(0.95);
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.status-active {
+  background: linear-gradient(45deg, #10B981, #059669);
+}
+
+.status-pending {
+  background: linear-gradient(45deg, #F59E0B, #D97706);
+}
+
+.status-inactive {
+  background: linear-gradient(45deg, #EF4444, #DC2626);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: var(--border-color);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.dark .theme-toggle {
+  background: #059669;
+}
+
+.dark .theme-toggle::before {
+  transform: translateX(30px);
+  background: #1f2937;
+}
+
+/* Animaciones de carga */
+@keyframes epic-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes epic-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes epic-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes epic-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.epic-loader {
+  animation: epic-pulse 2s ease-in-out infinite;
+  position: relative;
+}
+
+.epic-title {
+  color: #39A900;
+}
+
+.dark .epic-title {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #059669;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #047857;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1a1f2e;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #059669;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block !important;
+  }
+  
+  .sidebar-mobile-hidden {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar-mobile-visible {
+    transform: translateX(0);
+  }
+}

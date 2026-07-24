@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- Declaración del tipo de documento HTML5 -->
+<html lang="es">
+<!-- Idioma del documento configurado en español para accesibilidad y SEO -->
+<head>
+  <!-- Codificación de caracteres UTF-8 para soportar caracteres especiales y acentos -->
+  <meta charset="UTF-8" />
+  
+  <!-- Configuración del viewport para diseño responsive en dispositivos móviles -->
+  <!-- width=device-width: ajusta el ancho al dispositivo -->
+  <!-- initial-scale=1.0: escala inicial al 100% sin zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Título de la página que aparece en la pestaña del navegador -->
+  <title>SENA - Sistema Integral de Control de Bienes</title>
+  
+  <!-- Favicon: icono que aparece en la pestaña del navegador -->
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  
+  <!-- Preconexión a Google Fonts para mejorar el rendimiento -->
+  <!-- Establece la conexión DNS antes de solicitar las fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Importación de la fuente Work Sans desde Google Fonts -->
+  <!-- Pesos incluidos: 400 (regular), 500 (medium), 600 (semibold) -->
+  <!-- display=swap: muestra texto con fuente del sistema mientras carga la fuente web -->
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Contenedor raíz donde React montará toda la aplicación -->
+  <!-- Este div es el punto de entrada para ReactDOM.createRoot() -->
+  <div id="root"></div>
+  
+  <!-- Script principal de la aplicación -->
+  <!-- type="module": permite usar import/export de ES6 -->
+  <!-- Vite procesa este archivo y todos sus imports durante el desarrollo y build -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

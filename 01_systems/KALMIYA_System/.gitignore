@@ -1,0 +1,26 @@
+# Secretos — nunca versionar
+.env
+credentials.json
+token.json
+*.pem
+
+# Datos locales
+kalmiya.db
+data/
+rag_db/
+temp_audio/
+scratch/
+threat_alert.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Binarios
+cloudflared.exe
+*.ico
+
+# Logs y temp
+*.log
+*.tmp

@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Temporary files
+*.tmp
+.cache/
+
+# Test files
+test-conexion.js
+seed-database.js
+
+# Archivos temporales o de desarrollo
+index4.html
+
+# SQL files antiguos (mantener solo los finales)
+src/config/f2v4.sql
+
+# Archivos de testing y verificación manual
+test-*.js
+verify-*.js
+MANUAL-TESTING-*.md
+VERIFICACION-*.md
+
+# Archivos de specs y documentación de desarrollo
+.kiro/
+
+# Archivos CSS y JS antiguos que ya no se usan
+src/assets/css/CuentadanteModal.css
+src/assets/css/CuentadantesTable.css
+src/assets/js/CuentadanteModal.js
+src/assets/js/CuentadantesTable.js
+
+# Archivos SQL de prueba en raíz
+f2v4.sql

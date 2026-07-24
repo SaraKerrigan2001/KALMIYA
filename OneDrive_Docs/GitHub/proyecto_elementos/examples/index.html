@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos de Componentes - SENA Bienes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #059669;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-description {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .category {
+            margin-bottom: 2rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #059669;
+        }
+        
+        .instructions {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instructions h2 {
+            color: #059669;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ol {
+            margin-left: 1.5rem;
+            color: #64748b;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #059669;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .badge-auth { background: #dbeafe; color: #1e40af; }
+        .badge-nav { background: #fef3c7; color: #92400e; }
+        .badge-data { background: #d1fae5; color: #065f46; }
+        .badge-modal { background: #e9d5ff; color: #6b21a8; }
+        .badge-ui { background: #fce7f3; color: #9f1239; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💻 Ejemplos de Componentes</h1>
+            <p class="subtitle">Sistema SENA de Gestión de Bienes</p>
+        </header>
+        
+        <div class="instructions">
+            <h2>📋 Cómo usar estos ejemplos</h2>
+            <ol>
+                <li>Haz clic en cualquier tarjeta para copiar el nombre del archivo</li>
+                <li>Abre el archivo correspondiente en la carpeta <code>examples/</code></li>
+                <li>Copia todo el contenido del archivo</li>
+                <li>Reemplaza el contenido de <code>src/App.jsx</code> con lo copiado</li>
+                <li>Guarda y el navegador se recargará automáticamente</li>
+            </ol>
+        </div>
+        
+        <div class="category">
+            <h3 class="category-title">🔐 Autenticación</h3>
+            <div class="grid">
+                <div class="card" onclick="copyFileName('App-AuthScreen.jsx')">
+                    <div class="card-icon">🔑</div>
+                    <div class="card-title">AuthScreen</div>
+                    <div class="card-description">
+                        Pantalla de login y registro con validación de formularios
+                    </div>
+                    <span class="badge badge-auth">Autenticación</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-LoadingScreen.jsx')">
+                    <div class="card-icon">⏳</div>
+                    <div class="card-title">LoadingScreen</div>
+                    <div class="card-description">
+                        Pantalla de carga inicial con animaciones y barra de progreso
+                    </div>
+                    <span class="badge badge-ui">UI</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h3 class="category-title">🧭 Navegación</h3>
+            <div class="grid">
+                <div class="card" onclick="copyFileName('App-Header.jsx')">
+                    <div class="card-icon">📌</div>
+                    <div class="card-title">Header</div>
+                    <div class="card-description">
+                        Encabezado con menú de usuario, tema y notificaciones
+                    </div>
+                    <span class="badge badge-nav">Navegación</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-Sidebar.jsx')">
+                    <div class="card-icon">📂</div>
+                    <div class="card-title">Sidebar</div>
+                    <div class="card-description">
+                        Menú lateral con navegación entre vistas del sistema
+                    </div>
+                    <span class="badge badge-nav">Navegación</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-Dashboard.jsx')">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Dashboard</div>
+                    <div class="card-description">
+                        Panel principal completo con todas las funcionalidades
+                    </div>
+                    <span class="badge badge-nav">Navegación</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h3 class="category-title">💻 Gestión de Bienes</h3>
+            <div class="grid">
+                <div class="card" onclick="copyFileName('App-BienesTable.jsx')">
+                    <div class="card-icon">📋</div>
+                    <div class="card-title">BienesTable</div>
+                    <div class="card-description">
+                        Tabla de bienes con búsqueda, filtros y paginación
+                    </div>
+                    <span class="badge badge-data">Datos</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-BienModal.jsx')">
+                    <div class="card-icon">➕</div>
+                    <div class="card-title">BienModal</div>
+                    <div class="card-description">
+                        Modal para agregar o editar bienes tecnológicos
+                    </div>
+                    <span class="badge badge-modal">Modal</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h3 class="category-title">👥 Gestión de Cuentadantes</h3>
+            <div class="grid">
+                <div class="card" onclick="copyFileName('App-CuentadantesTable.jsx')">
+                    <div class="card-icon">📝</div>
+                    <div class="card-title">CuentadantesTable</div>
+                    <div class="card-description">
+                        Tabla de cuentadantes con búsqueda y filtros
+                    </div>
+                    <span class="badge badge-data">Datos</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-CuentadanteModal.jsx')">
+                    <div class="card-icon">👤</div>
+                    <div class="card-title">CuentadanteModal</div>
+                    <div class="card-description">
+                        Modal para agregar o editar cuentadantes
+                    </div>
+                    <span class="badge badge-modal">Modal</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h3 class="category-title">🔄 Asignaciones y Estadísticas</h3>
+            <div class="grid">
+                <div class="card" onclick="copyFileName('App-AsignacionModal.jsx')">
+                    <div class="card-icon">🔗</div>
+                    <div class="card-title">AsignacionModal</div>
+                    <div class="card-description">
+                        Modal para asignar bienes a cuentadantes
+                    </div>
+                    <span class="badge badge-modal">Modal</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-StatsCards.jsx')">
+                    <div class="card-icon">📈</div>
+                    <div class="card-title">StatsCards</div>
+                    <div class="card-description">
+                        Tarjetas de estadísticas y métricas del sistema
+                    </div>
+                    <span class="badge badge-ui">UI</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-NotificationContainer.jsx')">
+                    <div class="card-icon">🔔</div>
+                    <div class="card-title">NotificationContainer</div>
+                    <div class="card-description">
+                        Sistema de notificaciones con diferentes tipos
+                    </div>
+                    <span class="badge badge-ui">UI</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h3 class="category-title">⚙️ Configuración y Perfil</h3>
+            <div class="grid">
+                <div class="card" onclick="copyFileName('App-PerfilModal.jsx')">
+                    <div class="card-icon">👤</div>
+                    <div class="card-title">PerfilModal</div>
+                    <div class="card-description">
+                        Modal para editar perfil de usuario
+                    </div>
+                    <span class="badge badge-modal">Modal</span>
+                </div>
+                
+                <div class="card" onclick="copyFileName('App-ConfiguracionModal.jsx')">
+                    <div class="card-icon">⚙️</div>
+                    <div class="card-title">ConfiguracionModal</div>
+                    <div class="card-description">
+                        Modal de configuración del sistema
+                    </div>
+                    <span class="badge badge-modal">Modal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function copyFileName(filename) {
+            navigator.clipboard.writeText(filename).then(() => {
+                alert('✅ Copiado: ' + filename + '\n\nAhora abre este archivo en la carpeta examples/');
+            }).catch(() => {
+                alert('📋 Archivo: ' + filename + '\n\nEncuéntralo en la carpeta examples/');
+            });
+        }
+    </script>
+</body>
+</html>

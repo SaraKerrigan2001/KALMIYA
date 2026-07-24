@@ -1,0 +1,459 @@
+/* ============================================
+   SIDEBAR.CSS - Menú lateral de navegación
+   
+   Este archivo contiene los estilos para el menú
+   lateral que incluye:
+   - Logo y título SENA BIENES
+   - Información del usuario
+   - Menú de navegación
+   - Información del sistema
+   ============================================ */
+
+/* ============================================
+   SIDEBAR CONTAINER - Contenedor principal
+   ============================================ */
+.sidebar-container {
+  background-color: white;
+  width: 16rem; /* 256px - Ancho fijo del sidebar */
+  height: 100vh; /* Altura completa de la pantalla */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  overflow-y: auto; /* Scroll vertical cuando el contenido es muy largo */
+  overflow-x: hidden; /* Sin scroll horizontal */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para modo oscuro */
+.dark .sidebar-container {
+  background-color: #1e293b; /* Gris oscuro */
+}
+
+/* Scrollbar personalizada para el sidebar */
+.sidebar-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-container::-webkit-scrollbar-thumb {
+  background: rgba(57, 169, 0, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 169, 0, 0.5);
+}
+
+.dark .sidebar-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .sidebar-container::-webkit-scrollbar-thumb {
+  background: rgba(57, 169, 0, 0.4);
+}
+
+.dark .sidebar-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 169, 0, 0.6);
+}
+
+/* ============================================
+   LOGO SECTION - Sección del logo SENA
+   Contiene el logo y el título "SENA BIENES"
+   ============================================ */
+.sidebar-logo-section {
+  padding: 0 1.5rem; /* Espaciado horizontal */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea divisoria */
+  background: linear-gradient(135deg, #39A900 0%, #007832 100%); /* Degradado verde SENA */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  height: 4.5rem; /* 72px - Misma altura que el header */
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+}
+
+.dark .sidebar-logo-section {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #2d8700 0%, #005a26 100%);
+}
+
+/* Colores del texto en la sección del logo */
+.sidebar-logo-section h1,
+.sidebar-logo-section .dashboard-title {
+  color: white !important; /* Texto blanco para contraste */
+}
+
+.sidebar-logo-section p,
+.sidebar-logo-section .dashboard-subtitle {
+  color: rgba(255, 255, 255, 0.9) !important; /* Blanco semi-transparente */
+}
+
+/* Contenedor del logo y texto */
+.sidebar-logo-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Espacio entre logo y texto */
+  min-height: 2.5rem;
+}
+
+/* Imagen del logo SENA */
+.sidebar-logo-img {
+  width: 2.5rem; /* 40px */
+  height: 2.5rem;
+  object-fit: contain; /* Mantener proporciones */
+}
+
+/* ============================================
+   USER INFO SECTION - Información del usuario
+   Muestra avatar, nombre y área del usuario
+   ============================================ */
+.sidebar-user-section {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .sidebar-user-section {
+  border-bottom-color: #374151;
+}
+
+.sidebar-user-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Avatar del usuario */
+.sidebar-user-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px; /* Círculo perfecto */
+  object-fit: cover;
+}
+
+.sidebar-user-info {
+  flex: 1;
+  min-width: 0; /* Permite que el texto se corte si es muy largo */
+}
+
+/* Nombre del usuario */
+.sidebar-user-name {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Mostrar "..." si el texto es muy largo */
+  white-space: nowrap; /* No permitir saltos de línea */
+}
+
+.dark .sidebar-user-name {
+  color: white;
+}
+
+/* Área del usuario */
+.sidebar-user-area {
+  font-size: 0.75rem; /* 12px */
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dark .sidebar-user-area {
+  color: #9ca3af;
+}
+
+/* ============================================
+   NAVIGATION - Menú de navegación
+   Dashboard, Bienes, Cuentadantes, Asignaciones
+   ============================================ */
+.sidebar-nav {
+  padding: 1rem;
+  flex: 1; /* Ocupa el espacio disponible entre el usuario y los botones */
+  overflow-y: auto; /* Scroll si hay muchos items */
+}
+
+.sidebar-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Espacio entre ítems del menú */
+}
+
+/* Ítem individual del menú */
+.sidebar-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  transition: all 0.3s; /* Animación suave */
+  color: #374151;
+}
+
+.dark .sidebar-menu-item {
+  color: #d1d5db;
+}
+
+/* Efecto hover - al pasar el mouse */
+.sidebar-menu-item:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .sidebar-menu-item:hover {
+  background-color: #374151;
+}
+
+/* Estado activo - opción seleccionada actualmente */
+.sidebar-menu-item.active {
+  background: linear-gradient(90deg, #39A900 0%, #007832 100%); /* Degradado verde SENA */
+  color: white;
+}
+
+.dark .sidebar-menu-item.active {
+  background: linear-gradient(90deg, #2d8700 0%, #005a26 100%);
+  color: white;
+}
+
+/* Icono del menú (emoji) */
+.sidebar-menu-icon {
+  font-size: 1.25rem; /* 20px */
+}
+
+.sidebar-menu-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Nombre del ítem del menú */
+.sidebar-menu-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Descripción del ítem del menú */
+.sidebar-menu-description {
+  font-size: 0.75rem; /* 12px */
+  opacity: 0.75;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================
+   BOTTOM SECTION - Sección inferior con perfil y logout
+   ============================================ */
+.sidebar-bottom-section {
+  margin-top: auto; /* Empuja esta sección al fondo */
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  flex-shrink: 0; /* No se encoge */
+}
+
+.dark .sidebar-bottom-section {
+  background-color: #0f172a;
+  border-top-color: #374151;
+}
+
+/* Tarjeta de perfil del usuario */
+.sidebar-profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.sidebar-profile-card:hover {
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.dark .sidebar-profile-card {
+  background-color: #1e293b;
+}
+
+/* Avatar grande circular */
+.sidebar-profile-avatar-wrapper {
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-profile-avatar-large {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 3px solid #39A900;
+}
+
+.dark .sidebar-profile-avatar-large {
+  border-color: #2d8700;
+}
+
+/* Información del perfil */
+.sidebar-profile-info {
+  width: 100%;
+}
+
+.sidebar-profile-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.dark .sidebar-profile-name {
+  color: white;
+}
+
+.sidebar-profile-role {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dark .sidebar-profile-role {
+  color: #9ca3af;
+}
+
+/* Contenedor de botones de acción */
+.sidebar-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Botón de configuración */
+.sidebar-config-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background-color: #6b7280;
+  color: white;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px 0 rgba(107, 114, 128, 0.3);
+}
+
+.sidebar-config-button:hover {
+  background-color: #4b5563;
+  box-shadow: 0 4px 6px 0 rgba(107, 114, 128, 0.4);
+  transform: translateY(-1px);
+}
+
+.sidebar-config-button:active {
+  transform: translateY(0);
+}
+
+.dark .sidebar-config-button {
+  background-color: #374151;
+}
+
+.dark .sidebar-config-button:hover {
+  background-color: #1f2937;
+}
+
+.sidebar-config-icon {
+  font-size: 1.25rem;
+}
+
+.sidebar-config-text {
+  font-size: 0.9375rem;
+}
+
+/* Botón de cerrar sesión grande y rojo */
+.sidebar-logout-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background-color: #dc2626;
+  color: white;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px 0 rgba(220, 38, 38, 0.3);
+}
+
+.sidebar-logout-button:hover {
+  background-color: #b91c1c;
+  box-shadow: 0 4px 6px 0 rgba(220, 38, 38, 0.4);
+  transform: translateY(-1px);
+}
+
+.sidebar-logout-button:active {
+  transform: translateY(0);
+}
+
+.dark .sidebar-logout-button {
+  background-color: #ef4444;
+}
+
+.dark .sidebar-logout-button:hover {
+  background-color: #dc2626;
+}
+
+.sidebar-logout-icon {
+  font-size: 1.25rem;
+}
+
+.sidebar-logout-text {
+  font-size: 0.9375rem;
+}
+
+/* ============================================
+   RESPONSIVE - Menú hamburguesa
+   Sidebar colapsable en todas las resoluciones
+   ============================================ */
+
+/* Overlay oscuro cuando el sidebar está abierto */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
+  z-index: 40;
+}
+
+/* Sidebar colapsable - oculto por defecto */
+.sidebar-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  transform: translateX(-100%); /* Oculto fuera de la pantalla a la izquierda */
+  transition: transform 0.3s ease-in-out; /* Animación suave al abrir/cerrar */
+}
+
+/* Sidebar abierto - visible */
+.sidebar-container.sidebar-open {
+  transform: translateX(0); /* Posición normal */
+}
+
+/* Mostrar overlay cuando está abierto */
+.sidebar-overlay {
+  display: block;
+}
+
+/* En escritorio, ajustar opacidad del overlay */
+@media (min-width: 769px) {
+  .sidebar-overlay {
+    background-color: rgba(0, 0, 0, 0.3); /* Menos opaco en pantallas grandes */
+  }
+}

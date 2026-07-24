@@ -1,0 +1,419 @@
+/* ConfiguracionModal Overlay */
+.config-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+
+/* Modal Container */
+.config-modal-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 42rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.dark .config-modal-container {
+  background-color: #1e293b;
+}
+
+/* Header */
+.config-modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .config-modal-header {
+  border-bottom-color: #374151;
+}
+
+.config-modal-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.config-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.config-modal-icon {
+  width: 3rem;
+  height: 3rem;
+  background-color: #dbeafe;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .config-modal-icon {
+  background-color: #1e3a8a;
+}
+
+.config-modal-icon-emoji {
+  font-size: 1.5rem;
+}
+
+.config-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .config-modal-title {
+  color: white;
+}
+
+.config-modal-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dark .config-modal-subtitle {
+  color: #9ca3af;
+}
+
+.config-modal-close {
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+}
+
+.config-modal-close:hover {
+  color: #4b5563;
+}
+
+.dark .config-modal-close:hover {
+  color: #d1d5db;
+}
+
+.config-modal-close-icon {
+  font-size: 1.5rem;
+}
+
+/* Form */
+.config-modal-form {
+  padding: 1.5rem;
+}
+
+.config-modal-success {
+  margin-bottom: 1rem;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.dark .config-modal-success {
+  background-color: rgba(22, 163, 74, 0.2);
+  border-color: #166534;
+  color: #86efac;
+}
+
+/* Section */
+.config-modal-section {
+  margin-bottom: 1.5rem;
+}
+
+.config-modal-section-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .config-modal-section-title {
+  color: white;
+}
+
+.config-modal-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Theme Buttons */
+.config-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.config-theme-button {
+  padding: 0.75rem;
+  border: 2px solid #d1d5db;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  background: none;
+}
+
+.config-theme-button.active {
+  border-color: #059669;
+  background-color: #f0fdf4;
+}
+
+.dark .config-theme-button {
+  border-color: #4b5563;
+}
+
+.dark .config-theme-button.active {
+  background-color: rgba(5, 150, 105, 0.2);
+}
+
+.config-theme-button:hover:not(.active) {
+  border-color: #6ee7b7;
+}
+
+.config-theme-button-emoji {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.config-theme-button-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.dark .config-theme-button-text {
+  color: white;
+}
+
+/* Toggle Items */
+.config-toggle-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+}
+
+.dark .config-toggle-item {
+  background-color: #374151;
+}
+
+.config-toggle-info {
+  flex: 1;
+}
+
+.config-toggle-title {
+  font-weight: 500;
+  color: #111827;
+}
+
+.dark .config-toggle-title {
+  color: white;
+}
+
+.config-toggle-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dark .config-toggle-description {
+  color: #9ca3af;
+}
+
+/* Toggle Switch */
+.config-toggle-switch {
+  position: relative;
+  display: inline-flex;
+  height: 1.5rem;
+  width: 2.75rem;
+  align-items: center;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.config-toggle-switch.active {
+  background-color: #059669;
+}
+
+.config-toggle-switch.inactive {
+  background-color: #d1d5db;
+}
+
+.dark .config-toggle-switch.inactive {
+  background-color: #4b5563;
+}
+
+.config-toggle-switch-circle {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 9999px;
+  background-color: white;
+  transition: transform 0.2s;
+}
+
+.config-toggle-switch.active .config-toggle-switch-circle {
+  transform: translateX(1.5rem);
+}
+
+.config-toggle-switch.inactive .config-toggle-switch-circle {
+  transform: translateX(0.25rem);
+}
+
+/* Form Fields */
+.config-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.config-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.dark .config-label {
+  color: #d1d5db;
+}
+
+.config-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.config-select:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}
+
+.dark .config-select {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: white;
+}
+
+/* Footer Buttons */
+.config-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .config-modal-footer {
+  border-top-color: #374151;
+}
+
+.config-modal-footer-right {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.config-btn-restore {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.config-btn-restore:hover {
+  background-color: #f9fafb;
+}
+
+.dark .config-btn-restore {
+  color: #d1d5db;
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.dark .config-btn-restore:hover {
+  background-color: #4b5563;
+}
+
+.config-btn-restore:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.5);
+}
+
+.config-btn-cancel {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.config-btn-cancel:hover {
+  background-color: #f9fafb;
+}
+
+.dark .config-btn-cancel {
+  color: #d1d5db;
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.dark .config-btn-cancel:hover {
+  background-color: #4b5563;
+}
+
+.config-btn-cancel:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}
+
+.config-btn-submit {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background-color: #059669;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.config-btn-submit:hover {
+  background-color: #047857;
+}
+
+.config-btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}
+
+.config-btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

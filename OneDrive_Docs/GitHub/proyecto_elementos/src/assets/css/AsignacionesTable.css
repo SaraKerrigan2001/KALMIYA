@@ -1,0 +1,295 @@
+/* AsignacionesTable Container */
+.asignaciones-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dark .asignaciones-container {
+  background-color: #1e293b;
+}
+
+/* Header Section */
+.asignaciones-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .asignaciones-header {
+  border-bottom-color: #374151;
+}
+
+.asignaciones-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .asignaciones-header-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.asignaciones-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .asignaciones-title {
+  color: white;
+}
+
+.asignaciones-count {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.dark .asignaciones-count {
+  color: #9ca3af;
+}
+
+.asignaciones-search-wrapper {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .asignaciones-search-wrapper {
+    width: 16rem;
+  }
+}
+
+.asignaciones-search-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.asignaciones-search-input:focus {
+  ring: 2px;
+  ring-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.dark .asignaciones-search-input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: white;
+}
+
+/* Table Content */
+.asignaciones-table-wrapper {
+  overflow-x: auto;
+}
+
+.asignaciones-empty-state {
+  padding: 2rem;
+  text-align: center;
+}
+
+.asignaciones-empty-icon {
+  margin: 0 auto;
+  height: 3rem;
+  width: 3rem;
+  color: #9ca3af;
+}
+
+.dark .asignaciones-empty-icon {
+  color: #4b5563;
+}
+
+.asignaciones-empty-text {
+  margin-top: 0.5rem;
+  color: #6b7280;
+}
+
+.dark .asignaciones-empty-text {
+  color: #9ca3af;
+}
+
+/* Asignaciones List */
+.asignaciones-list {
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .asignaciones-list {
+  border-top-color: #374151;
+}
+
+.asignacion-item {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.asignacion-item:hover {
+  background-color: #f9fafb;
+}
+
+.dark .asignacion-item {
+  border-bottom-color: #374151;
+}
+
+.dark .asignacion-item:hover {
+  background-color: rgba(55, 65, 81, 0.5);
+}
+
+.asignacion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .asignacion-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+/* Asignacion Info */
+.asignacion-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.asignacion-date {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dark .asignacion-date {
+  color: #9ca3af;
+}
+
+.asignacion-date-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+}
+
+.asignacion-section {
+  display: flex;
+  align-items: flex-start;
+}
+
+.asignacion-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+  margin-top: 0.125rem;
+}
+
+.asignacion-icon-blue {
+  color: #2563eb;
+}
+
+.dark .asignacion-icon-blue {
+  color: #60a5fa;
+}
+
+.asignacion-icon-green {
+  color: #16a34a;
+}
+
+.dark .asignacion-icon-green {
+  color: #4ade80;
+}
+
+.asignacion-icon-gray {
+  color: #9ca3af;
+}
+
+.asignacion-name {
+  font-weight: 500;
+  color: #111827;
+}
+
+.dark .asignacion-name {
+  color: white;
+}
+
+.asignacion-details {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.dark .asignacion-details {
+  color: #9ca3af;
+}
+
+.asignacion-bienes-wrapper {
+  flex: 1;
+}
+
+.asignacion-bienes-title {
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark .asignacion-bienes-title {
+  color: white;
+}
+
+.asignacion-bienes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.asignacion-bien-item {
+  font-size: 0.875rem;
+  color: #6b7280;
+  background-color: #f9fafb;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.dark .asignacion-bien-item {
+  color: #9ca3af;
+  background-color: #374151;
+}
+
+.asignacion-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dark .asignacion-description {
+  color: #9ca3af;
+}
+
+/* Status Badge */
+.asignacion-status-wrapper {
+  flex-shrink: 0;
+}
+
+.asignacion-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.dark .asignacion-status-badge {
+  background-color: rgba(6, 95, 70, 0.3);
+  color: #6ee7b7;
+}

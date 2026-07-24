@@ -1,0 +1,11 @@
+{
+  "accentColor": "#0099ff",
+  "baseFontSize": 16,
+  "cssTheme": "Obsidian",
+  "theme": "dark",
+  "showRibbon": true,
+  "interfaceFontFamily": "",
+  "monospaceFontFamily": "JetBrains Mono",
+  "translucency": false,
+  "nativeMenus": true
+}

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=70.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kalmiya"
+version = "0.1.0"
+description = "KALMIYA Neural Core – modern, secure, premium AI assistant"
+readme = "README.md"
+authors = [{name = "María", email = "maria@example.com"}]
+license = {text = "MIT"}
+requires-python = ">=3.12"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/maria/kalmiya"
+
+[project.scripts]
+kalmiya = "kalmiya_launcher:main"

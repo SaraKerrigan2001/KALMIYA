@@ -1,0 +1,57 @@
+# ── Secretos y datos sensibles ────────────────────────────────────────────────
+.env
+*.env
+!.env.example
+**/credentials.json
+**/token.json
+**/secrets.*
+
+# ── Base de datos y datos de usuario ─────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+kalmiya.db
+_BACKUPS/
+01_systems/KALMIYA_System/data/
+01_systems/KALMIYA_System/rag_db/
+01_systems/KALMIYA_System/temp_audio/
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+02_infrastructure/Lib/
+02_infrastructure/Scripts/
+.pytest_cache/
+.mypy_cache/
+
+# ── Obsidian (cache local) ────────────────────────────────────────────────────
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+
+# ── Temporales y duplicados ───────────────────────────────────────────────────
+_TEMP/
+__pycache__/
+*.log
+*.tmp
+*.bak
+threat_alert.txt
+
+# ── Binarios y assets pesados ─────────────────────────────────────────────────
+*.exe
+cloudflared.exe
+*.ico
+*.png
+!kalmiya_wallpaper.png
+
+# ── Copia duplicada (usar 01_systems/LLM_Wiki/) ──────────────────────────────
+Desktop_Files/LLM_Wiki/
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
