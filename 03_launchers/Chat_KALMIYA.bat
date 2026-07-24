@@ -10,6 +10,12 @@ echo.
 
 cd /d "%~dp0"
 
+REM Crea acceso directo en el escritorio si no existe
+if not exist "%USERPROFILE%\Desktop\KALMIYA Chat.lnk" (
+    echo Creando acceso directo en el escritorio...
+    cscript //nologo "..\01_systems\KALMIYA_System\crear_acceso_chat.vbs"
+)
+
 REM Intenta con python3 primero, luego python
 where python >nul 2>nul
 if %ERRORLEVEL% equ 0 (
