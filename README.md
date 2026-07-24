@@ -58,6 +58,7 @@ python 01_systems\KALMIYA_System\main.py
 - `KALMIYA_FUNCIONES.md` — Funciones disponibles en el asistente
 - `MODULOS_IMPLEMENTADOS.md` — Módulos instalados y estado del proyecto
 - `OBSIDIAN_SETUP.md` — Integración con Obsidian
+- `ISSUES.md` — Cómo reportar bugs e ideas
 
 ## 🔧 Configuración de voz
 
