@@ -39,8 +39,7 @@ __pycache__/
 *.log
 *.tmp
 *.bak
-threat_alert.txt
-
+threat_alert.txtgraphify-out/
 # ── Binarios y assets pesados ─────────────────────────────────────────────────
 *.exe
 cloudflared.exe

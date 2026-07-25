@@ -232,6 +232,26 @@ def skill_calcular(expresion: str) -> str:
         return f"Error: {e}"
 
 
+@skill("graphify", "Explica qué es Graphify y cómo usarlo con KALMIYA",
+       categoria="info",
+       aliases=["knowledge_graph", "grafo_conocimiento"],
+       ejemplos=["graphify", "knowledge_graph 'cómo usarlo'"])
+def skill_graphify(consulta: str = "") -> dict:
+    from kalmiya_nuevas_funciones import obtener_informacion_graphify
+    info = obtener_informacion_graphify()
+    if consulta.strip().lower().startswith("instal"):
+        info["respuesta"] = "Para instalarlo usa uv tool install graphifyy y luego graphify install."
+    elif consulta.strip().lower().startswith("mcp"):
+        info["respuesta"] = f"Para exponer el grafo como MCP usa: {info['mcp']}"
+    else:
+        info["respuesta"] = (
+            f"{info['titulo']} convierte tu proyecto en un grafo de conocimiento consultable. "
+            f"Sirve para responder preguntas sobre arquitectura, relaciones y contexto, "
+            f"y puede integrarse con asistentes como KALMIYA."
+        )
+    return info
+
+
 # ── Sistema ───────────────────────────────────────────────────────────────────
 
 @skill("info_sistema", "Muestra el estado del sistema (CPU, RAM, disco)",

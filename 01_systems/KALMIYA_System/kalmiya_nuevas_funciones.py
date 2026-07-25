@@ -3,7 +3,7 @@ kalmiya_nuevas_funciones.py — Todas las funciones nuevas de KALMIYA
 ====================================================================
 Prioridades alta, media y baja + funciones vacías completadas.
 """
-import os, sys, re, json, time, string, secrets, hashlib, threading, subprocess
+import os, sys, re, json, time, string, secrets, hashlib, threading, subprocess, shutil
 import webbrowser
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -837,7 +837,113 @@ def github_info(usuario: str = "", repo: str = "") -> dict:
         return {}
 
 
-# ── BAJA 19: Modo silencioso nocturno ────────────────────────────────────────
+# ── BAJA 19: Graphify / knowledge graph para KALMIYA ───────────────────────
+
+def obtener_informacion_graphify() -> dict:
+    """
+    Obtiene una vista resumida de Graphify desde su web y repo para que KALMIYA
+    pueda explicar qué es, cómo funciona y cómo usarlo.
+    """
+    resumen = {
+        "titulo": "Graphify",
+        "url": "https://graphify.com",
+        "repositorio": "Graphify-Labs/graphify",
+        "descripcion": (
+            "Graphify convierte un proyecto en un grafo de conocimiento consultable "
+            "por asistentes de IA, permitiendo navegar conceptos, relaciones y "
+            "explicar arquitectura sin depender de búsquedas dispersas."
+        ),
+        "caracteristicas": [
+            "Mapea repositorios, docs, PDFs, imágenes, videos y esquemas en un grafo",
+            "Usa parsing local con tree-sitter y evita depender únicamente de embeddings",
+            "Permite hacer consultas tipo query, path, explain sobre el proyecto",
+            "Puede exponerse como servidor MCP para uso repetido por asistentes"
+        ],
+        "comandos_instalacion": [
+            "uv tool install graphifyy",
+            "graphify install",
+            "graphify ."
+        ],
+        "comandos_rapidos": [
+            "graphify query 'qué conecta auth con la base de datos'",
+            "graphify path 'UserService' 'DatabasePool'",
+            "graphify explain 'RateLimiter'"
+        ],
+        "mcp": "python -m graphify.serve graphify-out/graph.json --transport http --port 8080",
+        "video_demo": "https://www.youtube.com/watch?v=LPGAUDEX0u4"
+    }
+
+    try:
+        import requests
+
+        web_resp = requests.get("https://graphify.com", timeout=10, headers={"User-Agent": "KALMIYA/1.0"})
+        web_resp.raise_for_status()
+        web_text = web_resp.text.lower()
+        if "connected data" in web_text:
+            resumen["descripcion"] = "Graphify helps teams reason over connected data."
+        elif "code knowledge graph" in web_text:
+            resumen["descripcion"] = "Graphify es un grafo de conocimiento de código para asistentes de IA."
+        if "no embeddings" in web_text:
+            resumen["caracteristicas"].insert(0, "No usa embeddings como base principal, sino un grafo explicable")
+
+        repo_resp = requests.get("https://api.github.com/repos/Graphify-Labs/graphify", timeout=10, headers={"User-Agent": "KALMIYA/1.0"})
+        repo_resp.raise_for_status()
+        repo_data = repo_resp.json()
+        if repo_data.get("full_name"):
+            resumen["repositorio"] = repo_data["full_name"]
+        if repo_data.get("description"):
+            resumen["descripcion"] = repo_data["description"]
+        if repo_data.get("html_url"):
+            resumen["repositorio_url"] = repo_data["html_url"]
+        if repo_data.get("stargazers_count"):
+            resumen["estrellas"] = repo_data["stargazers_count"]
+    except Exception:
+        pass
+
+    return resumen
+
+
+def ejecutar_graphify_proyecto(ruta_proyecto: str, modo: str = "default") -> dict:
+    """
+    Ejecuta Graphify sobre una carpeta de proyecto y devuelve el resultado.
+    Args:
+        ruta_proyecto: carpeta objetivo.
+        modo: 'default' para generar grafo completo o 'sin_viz' para omitir HTML.
+    Returns:
+        dict con exito, salida y ruta del proyecto.
+    """
+    ruta = Path(ruta_proyecto).expanduser().resolve()
+    if not ruta.exists():
+        speak(f"No encontré la carpeta {ruta}.")
+        return {"exito": False, "error": "ruta_no_encontrada"}
+
+    binario = shutil.which("graphify")
+    if not binario:
+        speak("Graphify no está disponible en el PATH de este entorno.")
+        return {"exito": False, "error": "graphify_no_disponible"}
+
+    cmd = [binario, str(ruta)]
+    if modo == "sin_viz":
+        cmd.extend(["--no-viz"])
+
+    speak(f"Ejecutando Graphify sobre {ruta.name}...")
+    try:
+        resultado = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ruta), check=False)
+        if resultado.returncode != 0:
+            error_msg = (resultado.stderr or resultado.stdout or "Sin detalle").strip()
+            speak(f"Graphify falló: {error_msg}")
+            return {"exito": False, "error": error_msg, "returncode": resultado.returncode}
+
+        salida = (resultado.stdout or "Graphify terminó correctamente.").strip()
+        speak("Graphify terminó correctamente. Puedes revisar la salida generada en la carpeta del proyecto.")
+        log_command(f"[GRAPHIFY] {ruta.name}", salida[:200], source="modules")
+        return {"exito": True, "salida": salida, "ruta": str(ruta), "comando": cmd}
+    except Exception as e:
+        speak(f"No pude ejecutar Graphify: {e}")
+        return {"exito": False, "error": str(e)}
+
+
+# ── BAJA 20: Modo silencioso nocturno ────────────────────────────────────────
 
 _modo_silencioso = False
 

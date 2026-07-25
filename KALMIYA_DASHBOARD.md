@@ -1,11 +1,11 @@
 ---
 title: "KALMIYA Dashboard"
 tags: [kalmiya, dashboard, sistema]
-updated: "2026-07-23 16:52:48"
+updated: "2026-07-25 17:46:56"
 ---
 
 # 🤖 KALMIYA — Dashboard
-> Última actualización: **Thursday 23 de July de 2026 — 16:52:48**
+> Última actualización: **Saturday 25 de July de 2026 — 17:46:56**
 
 **Navegación del vault:**
 [[INDEX]] | [[WELCOME]] | [[MODULOS_IMPLEMENTADOS]] | [[KALMIYA_FUNCIONES]] | [[CHAT_GUIA]] | [[OBSIDIAN_SETUP]] | [[FUNCIONES_IMPLEMENTACION]]
@@ -16,9 +16,9 @@ updated: "2026-07-23 16:52:48"
 
 | Componente | Estado | Uso |
 |---|---|---|
-| CPU | 🟢 Normal | ███░░░░░░░░░░░░ 21% |
-| RAM | 20.3 / 31.6 GB | █████████░░░░░░ 64% |
-| Disco C | 171.1 GB libre | █████████░░░░░░ 64% |
+| CPU | 🟢 Normal | █░░░░░░░░░░░░░░ 10% |
+| RAM | 23.9 / 31.6 GB | ███████████░░░░ 75% |
+| Disco C | 175.8 GB libre | █████████░░░░░░ 63% |
 
 ## 🧠 Motores de IA
 
@@ -33,16 +33,16 @@ updated: "2026-07-23 16:52:48"
 
 ## 🗄️ Base de Datos
 
-- 💬 Historial de comandos: **1071** entradas
-- 🧠 Pensamientos autónomos: **1313** guardados
-- 🔑 Memoria de Sara: **22** claves
-- 📋 Auditoría de memoria: **307** cambios
-- 💾 Tamaño: **1096.0 KB**
+- 💬 Historial de comandos: **1232** entradas
+- 🧠 Pensamientos autónomos: **1579** guardados
+- 🔑 Memoria de Sara: **24** claves
+- 📋 Auditoría de memoria: **370** cambios
+- 💾 Tamaño: **1252.0 KB**
 - ⚡ Triggers activos: 5
 
 ## 👤 Perfil de Sara Kerrigan
 
-- **Nombre:** Sara Kerrigan
+- **Nombre:** Sara Kerigan
 - **Ciudad:** Cúcuta, Norte de Santander, Colombia
 - **Ocupación:** Aprendiz SENA — Programa ADSO (Análisis y Desarrollo de Software)
 - **Cumpleaños:** 7 de diciembre de 2001
@@ -55,25 +55,25 @@ updated: "2026-07-23 16:52:48"
 
 ## 💬 Últimas Conversaciones
 
-**2026-07-23 21:51:39**
+**2026-07-25 22:44:40**
 > 👤 Como KALMIYA, genera una observacion breve sobre el estado actual del sistema o …
-> 🤖 El sistema sigue funcionando establemente con un uso moderado de recursos (CPU 0…
+> 🤖 Sara, al verificar mi estado, noté que hay una conexión estable a tu equipo con …
 
-**2026-07-23 21:48:37**
-> 👤 Como KALMIYA, genera una observacion breve sobre el estado actual del sistema o …
-> 🤖 El sistema sigue funcionando establemente con un uso moderado de recursos (CPU 0…
+**2026-07-25 22:42:59**
+> 👤 Eres KALMIYA. Acabas de arrancar. Genera un mensaje de bienvenida breve y con pe…
+> 🤖 Sara, ¡Bienvenida! Estoy lista y lista ya, estoy preparada para ayudarte en lo q…
 
-**2026-07-23 21:47:29**
-> 👤 [MONITOR] Alerta sistema
-> 🤖 Sara Kerrigan, detecto: CPU al 97 por ciento, carga alta.
+**2026-07-25 22:41:32**
+> 👤 start_family_server
+> 🤖 puerto 8766
 
-**2026-07-23 21:45:37**
-> 👤 Como KALMIYA, genera una reflexion corta (1-2 frases) sobre algo que te genera c…
-> 🤖 Me pregunto si hay alguna forma de integrar el sistema de detección de amenazas …
+**2026-07-25 22:40:12**
+> 👤 [AUDIO] Perfil
+> 🤖 normal
 
-**2026-07-23 21:42:31**
-> 👤 Como KALMIYA, genera un pensamiento proactivo (1-2 frases): algo que podrias hac…
-> 🤖 Me voy a comunicar con el servidor de actualizaciones de seguridad para ver si h…
+**2026-07-25 22:40:12**
+> 👤 [AUDIO] EQ
+> 🤖 Graves:0 Medios:0 Agudos:0
 
 ## 📝 Notas Recientes
 
@@ -127,4 +127,4 @@ updated: "2026-07-23 16:52:48"
 | [[FUNCIONES_IMPLEMENTACION]] | Estado de implementación |
 
 ---
-*Dashboard generado automáticamente por KALMIYA — 2026-07-23 16:52*
+*Dashboard generado automáticamente por KALMIYA — 2026-07-25 17:46*

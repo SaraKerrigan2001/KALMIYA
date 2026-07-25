@@ -314,6 +314,8 @@ def show_menu() -> None:
     print("N20. Activar modo silencioso nocturno")
     print("N21. Estadísticas de uso de KALMIYA")
     print("N22. Clima completo con pronóstico 7 días")
+    print("N23. Entender Graphify / knowledge graph")
+    print("N24. Ejecutar Graphify sobre un proyecto")
     print("\n=== BIOMETRÍA Y AUDIO ===")
     print("BIO1. Verificación biométrica completa")
     print("BIO2. Solo reconocimiento facial")
@@ -1495,7 +1497,7 @@ def _handle_nuevas_funciones(choice: str) -> None:
         listar_apps_abiertas, cerrar_app, limpiar_disco_inteligente,
         guardar_nota_de_voz, comandos_frecuentes, generar_password,
         github_info, activar_modo_silencioso, estadisticas_uso,
-        get_real_weather
+        get_real_weather, obtener_informacion_graphify, ejecutar_graphify_proyecto
     )
 
     if choice == "N1":
@@ -1616,6 +1618,33 @@ def _handle_nuevas_funciones(choice: str) -> None:
             for d in resultado["pronostico"]:
                 print(f"  {d['dia']}: {d['max']}°/{d['min']}° {d['cond']} "
                       f"Lluvia: {d['lluvia']}mm")
+
+    elif choice == "N23":
+        resultado = safe_execute(obtener_informacion_graphify)
+        if resultado:
+            print(f"\n=== {resultado.get('titulo', 'Graphify')} ===")
+            print(f"  {resultado.get('descripcion', '')}")
+            print("\n  Capacidades clave:")
+            for item in resultado.get("caracteristicas", [])[:5]:
+                print(f"    • {item}")
+            print("\n  Comandos rápidos:")
+            for cmd in resultado.get("comandos_instalacion", [])[:3]:
+                print(f"    • {cmd}")
+            print(f"\n  Demo: {resultado.get('video_demo', '')}")
+
+    elif choice == "N24":
+        ruta = input("Ruta de la carpeta del proyecto: ").strip().strip('"')
+        if not ruta:
+            return
+        modo = input("Modo [sin_viz] (default/sin_viz): ").strip().lower() or "sin_viz"
+        resultado = safe_execute(ejecutar_graphify_proyecto, ruta, modo)
+        if resultado and resultado.get("exito"):
+            print(f"\n  ✅ Graphify ejecutado correctamente")
+            print(f"  Ruta: {resultado.get('ruta')}")
+            if resultado.get("salida"):
+                print(f"  Salida: {resultado['salida']}")
+        elif resultado:
+            print(f"\n  ❌ Graphify no pudo ejecutarse: {resultado.get('error')}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
