@@ -12,8 +12,6 @@ created: 2026-06-13
 
 ## 📡 Conectado con
 
-[[KALMIYA_System/README|KALMIYA]] • [[Scripts/README|Scripts]] • [[reports/README|Reports]] • [[Lib/README|Lib]]
-
----
+[[KALMIYA_DASHBOARD|📊 Dashboard]] | [[INDEX|← Índice]] | [[WELCOME|← Bienvenida]] | [[02_infrastructure/reports/README|Reports]] | [[02_infrastructure/Scripts/README|Scripts]] | [[02_infrastructure/scratch/README|Scratch]]
 
 **Componente**: Desarrollo | [[INDEX|← Volver]]

@@ -5,7 +5,7 @@
 Set oWS  = WScript.CreateObject("WScript.Shell")
 Set fso  = CreateObject("Scripting.FileSystemObject")
 
-strBase  = "c:\Users\maria\env\01_systems\KALMIYA_System"
+strBase  = fso.GetParentFolderName(WScript.ScriptFullName)
 vbsChat  = strBase & "\Lanzar_Chat_KALMIYA.vbs"
 icoPath  = strBase & "\kalmiya.ico"
 desktop  = oWS.SpecialFolders("Desktop")
