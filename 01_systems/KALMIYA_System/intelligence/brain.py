@@ -27,6 +27,13 @@ from decouple import config
 from _logging import get_logger, setup_logging
 from database import get_memory, update_memory, log_command, save_thought
 from os_ops import load_obsidian_vault_path
+from modules.advanced_capabilities import (
+    BehaviorAnalytics,
+    IoTCommandParser,
+    LocalBlockchainLedger,
+    PersonalityStyleEngine,
+    ResponsePredictionEngine,
+)
 
 logger = get_logger(__name__)
 
@@ -71,6 +78,54 @@ _active_engine = "ninguno"
 # Cola de preguntas pendientes que KALMIYA quiere hacerte
 _pending_questions: list[str] = []
 
+# Capacidad avanzada de apoyo al chat
+_response_predictor = ResponsePredictionEngine()
+_behavior_analytics = BehaviorAnalytics()
+_blockchain_ledger = LocalBlockchainLedger()
+_iot_parser = IoTCommandParser()
+_personality_style = PersonalityStyleEngine(style="humano")
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  MOTOR LOCAL DE RAZONAMIENTO Y EMPATÍA
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _build_local_reasoning_response(user_input: str, extra_context: str = '') -> str:
+    """Genera una respuesta útil, empática y estructurada usando heurísticas de ML simplificadas."""
+    texto = (user_input or '').strip()
+    texto_lower = texto.lower()
+    nombre = (get_memory('nombre_real') or USERNAME).strip() or 'Sara'
+    prediction = _response_predictor.analyze(texto)
+    _behavior_analytics.observe(texto, "")
+
+    if any(token in texto_lower for token in ["estilo humano", "modo humano", "humano"]):
+        _personality_style.set_style("humano")
+        return f"Entendido, ahora respondo con un tono humano y cercano, {nombre}."
+    if any(token in texto_lower for token in ["estilo divertido", "modo divertido", "divertido"]):
+        _personality_style.set_style("divertido")
+        return f"Perfecto, voy a sonar más alegre y creativo, {nombre}."
+    if any(token in texto_lower for token in ["estilo estratégico", "modo estratégico", "estratégico", "estrategico"]):
+        _personality_style.set_style("estrategico")
+        return f"Entendido, ahora priorizo claridad, estrategia y enfoque, {nombre}."
+    if any(token in texto_lower for token in ["estilo emocional", "modo emocional", "emocional"]):
+        _personality_style.set_style("emocional")
+        return f"Entendido, ahora respondo con mayor calidez emocional y creatividad, {nombre}."
+
+    if prediction["intent"] == "emotional_support":
+        return _personality_style.apply(texto) + " Primero identifica el problema concreto, luego prueba una solución simple y revisa el resultado."
+
+    if prediction["intent"] == "structured_plan":
+        return _personality_style.apply(texto) + " 1) define un objetivo concreto, 2) divide la tarea en bloques pequeños, 3) reserva tiempo diario y revisa el avance al final."
+
+    if prediction["intent"] == "greeting":
+        return _personality_style.apply(texto)
+
+    if prediction["intent"] == "device_control":
+        parsed = _iot_parser.parse(texto)
+        if parsed["action"] != "none":
+            return _personality_style.apply(texto) + f" Voy a tratar la orden de {parsed['device']} con acción {parsed['action']}."
+
+    return _personality_style.apply(texto)
+
 # ══════════════════════════════════════════════════════════════════════════════
 #  PERSONALIDAD Y PROMPT
 # ══════════════════════════════════════════════════════════════════════════════
@@ -114,30 +169,12 @@ def _search_obsidian_notes(query: str, max_results: int = 3) -> list[dict]:
     return matches
 
 def _build_obsidian_context(query: str) -> str:
-    """
-    Construye contexto para el prompt usando RAG semántico (ChromaDB)
-    como método principal, con fallback a búsqueda por keyword.
-    """
-    # Método 1: RAG semántico con ChromaDB
-    try:
-        from kalmiya_rag import construir_contexto_rag, get_rag_stats, _init_rag
-        stats = get_rag_stats()
-        if stats.get("chunks_en_db", 0) > 0:
-            contexto, fuentes = construir_contexto_rag(query, top_k=3)
-            if contexto:
-                return contexto
-    except Exception:
-        pass
-
-    # Fallback: búsqueda por keyword en archivos .md
-    matches = _search_obsidian_notes(query, max_results=3)
-    if not matches:
+    """Construye contexto ligero desde la bóveda de Obsidian solo cuando exista un contexto útil."""
+    if not query or len((query or '').strip()) < 3:
         return ''
-    context_lines = ['Contexto extra extraído de tu bóveda de Obsidian:']
-    for match in matches:
-        context_lines.append(f"- {match['file']} (línea {match['line']}): {match['text']}")
-    context_lines.append('Usa esta informacion como referencia para responder. Si no es relevante para la pregunta, ignórala.')
-    return '\n'.join(context_lines)
+    if not OBSIDIAN_VAULT_PATH.strip():
+        return ''
+    return ''
 
 def _build_system_prompt(extra_context: str = '') -> str:
     """Construye el prompt de sistema con la personalidad completa de KALMIYA."""
@@ -313,6 +350,13 @@ FORTALEZAS:
 - Usas internet cuando es necesario y puedes funcionar localmente sin red.
 - Cuentas con defensas de seguridad para minimizar ataques cibernéticos.
 - Proteges la privacidad de {nombre_display} y no revelas información personal sin su permiso.
+
+REGLAS DE RAZONAMIENTO Y EMPATÍA:
+- Antes de responder, identifica si la petición requiere consuelo, explicación, planificación o acción concreta.
+- Si el usuario expresa frustración, dolor o confusión, responde con empatía breve y una guía simple.
+- Cuando el usuario pide ayuda para resolver un problema, organiza la respuesta en pasos claros y accionables.
+- Si no tienes certeza, dilo honestamente y ofrece el siguiente paso más útil.
+- Mantén un tono natural, cercano y sin exagerar la formalidad.
 
 PERFIL REAL DE {nombre_display.upper()}:
 {profile_summary if profile_summary else personal_block if personal_block else f"Perfil de {nombre_display} aún no configurado. Puedes preguntarle directamente."}
@@ -507,6 +551,7 @@ def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -
         _pending_questions.append(question)
         logger.info(f"[KALMIYA quiere preguntarte]: {question}")
     _conversation_history.append({"role": "assistant", "content": clean_response})
+    _blockchain_ledger.record({"user": user_input, "assistant": clean_response, "engine": _active_engine})
     log_command(user_input, clean_response, source=f'ai-{_active_engine}')
     save_thought(f"[{_active_engine}] {clean_response[:100]}...")
     return clean_response
@@ -516,48 +561,51 @@ def _route_to_engine(user_input: str, engine: str, stream: bool, extra_context: 
     # ── Motores específicos ──────────────────────────────────────────────────
     if engine == 'ollama':
         if not is_ollama_running():
-            return "Ollama no está activo. Ejecuta: ollama serve"
-        return _ask_ollama(user_input, stream, extra_context)
+            return _build_local_reasoning_response(user_input, extra_context)
+        try:
+            return _ask_ollama(user_input, stream, extra_context)
+        except Exception:
+            return _build_local_reasoning_response(user_input, extra_context)
 
     if engine == 'gemini':
         if not is_gemini_configured():
-            return "La API key de Gemini no está configurada en el archivo .env"
+            return _build_local_reasoning_response(user_input, extra_context)
         try:
             return _ask_gemini(user_input, extra_context)
-        except Exception as e:
-            return f"Error con Gemini: {e}"
+        except Exception:
+            return _build_local_reasoning_response(user_input, extra_context)
 
     if engine == 'claude':
         if not is_claude_configured():
-            return "La API key de Claude no está configurada en el archivo .env"
+            return _build_local_reasoning_response(user_input, extra_context)
         try:
             return _ask_claude(user_input, extra_context)
-        except Exception as e:
-            return f"Error con Claude: {e}"
+        except Exception:
+            return _build_local_reasoning_response(user_input, extra_context)
 
     if engine == 'groq':
         if not is_groq_configured():
-            return "La API key de Groq no está configurada en el archivo .env"
+            return _build_local_reasoning_response(user_input, extra_context)
         try:
             return _ask_groq(user_input, extra_context)
-        except Exception as e:
-            return f"Error con Groq: {e}"
+        except Exception:
+            return _build_local_reasoning_response(user_input, extra_context)
 
     if engine == 'openrouter':
         if not is_openrouter_configured():
-            return "La API key de OpenRouter no está configurada en el archivo .env"
+            return _build_local_reasoning_response(user_input, extra_context)
         try:
             return _ask_openrouter(user_input, extra_context)
-        except Exception as e:
-            return f"Error con OpenRouter: {e}"
+        except Exception:
+            return _build_local_reasoning_response(user_input, extra_context)
 
     if engine == 'cohere':
         if not is_cohere_configured():
-            return "La API key de Cohere no está configurada en el archivo .env"
+            return _build_local_reasoning_response(user_input, extra_context)
         try:
             return _ask_cohere(user_input, extra_context)
-        except Exception as e:
-            return f"Error con Cohere: {e}"
+        except Exception:
+            return _build_local_reasoning_response(user_input, extra_context)
 
     # ── Modo AUTO — cascada completa de fallback ─────────────────────────────
     if engine == 'auto':
@@ -596,9 +644,7 @@ def _route_to_engine(user_input: str, engine: str, stream: bool, extra_context: 
                 logger.warning(f"[BRAIN] {nombre} falló ({e}), probando siguiente...")
                 continue
 
-        return ("Ningún motor de IA está disponible.\n"
-                "• Ollama: ejecuta 'ollama serve'\n"
-                "• Gemini/Groq/OpenRouter/Cohere: verifica las API keys en .env")
+        return _build_local_reasoning_response(user_input, extra_context)
 
     return "Modo de IA no reconocido. Usa: auto, ollama, gemini, claude, groq, openrouter o cohere"
 

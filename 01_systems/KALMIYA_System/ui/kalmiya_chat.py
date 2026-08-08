@@ -32,6 +32,14 @@ except Exception as e:
     def is_gemini_configured() -> bool: return False
     def is_ollama_running() -> bool: return False
 
+try:
+    from modules.advanced_capabilities import PersonalityStyleEngine, ResponsePredictionEngine
+    STYLE_ENGINE = PersonalityStyleEngine(style="humano")
+    PREDICTION_ENGINE = ResponsePredictionEngine()
+except Exception:
+    STYLE_ENGINE = None
+    PREDICTION_ENGINE = None
+
 from decouple import config
 USERNAME = config('USER', default='Sara')
 BOTNAME = config('BOTNAME', default='KALMIYA')
@@ -104,7 +112,9 @@ class KalmiyaChat:
         self._build_status_bar()
         self._build_chat_area()
         self._build_thinking_bar()
+        self._build_context_bar()
         self._build_input_area()
+        self._build_style_selector()
         self._draw_decorations()
 
         self._make_draggable()
@@ -279,6 +289,41 @@ class KalmiyaChat:
                                         fg=ACCENT_DIM, bg=BG_MAIN, anchor="w")
         self.thinking_label.pack(side="left", padx=14)
 
+    def _build_context_bar(self):
+        """Muestra la intención detectada y el estilo activo del sistema."""
+        context_frame = tk.Frame(self.root, bg=BG_MAIN, height=24)
+        context_frame.grid(row=4, column=0, sticky="ew", padx=10, pady=(2, 0))
+
+        self.context_label = tk.Label(
+            context_frame,
+            text="Intención: general • Estilo: humano",
+            font=("Consolas", 8),
+            fg=ACCENT_DIM,
+            bg=BG_MAIN,
+            anchor="w",
+        )
+        self.context_label.pack(side="left")
+
+    def _build_style_selector(self):
+        """Selector visual para escoger el estilo de personalidad del chat."""
+        selector_frame = tk.Frame(self.root, bg=BG_MAIN, height=28)
+        selector_frame.grid(row=5, column=0, sticky="ew", padx=8, pady=(0, 4))
+
+        tk.Label(selector_frame, text="Estilo:", font=("Consolas", 8), fg=TEXT_DIM, bg=BG_MAIN).pack(side="left", padx=(6, 4))
+
+        self.style_var = tk.StringVar(value="humano")
+        self.style_menu = tk.OptionMenu(
+            selector_frame,
+            self.style_var,
+            "humano",
+            "divertido",
+            "estrategico",
+            "emocional",
+            command=self._apply_style_from_ui,
+        )
+        self.style_menu.configure(bg=BG_PANEL, fg=TEXT_WHITE, highlightthickness=0)
+        self.style_menu.pack(side="left")
+
     # ── AREA DE ENTRADA ───────────────────────────────────────────────────────
 
     def _build_input_area(self):
@@ -288,7 +333,7 @@ class KalmiyaChat:
         sep.grid(row=3, column=0, sticky="sew", padx=12)
 
         input_f = tk.Frame(self.root, bg=BG_PANEL, height=76)
-        input_f.grid(row=4, column=0, sticky="ew")
+        input_f.grid(row=6, column=0, sticky="ew")
         input_f.grid_columnconfigure(0, weight=1)
 
         # Opciones extra arriba del input
@@ -427,6 +472,9 @@ class KalmiyaChat:
         threading.Thread(target=self._process_message, args=(text,), daemon=True).start()
 
     def _process_message(self, text: str):
+        self.last_text = text
+        self._update_context_label()
+
         # ── Interceptar comandos de Obsidian primero ──────────────────────────
         try:
             from obsidian_bridge import process_obsidian_command
@@ -484,6 +532,27 @@ class KalmiyaChat:
         #     threading.Thread(target=speak, args=(clean_text,), daemon=True).start()
         # except Exception:
         #     pass
+
+    def _apply_style_from_ui(self, value: str):
+        """Aplica un estilo de personalidad desde la UI del chat."""
+        if STYLE_ENGINE is not None:
+            STYLE_ENGINE.set_style(value)
+        self._update_context_label()
+        self._add_message("SISTEMA", f"Estilo cambiado a: {value}")
+
+    def _update_context_label(self, text: str | None = None):
+        """Actualiza la etiqueta de contexto del chat con intención y estilo."""
+        if text is None:
+            intention = "general"
+            style = (self.style_var.get() if getattr(self, "style_var", None) else "humano")
+            if PREDICTION_ENGINE is not None and getattr(self, "last_text", None):
+                try:
+                    intention = PREDICTION_ENGINE.analyze(self.last_text).get("intent", "general")
+                except Exception:
+                    intention = "general"
+            self.context_label.configure(text=f"Intención: {intention} • Estilo: {style}")
+        else:
+            self.context_label.configure(text=text)
 
     def _set_thinking(self, active: bool):
         self._thinking = active
