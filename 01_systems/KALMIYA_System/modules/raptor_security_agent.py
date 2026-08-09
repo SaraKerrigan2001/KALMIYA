@@ -55,11 +55,17 @@ class RaptorSecurityAgent:
         self.kalmiya_root = Path(kalmiya_root or self._detect_kalmiya_root())
         self.raptor_path = self.kalmiya_root / "01_systems" / "RAPTOR"
         self.enabled = self.raptor_path.exists()
+        self.platform_supported = self._is_platform_supported()
         
         if not self.enabled:
             logger.warning(f"RAPTOR no encontrado en {self.raptor_path}")
         else:
             logger.info(f"RAPTOR inicializado desde {self.raptor_path}")
+            if not self.platform_supported:
+                logger.warning(
+                    "RAPTOR instalado, pero el entorno actual no cumple los requisitos "
+                    "de sandbox Unix. `resource` / namespaces Linux no están disponibles."
+                )
     
     @staticmethod
     def _detect_kalmiya_root() -> str:
@@ -73,6 +79,19 @@ class RaptorSecurityAgent:
         
         # Fallback a directorio actual
         return os.getcwd()
+
+    @staticmethod
+    def _is_platform_supported() -> bool:
+        """
+        RAPTOR necesita importaciones Unix-only (por ejemplo `resource`) para
+        poder iniciar los módulos de sandbox / seccomp / rlimit. En Windows,
+        esas rutas fallan antes del análisis real.
+        """
+        try:
+            import resource  # noqa: F401
+            return True
+        except Exception:
+            return False
     
     def analyze_codebase(
         self,
@@ -92,16 +111,44 @@ class RaptorSecurityAgent:
         if not self.enabled:
             logger.error("RAPTOR no está disponible")
             return self._empty_result(target_path)
+        if not self.platform_supported:
+            logger.error(
+                "RAPTOR requiere soporte Unix para el sandbox; el intérprete actual "
+                "está en Windows y no puede montar el flujo de seguridad real."
+            )
+            return self._empty_result(
+                target_path,
+                summary=(
+                    "RAPTOR runtime no compatible con este host: módulo `resource` "
+                    "/ sandbox Unix requerido no está disponible."
+                ),
+                risk_level="unknown",
+            )
         
         logger.info(f"Iniciando análisis {analysis_type} de {target_path}")
         
         try:
             # Construye comando RAPTOR
             cmd = self._build_raptor_command(target_path, analysis_type)
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+            logger.info(f"Ejecutando RAPTOR: {' '.join(cmd)}")
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=600,
+                check=False,
+            )
             
+            # Si el proceso devolvió error, lo registramos y devolvemos resumen seguro
+            if result.returncode != 0:
+                logger.warning(
+                    f"RAPTOR devolvió código {result.returncode} para {target_path}: "
+                    f"{result.stderr.strip() or result.stdout.strip()[:160]}"
+                )
+                
             # Procesa resultados
             analysis = self._parse_raptor_output(result.stdout, result.stderr)
+            analysis.target = target_path
             return analysis
             
         except subprocess.TimeoutExpired:
@@ -185,42 +232,87 @@ class RaptorSecurityAgent:
         return report
     
     def _build_raptor_command(self, target: str, analysis_type: str) -> List[str]:
-        """Construye comando RAPTOR"""
-        cmd = [
-            str(self.raptor_path / "raptor.py"),
-            "--target", target,
-            f"--{analysis_type}",
-            "--output-json"
-        ]
+        """
+        Construye comando RAPTOR válido para Windows/Python.
+
+        RAPTOR se invoca con el intérprete de Python y el launcher principal
+        `raptor.py`, no como un binario directo. Ese detalle evita `WinError 193`
+        (`%1 no es una aplicación Win32 válida`) que ocurre al ejecutar un
+        `.py` como si fuera un PE nativo.
+        """
+        raptor_launcher = self.raptor_path / "raptor.py"
+        if not raptor_launcher.exists():
+            raise FileNotFoundError(f"No se encontró el launcher RAPTOR: {raptor_launcher}")
+
+        # Modo por defecto para codebase: `scan` y `--repo`
+        analysis_type = (analysis_type or "comprehensive").lower()
+        
+        if analysis_type == "binary":
+            # El modo binary de RAPTOR necesita un binario/lista; aquí usamos
+            # el mismo objetivo como binario/ejecutable si el usuario lo indicó.
+            cmd = [sys.executable, str(raptor_launcher), "binary", "investigate", target]
+        elif analysis_type == "static":
+            cmd = [sys.executable, str(raptor_launcher), "scan", "--repo", target]
+        elif analysis_type == "comprehensive":
+            # El agente completo exige un flujo con LLM y puede comportarse como
+            # un workflow pesado. Para no romper la integración, usamos `agentic`
+            # con el target que se desea auditar, siguiendo el CLI del framework.
+            cmd = [sys.executable, str(raptor_launcher), "agentic", "--repo", target]
+        else:
+            cmd = [sys.executable, str(raptor_launcher), "scan", "--repo", target]
+        
         return cmd
     
     def _parse_raptor_output(self, stdout: str, stderr: str) -> RaptorAnalysisResult:
-        """Parsea la salida de RAPTOR"""
+        """Parsea la salida de RAPTOR."""
+        target = "unknown"
         try:
-            data = json.loads(stdout) if stdout else {}
+            # RAPTOR's CLI usually emits text and SBOM/report logs, not JSON
+            # on the stdout channel. The integration should therefore degrade
+            # gracefully to a safe empty payload, not crash on JSON decoding.
+            if stdout.strip().startswith("{"):
+                data = json.loads(stdout) if stdout else {}
+                target = data.get("target", "unknown")
+                return RaptorAnalysisResult(
+                    target=target,
+                    timestamp=datetime.now(),
+                    vulnerabilities=data.get("vulnerabilities", []),
+                    exploits=data.get("exploits", []),
+                    patches=data.get("patches", []),
+                    risk_level=data.get("risk_level", "unknown"),
+                    summary=data.get("summary", stdout[:300] or stderr[:300])
+                )
+
+            # Fall back to a conservative summary for non-JSON text output
+            summary = stdout.strip()[:500] or stderr.strip()[:500] or "RAPTOR analysis completed"
             return RaptorAnalysisResult(
-                target=data.get("target", "unknown"),
+                target=target,
                 timestamp=datetime.now(),
-                vulnerabilities=data.get("vulnerabilities", []),
-                exploits=data.get("exploits", []),
-                patches=data.get("patches", []),
-                risk_level=data.get("risk_level", "unknown"),
-                summary=data.get("summary", "")
+                vulnerabilities=[],
+                exploits=[],
+                patches=[],
+                risk_level="unknown",
+                summary=summary
             )
         except json.JSONDecodeError:
             logger.warning("No se pudo parsear salida JSON de RAPTOR")
-            return self._empty_result(data.get("target", "unknown"))
+            return self._empty_result(target)
     
-    def _empty_result(self, target: str) -> RaptorAnalysisResult:
-        """Retorna resultado vacío"""
+    def _empty_result(
+        self,
+        target: str,
+        summary: str = "Análisis no disponible",
+        risk_level: str = "unknown",
+    ) -> RaptorAnalysisResult:
+        """Retorna resultado vacío o de degradación segura."""
         return RaptorAnalysisResult(
             target=target,
             timestamp=datetime.now(),
             vulnerabilities=[],
             exploits=[],
             patches=[],
-            risk_level="unknown",
-            summary="Análisis no disponible"
+            risk_level=risk_level,
+            summary=summary
         )
 
 
