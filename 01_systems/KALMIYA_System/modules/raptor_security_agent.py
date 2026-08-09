@@ -12,6 +12,7 @@ import os
 import sys
 import json
 import subprocess
+import platform
 from pathlib import Path
 from typing import Optional, Dict, List, Any
 from dataclasses import dataclass
@@ -55,12 +56,20 @@ class RaptorSecurityAgent:
         self.kalmiya_root = Path(kalmiya_root or self._detect_kalmiya_root())
         self.raptor_path = self.kalmiya_root / "01_systems" / "RAPTOR"
         self.enabled = self.raptor_path.exists()
+        self.platform_name = platform.system().lower()
+        self.runtime_mode = self._detect_runtime_mode()
         self.platform_supported = self._is_platform_supported()
         
         if not self.enabled:
             logger.warning(f"RAPTOR no encontrado en {self.raptor_path}")
         else:
             logger.info(f"RAPTOR inicializado desde {self.raptor_path}")
+            logger.info(
+                "RAPTOR runtime profile: %s / host=%s / supported=%s",
+                self.runtime_mode,
+                self.platform_name,
+                self.platform_supported,
+            )
             if not self.platform_supported:
                 logger.warning(
                     "RAPTOR instalado, pero el entorno actual no cumple los requisitos "
@@ -80,16 +89,74 @@ class RaptorSecurityAgent:
         # Fallback a directorio actual
         return os.getcwd()
 
+    def select_runtime_mode(self, mode: str) -> str:
+        """Ajusta el modo operativo del runtime según el perfil solicitado."""
+        allowed = {"auto", "windows", "macos", "linux"}
+        normalized = (mode or "auto").lower()
+        if normalized not in allowed:
+            normalized = "auto"
+
+        if normalized == "auto":
+            self.runtime_mode = self._detect_runtime_mode()
+        elif normalized == "windows":
+            self.runtime_mode = "windows-safe"
+        elif normalized == "macos":
+            self.runtime_mode = "macos-fallback"
+        elif normalized == "linux":
+            self.runtime_mode = "linux-sandbox"
+
+        # Revalúa compatibilidad con el perfil solicitado.
+        if self.runtime_mode == "linux-sandbox":
+            self.platform_supported = self._is_platform_supported()
+        elif self.runtime_mode in {"windows-safe", "macos-fallback"}:
+            self.platform_supported = False
+        else:
+            self.platform_supported = self._is_platform_supported()
+
+        return self.runtime_mode
+
+    def get_runtime_profile(self) -> Dict[str, Any]:
+        """Expone el perfil de runtime con adaptación activa por SO."""
+        return {
+            "host_platform": self.platform_name,
+            "runtime_mode": self.runtime_mode,
+            "supported": bool(self.platform_supported),
+            "raptor_path": str(self.raptor_path),
+            "enabled": bool(self.enabled),
+            "policy": "sandbox-enabled" if self.platform_supported else "secure-local-fallback",
+            "message": (
+                "RAPTOR puede arrancar con sandbox Unix" if self.platform_supported
+                else "RAPTOR requiere runtime Unix; KALMIYA usa análisis seguro local"
+            ),
+        }
+
+    @staticmethod
+    def _detect_runtime_mode() -> str:
+        os_name = platform.system().lower()
+        if os_name == "windows":
+            return "windows-safe"
+        if os_name == "darwin":
+            return "macos-fallback"
+        if os_name == "linux":
+            return "linux-sandbox"
+        return "unknown"
+
     @staticmethod
     def _is_platform_supported() -> bool:
         """
-        RAPTOR necesita importaciones Unix-only (por ejemplo `resource`) para
-        poder iniciar los módulos de sandbox / seccomp / rlimit. En Windows,
-        esas rutas fallan antes del análisis real.
+        RAPTOR necesita una plataforma que pueda importar su runtime de sandbox.
+        En Windows y macOS se debe adaptar la ejecución a un perfil compatible
+        o a un análisis local. En Linux, solo se habilita el modo real si la
+        dependencia `resource` está presente y hay API Unix estándar.
         """
+        os_name = platform.system().lower()
+        if os_name == "windows":
+            return False
+        if os_name == "darwin":
+            return False
         try:
             import resource  # noqa: F401
-            return True
+            return hasattr(os, "getuid")
         except Exception:
             return False
     
@@ -112,18 +179,12 @@ class RaptorSecurityAgent:
             logger.error("RAPTOR no está disponible")
             return self._empty_result(target_path)
         if not self.platform_supported:
-            logger.error(
+            logger.warning(
                 "RAPTOR requiere soporte Unix para el sandbox; el intérprete actual "
-                "está en Windows y no puede montar el flujo de seguridad real."
+                "está en Windows y no puede montar el flujo de seguridad real. "
+                "Se aplica análisis local de compatibilidad, no ejecución de Sandbox."
             )
-            return self._empty_result(
-                target_path,
-                summary=(
-                    "RAPTOR runtime no compatible con este host: módulo `resource` "
-                    "/ sandbox Unix requerido no está disponible."
-                ),
-                risk_level="unknown",
-            )
+            return self._offline_fallback_analysis(target_path, analysis_type)
         
         logger.info(f"Iniciando análisis {analysis_type} de {target_path}")
         
@@ -298,6 +359,68 @@ class RaptorSecurityAgent:
             logger.warning("No se pudo parsear salida JSON de RAPTOR")
             return self._empty_result(target)
     
+    def _offline_fallback_analysis(
+        self,
+        target_path: str,
+        analysis_type: str = "comprehensive",
+    ) -> RaptorAnalysisResult:
+        """
+        Análisis local seguro para hosts donde RAPTOR no puede arrancar su
+        runtime Unix dependency chain. Esto NO reemplaza a RAPTOR; solo ofrece
+        un resultado conservador para mantener KALMIYA estable.
+        """
+        root = Path(target_path)
+        findings = []
+        summary_lines = []
+        if root.exists():
+            scanned = 0
+            for py_file in root.rglob("*.py"):
+                if scanned >= 50:
+                    break
+                try:
+                    text = py_file.read_text(encoding="utf-8", errors="ignore")
+                    scanned += 1
+                    suspicious_terms = [
+                        "os.system",
+                        "subprocess",
+                        "shell=True",
+                        "eval(",
+                        "exec(",
+                        "password",
+                        "secret",
+                        "token",
+                        "api_key",
+                    ]
+                    matched = [term for term in suspicious_terms if term in text]
+                    if matched:
+                        findings.append({
+                            "name": "heuristic-scan-marker",
+                            "description": f"Archivo {py_file} contiene patrones de riesgo: {', '.join(matched)}",
+                            "file": str(py_file),
+                            "severity": "low",
+                        })
+                        summary_lines.append(
+                            f"Heurística en {py_file}: {', '.join(matched)}"
+                        )
+                except Exception:
+                    pass
+        else:
+            summary_lines.append(f"Ruta de análisis no encontrada: {target_path}")
+
+        return RaptorAnalysisResult(
+            target=target_path,
+            timestamp=datetime.now(),
+            vulnerabilities=findings,
+            exploits=[],
+            patches=[],
+            risk_level="low" if findings else "unknown",
+            summary=(
+                "RAPTOR runtime no compatible con este host. "
+                "Se realizó un análisis local ligero y seguro. "
+                + ("; ".join(summary_lines) if summary_lines else "Sin patrones evidentes detectados.")
+            ),
+        )
+
     def _empty_result(
         self,
         target: str,

@@ -385,6 +385,28 @@ def _check_suspicious_connections() -> list[dict]:
     return suspicious
 
 
+def select_raptor_runtime_profile() -> str:
+    """Solicita el perfil de ejecución de RAPTOR para la instalación actual."""
+    print("\n🔴 Perfil de adaptación RAPTOR")
+    print("  1. Auto (detecta el sistema operativo)")
+    print("  2. Windows (modo seguro / fallback local)")
+    print("  3. macOS (modo fallback compatible)")
+    print("  4. Linux (sandbox si el runtime lo soporta)")
+
+    choice = input("\n→ Selecciona perfil RAPTOR (1-4, Enter=auto): ").strip()
+    choice_map = {
+        "1": "auto",
+        "2": "windows",
+        "3": "macos",
+        "4": "linux",
+    }
+
+    if not choice:
+        return "auto"
+
+    return choice_map.get(choice, "auto")
+
+
 # ── Monitor de intrusos en red ─────────────────────────────────────────────────
 
 _monitoring = False
@@ -951,14 +973,18 @@ if __name__ == "__main__":
             print(f"  ! {w}")
     elif choice == "5":
         print("\n🔴 RAPTOR Security Analysis")
+        profile = select_raptor_runtime_profile()
         try:
             from modules.raptor_security_agent import RaptorSecurityAgent
             agent = RaptorSecurityAgent()
+            if profile != "auto":
+                agent.select_runtime_mode(profile)
             if agent.enabled:
-                print("Iniciando análisis de seguridad con RAPTOR...")
+                print(f"Iniciando análisis de seguridad con RAPTOR en modo {agent.runtime_mode}...")
                 result = agent.analyze_codebase("01_systems/KALMIYA_System")
                 print(f"Vulnerabilidades encontradas: {len(result.vulnerabilities)}")
                 print(f"Nivel de riesgo: {result.risk_level}")
+                print(f"Perfil aplicado: {agent.get_runtime_profile()}")
             else:
                 print("RAPTOR no está disponible")
         except ImportError:

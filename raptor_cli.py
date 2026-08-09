@@ -340,6 +340,12 @@ def main():
         help="Comando a ejecutar"
     )
     parser.add_argument(
+        "--platform",
+        choices=["auto", "windows", "macos", "linux"],
+        default="auto",
+        help="Perfil adaptativo para la instalación del host: auto/windows/macos/linux"
+    )
+    parser.add_argument(
         "--target",
         help="Ruta a analizar (para comando analyze)"
     )
@@ -350,12 +356,30 @@ def main():
     
     args = parser.parse_args()
     cli = RaptorCLI()
+
+    # Adaptación declarativa por perfil solicitado. Esto convierte un mismo CLI
+    # en una capa de fachada que puede desacoplarse del servidor actual y ajustar
+    # el resultado a la plataforma donde se instala.
+    if args.platform != "auto":
+        cli.agent.select_runtime_mode(args.platform)
+
+    profile = cli.agent.get_runtime_profile() if cli.agent else {}
+    if profile:
+        logger.info(
+            "RAPTOR runtime profile exposed: host=%s mode=%s supported=%s",
+            profile.get("host_platform"),
+            profile.get("runtime_mode"),
+            profile.get("supported"),
+        )
     
     if args.command == "interactive":
         return cli.run_interactive()
     elif args.command == "analyze":
         target = args.target or "01_systems/KALMIYA_System"
-        cli.analyze_codebase_interactive()
+        result = cli.agent.analyze_codebase(target)
+        print(f"Vulnerabilidades encontradas: {len(result.vulnerabilities)}")
+        print(f"Riesgo: {result.risk_level}")
+        cli._save_result(result)
     elif args.command == "threat":
         if args.threat:
             print(f"⚠️  Analizando: {args.threat}")
