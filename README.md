@@ -76,8 +76,7 @@ python 01_systems\KALMIYA_System\main.py
 ## 🤝 Cómo contribuir
 
 - Clona el repositorio y crea una rama de trabajo:
-  ```powershell
-git checkout -b feature/nombre-de-tu-funcion
+  ```git clone https://github.com/SaraKerrigan2001/KALMIYA.git
 ```
 - Añade cambios claros y pequeños
 - Usa mensajes de commit descriptivos
