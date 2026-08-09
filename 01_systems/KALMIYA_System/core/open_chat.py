@@ -19,11 +19,16 @@ def open_kalmiya_chat():
         bool: True si se abrió correctamente, False en caso contrario
     """
     kalmiya_dir = Path(__file__).parent
-    # Buscar el script de chat en varias ubicaciones para compatibilidad
+    # Buscar el script de chat en varias ubicaciones para compatibilidad.
+    # IMPORTANTE: priorizar el entrypoint real del chat en ui/ para evitar
+    # lanzar un wrapper de compatibilidad que solo reexporta el módulo UI.
+    # Cuando este módulo se carga desde core/, el directorio base es core/;
+    # el widget real vive bajo KALMIYA_System/ui/ y no bajo core/ui/.
     candidates = [
-        kalmiya_dir / "kalmiya_chat.py",
-        kalmiya_dir.parent / "kalmiya_chat.py",
+        kalmiya_dir.parent / "ui" / "kalmiya_chat.py",
         kalmiya_dir / "ui" / "kalmiya_chat.py",
+        kalmiya_dir.parent / "kalmiya_chat.py",
+        kalmiya_dir / "kalmiya_chat.py",
     ]
 
     chat_file = None
@@ -37,19 +42,21 @@ def open_kalmiya_chat():
         return False
 
     try:
-        # Abrir en proceso separado para no bloquear
+        # Abrir en proceso separado para no bloquear.
+        # Si el script seleccionado está dentro de ui/, conserva ese directorio
+        # como cwd para las rutas relativas de importación y recursos visuales.
         if sys.platform == "win32":
             # Windows
             subprocess.Popen(
                 [sys.executable, str(chat_file)],
                 cwd=str(chat_file.parent),
-                creationflags=subprocess.CREATE_NEW_CONSOLE
+                creationflags=getattr(subprocess, 'CREATE_NEW_CONSOLE', 0)
             )
         else:
             # Linux/Mac
             subprocess.Popen(
                 [sys.executable, str(chat_file)],
-                cwd=str(kalmiya_dir)
+                cwd=str(chat_file.parent)
             )
 
         print("✅ Chat KALMIYA abierto")
