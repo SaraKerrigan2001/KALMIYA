@@ -9,6 +9,7 @@ Herramientas de DEFENSA y analisis de seguridad:
   - Analisis de contrasenas y fortaleza
   - Auditoria de seguridad del sistema
   - Curiosidad autonoma de KALMIYA sobre amenazas
+  - 🔴 RAPTOR Framework: Análisis autónomo de seguridad ofensiva/defensiva
 
 NOTA: Estas herramientas son para DEFENSA y auditoria
 de sistemas propios. Usar en redes ajenas sin permiso es ilegal.
@@ -926,6 +927,7 @@ if __name__ == "__main__":
     print("2. Auditoria del sistema")
     print("3. Generar contrasena segura")
     print("4. Analizar URL")
+    print("5. 🔴 RAPTOR Security Analysis (Nuevo)")
     choice = input("\nOpcion: ").strip()
     if choice == "1":
         devices = scan_network()
@@ -947,3 +949,17 @@ if __name__ == "__main__":
         print(f"\nRiesgo: {result['risk_level']}")
         for w in result['warnings']:
             print(f"  ! {w}")
+    elif choice == "5":
+        print("\n🔴 RAPTOR Security Analysis")
+        try:
+            from modules.raptor_security_agent import RaptorSecurityAgent
+            agent = RaptorSecurityAgent()
+            if agent.enabled:
+                print("Iniciando análisis de seguridad con RAPTOR...")
+                result = agent.analyze_codebase("01_systems/KALMIYA_System")
+                print(f"Vulnerabilidades encontradas: {len(result.vulnerabilities)}")
+                print(f"Nivel de riesgo: {result.risk_level}")
+            else:
+                print("RAPTOR no está disponible")
+        except ImportError:
+            print("Módulo RAPTOR no encontrado. Asegúrate de tener el submódulo initializado.")

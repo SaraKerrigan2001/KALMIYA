@@ -14,14 +14,17 @@ KALMIYA es un asistente autónomo de escritorio desarrollado por Sara Kerrigan. 
 - Módulos de seguridad, productividad, hogar inteligente, finanzas y entretenimiento
 - Integración con teléfono móvil, Telegram y servicios en línea
 - Registro de memoria y auditoría de comandos
+- **🔒 RAPTOR Integration** — Framework autónomo de seguridad ofensiva/defensiva
 
 ## 🧩 Estructura del repositorio
 
 - `01_systems/` — Código principal de KALMIYA y módulos del asistente
+  - `RAPTOR/` — Framework de seguridad autónomo (submódulo de Git)
 - `02_infrastructure/` — Entorno virtual, dependencias y archivos de infraestructura
 - `03_launchers/` — Scripts para iniciar el asistente rápidamente
 - `04_config/` — Configuración de Python, dependencias y empaquetado
 - `05_tests/` — Pruebas, auditorías y utilidades de verificación
+- `06_docs/` — Documentación incluyendo [[RAPTOR_INTEGRATION|🔒 Guía RAPTOR]]
 
 ## 🛠️ Requisitos
 
@@ -64,6 +67,7 @@ python 01_systems\KALMIYA_System\main.py
 - [[CHAT_GUIA]] — Comandos y uso del chat
 - [[KALMIYA_FUNCIONES]] — Funciones disponibles en el asistente
 - [[MODULOS_IMPLEMENTADOS]] — Módulos instalados y estado del proyecto
+- [[RAPTOR_INTEGRATION]] — 🔒 Guía de seguridad con RAPTOR
 - [[OBSIDIAN_SETUP]] — Integración con Obsidian
 - [[ISSUES]] — Cómo reportar bugs e ideas
 - [[CONTRIBUTING]] — Cómo contribuir al proyecto
