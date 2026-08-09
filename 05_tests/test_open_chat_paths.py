@@ -26,3 +26,13 @@ def test_open_kalmiya_chat_prefers_ui_entrypoint(monkeypatch):
     assert len(calls['args']) == 2
     assert Path(calls['args'][1]).name == 'kalmiya_chat.py'
     assert 'ui' in str(Path(calls['args'][1]).resolve().parent)
+
+
+def test_system_prompt_avoids_sensitive_profile_defaults():
+    import intelligence.brain as brain
+
+    prompt = brain._build_system_prompt()
+
+    assert 'Cúcuta' not in prompt
+    assert 'SENA' not in prompt
+    assert 'Nació' not in prompt
