@@ -77,7 +77,9 @@ python 01_systems\KALMIYA_System\main.py
 
 - Clona el repositorio y crea una rama de trabajo:
   
- git clone https://github.com/SaraKerrigan2001/KALMIYA.git
+```powershell
+git clone https://github.com/SaraKerrigan2001/KALMIYA.git
+```
 
 - Añade cambios claros y pequeños
 - Usa mensajes de commit descriptivos
