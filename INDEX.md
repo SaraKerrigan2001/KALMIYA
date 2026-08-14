@@ -1,4 +1,4 @@
----
+﻿---
 title: "Índice Principal KALMIYA"
 tags: [index, master, hub, core]
 ---
@@ -50,6 +50,15 @@ O ejecutar:    python kalmiya_launcher.py
 - [[FUNCIONES_IMPLEMENTACION|🚀 Implementaciones]]
 - [[CHAT_GUIA|💬 Guía de Chat]]
 - [[OBSIDIAN_SETUP|🔧 Setup Obsidian]]
+- [[CONTRIBUTING|🤝 Cómo Contribuir]]
+- [[ISSUES|🐛 Reportar Issues]]
+
+### 🗒️ Notas del Sistema
+
+- [[07_notes/KALMIYA_Biometria_y_Audio|🔒 Biometría y Audio]] — Verificación facial/voz/PIN + perfiles de audio
+- [[ESTRUCTURA_VISUAL|🗺️ Estructura Visual]] — Mapa visual del proyecto
+- [[08_reports/graphify-out/GRAPH_REPORT|📊 Reporte del Grafo]] — Estado de conexiones del vault
+- [[LICENSE|📄 Licencia MIT]] — Términos de uso del proyecto
 
 ---
 
@@ -90,10 +99,39 @@ Desde chat: *"KALMIYA, inicia sesión de estudio de Java"* o *"¿Qué entregas t
 
 | Recurso | Ubicación canónica |
 |---------|-------------------|
-| LLM_Wiki | `01_systems/LLM_Wiki/` (no usar `Desktop_Files/LLM_Wiki/`) |
+| LLM_Wiki | [[01_systems/LLM_Wiki/README\|01_systems/LLM_Wiki/]] |
 | Secretos | `01_systems/KALMIYA_System/.env` (ver `.env.example`) |
 | Backups BD | `_BACKUPS/` |
 | Scripts obsoletos | `_UNUSED/` |
+
+### 🗂️ Infraestructura
+
+- [[02_infrastructure/Scripts/README\|⚙️ Scripts]] — Automatización y utilidades
+- [[02_infrastructure/reports/README\|📊 Reports]] — Auditorías y logs
+- [[02_infrastructure/scratch/README\|🧪 Scratch]] — Área de experimentación
+
+### 📚 LLM Wiki
+
+- [[01_systems/LLM_Wiki/README\|📚 LLM Wiki]] — Knowledge base integrada
+- [[01_systems/LLM_Wiki/schema/SCHEMA\|🎯 Schema]] — Convenciones de la wiki
+- [[01_systems/LLM_Wiki/wiki/index\|📑 Wiki Index]] — Índice de páginas
+- [[01_systems/LLM_Wiki/wiki/log\|📝 Wiki Log]] — Historial de cambios
+
+### 🏗️ Sistema Principal
+
+- [[01_systems/KALMIYA_System/README\|🤖 KALMIYA System]] — Núcleo principal
+- [[01_systems/KALMIYA_System/kalmiya_docs\|📋 Docs técnicos]]
+- [[01_systems/KALMIYA_System/standards\|⚙️ Estándares de código]]
+- [[01_systems/KALMIYA/README\|📖 KALMIYA Vault]] — Bóveda personal
+- [[01_systems/KALMIYA/Bienvenido\|👋 Bienvenido]]
+- [[01_systems/KALMIYA/cree un enlace\|🔗 Crear enlace]]
+
+### 📁 Proyecto SENA
+
+- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README\|🏢 Sistema Gestión Bienes]]
+- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB\|✅ Checklist GitHub]]
+- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB\|📤 Instrucciones GitHub]]
+- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/examples/README\|💡 Ejemplos de componentes]]
 
 ---
 

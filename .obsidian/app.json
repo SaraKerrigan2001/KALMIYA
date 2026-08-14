@@ -13,16 +13,21 @@
   "cursorBlinkInterval": 0,
   "showFrontmatter": true,
   "autoConvertHtml": true,
-  "newFileLocation": "root",
-  "newFileFolderPath": "docs",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "07_notes",
   "excludeFolders": [
-    "Lib/site-packages",
     "02_infrastructure/Lib",
     "02_infrastructure/Scripts",
     ".pytest_cache",
-    "Lib/.pytest_cache",
+    "_TEMP/.pytest_cache",
     "__pycache__",
     "_TEMP",
-    "_UNUSED"
+    "_UNUSED",
+    ".venv",
+    "08_reports/graphify-out/cache",
+    "01_systems/KALMIYA_System/__pycache__",
+    "01_systems/KALMIYA_System/rag_db",
+    "01_systems/KALMIYA_System/temp_audio",
+    "04_config/kalmiya.egg-info"
   ]
 }

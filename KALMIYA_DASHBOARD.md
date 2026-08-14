@@ -1,14 +1,14 @@
 ---
 title: "KALMIYA Dashboard"
 tags: [kalmiya, dashboard, sistema]
-updated: "2026-07-25 17:46:56"
+updated: "2026-08-04 16:29:54"
 ---
 
 # 🤖 KALMIYA — Dashboard
-> Última actualización: **Saturday 25 de July de 2026 — 17:46:56**
+> Última actualización: **Tuesday 04 de August de 2026 — 16:29:54**
 
 **Navegación del vault:**
-[[INDEX]] | [[WELCOME]] | [[MODULOS_IMPLEMENTADOS]] | [[KALMIYA_FUNCIONES]] | [[CHAT_GUIA]] | [[OBSIDIAN_SETUP]] | [[FUNCIONES_IMPLEMENTACION]]
+[[INDEX]] | [[README]]
 
 ---
 
@@ -16,9 +16,9 @@ updated: "2026-07-25 17:46:56"
 
 | Componente | Estado | Uso |
 |---|---|---|
-| CPU | 🟢 Normal | █░░░░░░░░░░░░░░ 10% |
-| RAM | 23.9 / 31.6 GB | ███████████░░░░ 75% |
-| Disco C | 175.8 GB libre | █████████░░░░░░ 63% |
+| CPU | 🟢 Normal | ██░░░░░░░░░░░░░ 20% |
+| RAM | 15.3 / 31.6 GB | ███████░░░░░░░░ 48% |
+| Disco C | 95.4 GB libre | ███████████░░░░ 80% |
 
 ## 🧠 Motores de IA
 
@@ -33,11 +33,11 @@ updated: "2026-07-25 17:46:56"
 
 ## 🗄️ Base de Datos
 
-- 💬 Historial de comandos: **1232** entradas
-- 🧠 Pensamientos autónomos: **1579** guardados
-- 🔑 Memoria de Sara: **24** claves
-- 📋 Auditoría de memoria: **370** cambios
-- 💾 Tamaño: **1252.0 KB**
+- 💬 Historial de comandos: **1413** entradas
+- 🧠 Pensamientos autónomos: **1763** guardados
+- 🔑 Memoria de Sara: **27** claves
+- 📋 Auditoría de memoria: **531** cambios
+- 💾 Tamaño: **1376.0 KB**
 - ⚡ Triggers activos: 5
 
 ## 👤 Perfil de Sara Kerrigan
@@ -55,29 +55,95 @@ updated: "2026-07-25 17:46:56"
 
 ## 💬 Últimas Conversaciones
 
-**2026-07-25 22:44:40**
-> 👤 Como KALMIYA, genera una observacion breve sobre el estado actual del sistema o …
-> 🤖 Sara, al verificar mi estado, noté que hay una conexión estable a tu equipo con …
-
-**2026-07-25 22:42:59**
-> 👤 Eres KALMIYA. Acabas de arrancar. Genera un mensaje de bienvenida breve y con pe…
-> 🤖 Sara, ¡Bienvenida! Estoy lista y lista ya, estoy preparada para ayudarte en lo q…
-
-**2026-07-25 22:41:32**
-> 👤 start_family_server
-> 🤖 puerto 8766
-
-**2026-07-25 22:40:12**
+**2026-08-04 21:28:41**
 > 👤 [AUDIO] Perfil
 > 🤖 normal
 
-**2026-07-25 22:40:12**
+**2026-08-04 21:28:41**
 > 👤 [AUDIO] EQ
 > 🤖 Graves:0 Medios:0 Agudos:0
 
+**2026-08-04 21:28:41**
+> 👤 [AUDIO] Micrófono
+> 🤖 80%
+
+**2026-08-04 21:28:41**
+> 👤 [AUDIO] Volumen
+> 🤖 70%
+
+**2026-08-02 20:36:27**
+> 👤 [AUDIO] Perfil
+> 🤖 normal
+
 ## 📝 Notas Recientes
 
-- [[KALMIYA_Notes/KALMIYA_Biometria_y_Audio|KALMIYA_Biometria_y_Audio]]
+*Sin notas todavía. Dile a KALMIYA: 'crea una nota sobre...'*
+
+## 🧩 Funciones Obsidian
+
+- [[KALMIYA_FUNCIONES]] — Funciones de KALMIYA en el vault.
+- [[OBSIDIAN_SETUP]] — Configuración del vault de Obsidian.
+- [[FUNCIONES_IMPLEMENTACION]] — Estado de implementación de funciones.
+- [[OPEN_VAULT]] — Cómo abrir el vault y acceder al contenido.
+- [[CHAT_GUIA]] — Comandos de chat para usar Obsidian desde KALMIYA.
+
+## 🔗 Conexiones del Vault
+
+### Documentos raíz
+
+- [[INDEX]]
+- [[README]]
+
+### Notas clave del proyecto
+
+- [[README|README raíz]]
+- [[INDEX|INDEX raíz]]
+- [[01_systems/KALMIYA_System/README|README KALMIYA System]]
+- [[01_systems/KALMIYA/README|README KALMIYA]]
+- [[01_systems/LLM_Wiki/README|README LLM Wiki]]
+- [[01_systems/LLM_Wiki/schema/SCHEMA|SCHEMA LLM Wiki]]
+- [[01_systems/LLM_Wiki/wiki/index|Índice LLM Wiki]]
+- [[01_systems/LLM_Wiki/wiki/log|Log LLM Wiki]]
+
+### Notas de sistema y docs técnicos
+
+- [[01_systems/KALMIYA_System/kalmiya_docs|kalmiya_docs]]
+- [[01_systems/KALMIYA_System/README|README]]
+- [[01_systems/KALMIYA_System/standards|standards]]
+- [[01_systems/KALMIYA/Bienvenido|Bienvenido]]
+- [[01_systems/KALMIYA/cree un enlace|cree un enlace]]
+- [[01_systems/KALMIYA/README|README]]
+- [[01_systems/LLM_Wiki/KALMIYA/Bienvenido|Bienvenido]]
+- [[01_systems/LLM_Wiki/README|README]]
+- [[01_systems/LLM_Wiki/schema/SCHEMA|SCHEMA]]
+- [[01_systems/LLM_Wiki/wiki/index|index]]
+- [[01_systems/LLM_Wiki/wiki/log|log]]
+
+### Notas genéricas importantes
+
+- [[README|README raíz]]
+- [[INDEX|INDEX raíz]]
+- [[01_systems/KALMIYA_System/README|README KALMIYA System]]
+- [[01_systems/KALMIYA/README|README KALMIYA]]
+- [[01_systems/LLM_Wiki/README|README LLM Wiki]]
+- [[01_systems/LLM_Wiki/schema/SCHEMA|SCHEMA LLM Wiki]]
+- [[01_systems/LLM_Wiki/wiki/index|Índice LLM Wiki]]
+- [[01_systems/LLM_Wiki/wiki/log|Log LLM Wiki]]
+
+### Notas KALMIYA
+
+
+### Documentación adicional
+
+- graphify-out/GRAPH_REPORT.md
+- OneDrive_Docs/GitHub/proyecto_elementos/README.md
+- OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB.md
+- OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB.md
+- OneDrive_Docs/GitHub/proyecto_elementos/examples/README.md
+- [[02_infrastructure/Lib/README|Infra Lib README]]
+- [[02_infrastructure/reports/README|Infra Reports README]]
+- [[02_infrastructure/scratch/README|Infra Scratch README]]
+- [[02_infrastructure/Scripts/README|Infra Scripts README]]
 
 ## ⚡ Accesos Rápidos
 
@@ -111,20 +177,18 @@ updated: "2026-07-25 17:46:56"
 
 ## 📂 Notas del Sistema
 
-| Nota | Ubicación |
-|---|---|
-| [[01_systems/KALMIYA_System/README\|README KALMIYA System]] | Sistema principal |
-| [[01_systems/KALMIYA_System/kalmiya_docs\|Documentación KALMIYA]] | Docs técnicos |
-| [[01_systems/KALMIYA_System/standards\|Estándares de código]] | Guías de desarrollo |
-| [[01_systems/KALMIYA/README\|README KALMIYA]] | Perfil de KALMIYA |
-| [[01_systems/KALMIYA/Bienvenido\|Bienvenido KALMIYA]] | Nota de inicio |
-| [[01_systems/KALMIYA/cree un enlace\|Crear enlace]] | Guía de enlaces |
-| [[01_systems/LLM_Wiki/README\|README LLM Wiki]] | Wiki de modelos LLM |
-| [[01_systems/LLM_Wiki/schema/SCHEMA\|Esquema LLM]] | Esquema de modelos |
-| [[01_systems/LLM_Wiki/wiki/index\|Índice Wiki LLM]] | Índice de la wiki |
-| [[01_systems/LLM_Wiki/wiki/log\|Log LLM]] | Registro de cambios |
-| [[01_systems/LLM_Wiki/KALMIYA/Bienvenido\|Bienvenido LLM Wiki]] | Intro LLM Wiki |
-| [[FUNCIONES_IMPLEMENTACION]] | Estado de implementación |
+- [[01_systems/KALMIYA_System/README|README KALMIYA System]] — Sistema principal
+- [[01_systems/KALMIYA_System/kalmiya_docs|Documentación KALMIYA]] — Docs técnicos
+- [[01_systems/KALMIYA_System/standards|Estándares de código]] — Guías de desarrollo
+- [[01_systems/KALMIYA/README|README KALMIYA]] — Perfil de KALMIYA
+- [[01_systems/KALMIYA/Bienvenido|Bienvenido KALMIYA]] — Nota de inicio
+- [[01_systems/KALMIYA/cree un enlace|Crear enlace]] — Guía de enlaces
+- [[01_systems/LLM_Wiki/README|README LLM Wiki]] — Wiki de modelos LLM
+- [[01_systems/LLM_Wiki/schema/SCHEMA|Esquema LLM]] — Esquema de modelos
+- [[01_systems/LLM_Wiki/wiki/index|Índice Wiki LLM]] — Índice de la wiki
+- [[01_systems/LLM_Wiki/wiki/log|Log LLM]] — Registro de cambios
+- [[01_systems/LLM_Wiki/KALMIYA/Bienvenido|Bienvenido LLM Wiki]] — Intro LLM Wiki
+- FUNCIONES_IMPLEMENTACION — Estado de implementación
 
 ---
-*Dashboard generado automáticamente por KALMIYA — 2026-07-25 17:46*
+*Dashboard generado automáticamente por KALMIYA — 2026-08-04 16:29*

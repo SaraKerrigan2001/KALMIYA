@@ -91,6 +91,20 @@ def get_real_weather(ciudad: str = "Cúcuta") -> dict:
         return {}
 
 
+def activar_voz() -> bool:
+    """Activa la salida de voz de KALMIYA."""
+    update_memory("voice_enabled", "true")
+    speak("La voz de KALMIYA está activada.")
+    return True
+
+
+def desactivar_voz() -> bool:
+    """Desactiva la salida de voz de KALMIYA."""
+    update_memory("voice_enabled", "false")
+    print("La voz de KALMIYA se ha desactivado. A partir de ahora responderé solo por texto.")
+    return True
+
+
 # ── PRIORIDAD ALTA 1: Recordatorios con voz y hora exacta ─────────────────────
 
 _recordatorios: list[dict] = []
@@ -718,6 +732,26 @@ def guardar_nota_de_voz(titulo: str = "") -> str:
         return ""
 
 
+def configurar_voz_neuronal(voice_id: str) -> bool:
+    """Configura la voz neuronal que usará KALMIYA.
+
+    Guarda el identificador en la memoria interna y habla confirmación.
+    """
+    try:
+        import voz as _voz
+        ok = _voz.set_neural_voice(voice_id)
+        if ok:
+            speak(f"He configurado la voz neuronal a {voice_id}.")
+            log_command("[VOZ] Configurada", voice_id, source="system")
+            return True
+        else:
+            speak("No pude configurar esa voz. Verifica el identificador.")
+            return False
+    except Exception as e:
+        speak(f"Error configurando la voz: {e}")
+        return False
+
+
 # ── MEDIA 14: Historial de comandos frecuentes ────────────────────────────────
 
 def comandos_frecuentes(top_n: int = 10) -> list[dict]:
@@ -935,9 +969,14 @@ def ejecutar_graphify_proyecto(ruta_proyecto: str, modo: str = "default") -> dic
             return {"exito": False, "error": error_msg, "returncode": resultado.returncode}
 
         salida = (resultado.stdout or "Graphify terminó correctamente.").strip()
+        salida_path = ruta / "graphify-out"
+        html_path = salida_path / "GRAPH_TREE.html"
         speak("Graphify terminó correctamente. Puedes revisar la salida generada en la carpeta del proyecto.")
         log_command(f"[GRAPHIFY] {ruta.name}", salida[:200], source="modules")
-        return {"exito": True, "salida": salida, "ruta": str(ruta), "comando": cmd}
+        result = {"exito": True, "salida": salida, "ruta": str(ruta), "comando": cmd, "graph_output_dir": str(salida_path)}
+        if html_path.exists():
+            result["html"] = str(html_path)
+        return result
     except Exception as e:
         speak(f"No pude ejecutar Graphify: {e}")
         return {"exito": False, "error": str(e)}

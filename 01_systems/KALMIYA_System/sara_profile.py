@@ -305,12 +305,8 @@ def setup_profile_interactive():
 
     # Identidad
     print("-- IDENTIDAD --")
-    nombre_real = input("Tu nombre real (el que usas en el día a día): ").strip()
-    if nombre_real:
-        profile["identidad"]["nombre_real"] = nombre_real
-        from database import update_memory as _um
-        _um("nombre_real", nombre_real)
-
+    # No se solicita ni se materializa un nombre real por defecto en la instalación.
+    # Los datos opcionales se usan solo si la persona los compartió explícitamente.
     ciudad = input("Tu ciudad: ").strip()
     if ciudad:
         profile["identidad"]["ciudad"] = ciudad

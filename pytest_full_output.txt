@@ -1,0 +1,78 @@
+...........................                                              [100%]
+============================== warnings summary ===============================
+..\..\..\Python314\Lib\site-packages\chromadb\telemetry\opentelemetry\__init__.py:128
+  C:\Python314\Lib\site-packages\chromadb\telemetry\opentelemetry\__init__.py:128: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+    if asyncio.iscoroutinefunction(f):
+
+..\..\..\Python314\Lib\site-packages\speech_recognition\__init__.py:7
+  C:\Python314\Lib\site-packages\speech_recognition\__init__.py:7: DeprecationWarning: aifc was removed in Python 3.13. Please be aware that you are currently NOT using standard 'aifc', but instead a separately installed 'standard-aifc'.
+    import aifc
+
+05_tests/test_asi.py::test_asi_import
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_asi.py::test_asi_import returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_asi.py::test_intelligence_levels
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_asi.py::test_intelligence_levels returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_asi.py::test_asi_status
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_asi.py::test_asi_status returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_asi.py::test_asi_capabilities
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_asi.py::test_asi_capabilities returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_asi.py::test_thought_generation
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_asi.py::test_thought_generation returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_asi.py::test_integration_brain
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_asi.py::test_integration_brain returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_modules.py::test_modules_manager
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_modules.py::test_modules_manager returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_modules.py::test_kalmiya_functions
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_modules.py::test_kalmiya_functions returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_modules.py::test_execute_function
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_modules.py::test_execute_function returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_modules.py::test_module_individual
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_modules.py::test_module_individual returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+05_tests/test_modules.py::test_adso_study_mode
+  C:\Python314\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but 05_tests/test_modules.py::test_adso_study_mode returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+27 passed, 13 warnings in 111.57s (0:01:51)

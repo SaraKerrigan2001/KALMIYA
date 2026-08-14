@@ -71,6 +71,7 @@ pywhatkit>=5.4
 pywin32>=311
 PyYAML>=6.0.3
 qrcode>=8.2
+azure-cognitiveservices-speech>=1.23.0
 requests>=2.33.1
 requests-oauthlib>=2.0.0
 scapy>=2.7.0

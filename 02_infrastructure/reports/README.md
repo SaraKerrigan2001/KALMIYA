@@ -12,8 +12,6 @@ Almacenamiento de reportes, análisis y logs del sistema.
 
 ## 📡 Conectado con
 
-[[KALMIYA_System/README|KALMIYA]] • [[Scripts/README|Scripts]] • [[Lib/README|Lib]] • [[scratch/README|Scratch]]
-
----
+[[KALMIYA_DASHBOARD|📊 Dashboard]] | [[INDEX|← Índice]] | [[WELCOME|← Bienvenida]] | [[02_infrastructure/Scripts/README|Scripts]] | [[02_infrastructure/reports/README|Reports]] | [[02_infrastructure/scratch/README|Scratch]]
 
 **Componente**: Observabilidad | [[INDEX|← Volver]]
