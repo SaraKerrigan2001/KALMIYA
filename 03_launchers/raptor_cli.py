@@ -3,11 +3,15 @@
 RAPTOR Security Agent - Interfaz completa para KALMIYA
 Proporciona análisis autónomo de seguridad ofensiva/defensiva
 
+Documentación: [[06_docs/RAPTOR_INTEGRATION|🔒 RAPTOR Integration]]
+Índice: [[INDEX|← Índice Principal]]
+Ubicación: 03_launchers/raptor_cli.py
+
 Uso:
-    python raptor_cli.py              # Menú interactivo
-    python raptor_cli.py analyze      # Analizar código
-    python raptor_cli.py threat       # Analizar amenaza
-    python raptor_cli.py report       # Generar reporte
+    python 03_launchers/raptor_cli.py              # Menú interactivo
+    python 03_launchers/raptor_cli.py analyze      # Analizar código
+    python 03_launchers/raptor_cli.py threat       # Analizar amenaza
+    python 03_launchers/raptor_cli.py report       # Generar reporte
 """
 
 import sys

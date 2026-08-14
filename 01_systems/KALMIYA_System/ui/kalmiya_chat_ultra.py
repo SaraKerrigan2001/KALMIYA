@@ -177,24 +177,20 @@ class KalmiyaChatUltra:
     def _build_window(self):
         self.root = ctk.CTk()
         self.root.title(f"✨ {BOTNAME} Ultra v3.7 ✨")
-        # NO usar overrideredirect - ventana normal de Windows
-        # self.root.overrideredirect(True)  # DESACTIVADO
-        self.root.attributes("-topmost", True)  # Siempre al frente
-        self.root.attributes("-alpha", 0.97)
+        
+        # Configuración de ventana
         self.root.configure(fg_color=self.theme["bg_dark"])
         
-        # Posicionar CENTRADO en pantalla (más visible)
-        sw = self.root.winfo_screenwidth()
-        sh = self.root.winfo_screenheight()
-        x = (sw - CHAT_W) // 2  # Centrado horizontal
-        y = (sh - CHAT_H) // 2  # Centrado vertical
-        self.root.geometry(f"{CHAT_W}x{CHAT_H}+{x}+{y}")
+        # POSICIÓN FIJA - Esquina superior izquierda
+        self.root.geometry(f"{CHAT_W}x{CHAT_H}+100+100")
         
-        # FORZAR ventana visible y al frente
-        self.root.deiconify()  # Asegurar que no está minimizada
-        self.root.lift()  # Traer al frente
-        self.root.focus_force()  # Forzar focus
-        self.root.update()  # Actualizar ventana inmediatamente
+        # FORZAR ventana visible - SIMPLIFICADO
+        self.root.update_idletasks()
+        self.root.deiconify()
+        self.root.attributes("-topmost", True)
+        self.root.lift()
+        self.root.focus_force()
+        self.root.after(200, lambda: self.root.attributes("-topmost", False))  # Quitar topmost después
         
         # Atajos de teclado
         self.root.bind("<Control-q>", lambda e: self._on_close())
@@ -285,33 +281,6 @@ class KalmiyaChatUltra:
         ).pack(side="left", padx=3)
         
         # Nota: Los botones minimizar/cerrar están en la barra de Windows
-            height=25,
-            fg_color=self.theme["bg_card"],
-            hover_color=self.theme["bg_input"],
-            command=self._show_help
-        ).pack(side="left", padx=1)
-        
-        # Minimizar
-        ctk.CTkButton(
-            controls,
-            text="─",
-            width=25,
-            height=25,
-            fg_color=self.theme["bg_card"],
-            hover_color=self.theme["bg_input"],
-            command=self._minimize
-        ).pack(side="left", padx=1)
-        
-        # Cerrar
-        ctk.CTkButton(
-            controls,
-            text="✕",
-            width=25,
-            height=25,
-            fg_color=self.theme["bg_card"],
-            hover_color="#ff3333",
-            command=self._on_close
-        ).pack(side="left", padx=1)
     
     def _build_avatar_animated(self):
         """Avatar animado con parpadeo"""
@@ -1241,6 +1210,17 @@ Esc - Minimizar ventana
         self.root.overrideredirect(False)
         self.root.iconify()
         self.root.after(500, lambda: self.root.overrideredirect(True))
+    
+    def _ensure_visible(self):
+        """Asegurar que la ventana es visible (refuerzo)"""
+        try:
+            self.root.deiconify()
+            self.root.lift()
+            self.root.focus_force()
+            # Imprimir en consola para debug
+            print("✅ Ventana forzada a primer plano")
+        except:
+            pass
     
     def _on_close(self):
         """Cierra aplicación"""

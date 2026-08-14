@@ -37,6 +37,11 @@ from modules.advanced_capabilities import (
 
 logger = get_logger(__name__)
 
+try:
+    from services.security_ops import analyze_domain_security
+except Exception:  # pragma: no cover
+    analyze_domain_security = None
+
 # ── Configuración ──────────────────────────────────────────────────────────────
 OLLAMA_URL      = "http://localhost:11434/api/chat"
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
@@ -526,6 +531,45 @@ def _ask_gemini(user_input: str, extra_context: str = '') -> str:
 #  CEREBRO PRINCIPAL — SELECCIÓN AUTOMÁTICA DE MOTOR
 # ══════════════════════════════════════════════════════════════════════════════
 
+def _handle_domain_security_request(user_input: str) -> str | None:
+    """Procesa peticiones de seguridad de dominio de forma directa y ética."""
+    if analyze_domain_security is None:
+        return None
+
+    text = (user_input or '').lower()
+    if not any(token in text for token in [
+        'analiza', 'revisa', 'audita', 'seguridad', 'security',
+        'riesgo', 'vulnerabilidad', 'dominio', 'web', 'website', 'site'
+    ]):
+        return None
+
+    candidates = re.findall(r"(?:https?://)?([a-z0-9.-]+\.[a-z]{2,})(?:/|\s|$)", user_input, re.I)
+    if not candidates:
+        return None
+
+    domain = candidates[0].lower()
+    result = analyze_domain_security(domain)
+
+    headers = []
+    for name, present in result.get('security_headers', {}).items():
+        label = {
+            'strict_transport_security': 'HSTS',
+            'x_frame_options': 'X-Frame-Options',
+            'x_content_type_options': 'X-Content-Type-Options',
+            'content_security_policy': 'CSP',
+        }.get(name, name)
+        headers.append(f"{label}: {'Sí' if present else 'No'}")
+
+    return (
+        f"Análisis de seguridad para {domain}:\n"
+        f"- Estado: {result.get('summary', 'Sin resumen')}\n"
+        f"- Riesgo: {result.get('risk_score', 0)}/100\n"
+        f"- IPs resueltas: {', '.join(result.get('resolved_ips') or ['No detectadas'])}\n"
+        f"- Cabeceras: {', '.join(headers) if headers else 'No disponibles'}\n"
+        f"- Nota: revisión defensiva y ética, sin ataques ni accesos no autorizados."
+    )
+
+
 def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -> str:
     """
     Función principal. Envía un mensaje a KALMIYA y devuelve su respuesta.
@@ -540,6 +584,12 @@ def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -
         Si KALMIYA tiene una pregunta, se agrega a _pending_questions.
     """
     global _conversation_history, _pending_questions
+    if user_input and (domain_response := _handle_domain_security_request(user_input)):
+        _conversation_history.append({"role": "user", "content": user_input})
+        _conversation_history.append({"role": "assistant", "content": domain_response})
+        log_command(user_input, domain_response, source='ai-security-domain')
+        return domain_response
+
     _conversation_history.append({"role": "user", "content": user_input})
     if len(_conversation_history) > MAX_HISTORY:
         _conversation_history = _conversation_history[-MAX_HISTORY:]

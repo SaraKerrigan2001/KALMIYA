@@ -1,8 +1,16 @@
 import os.path
 import pickle
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
+
+try:
+    from google.auth.transport.requests import Request
+    from google_auth_oauthlib.flow import InstalledAppFlow
+    from googleapiclient.discovery import build
+    GOOGLE_IMPORTS_AVAILABLE = True
+except Exception:  # pragma: no cover - optional dependency
+    Request = None
+    InstalledAppFlow = None
+    build = None
+    GOOGLE_IMPORTS_AVAILABLE = False
 
 class EmailIntegration:
     """Integración real con la API de Gmail de Google Workspace."""
@@ -15,10 +23,15 @@ class EmailIntegration:
         self.creds = None
         self.service = None
         self.is_authenticated = False
+        if not GOOGLE_IMPORTS_AVAILABLE:
+            print("[GMAIL] Google API no disponible en este entorno; integración desactivada.")
+            return
         self._authenticate()
 
     def _authenticate(self):
         """Autentica a la usuaria usando OAuth2."""
+        if not GOOGLE_IMPORTS_AVAILABLE:
+            return
         token_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'token.pickle')
         creds_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'credentials.json')
         

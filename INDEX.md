@@ -1,72 +1,63 @@
-﻿---
-title: "Índice Principal KALMIYA"
-tags: [index, master, hub, core]
----
+﻿# Índice del proyecto
 
-# 🌐 Índice Principal
+## Documentación principal
 
-[[WELCOME|← Bienvenida]] | [[KALMIYA_DASHBOARD|📊 Dashboard]]
+- [README.md](README.md) — visión general del proyecto.
+- [WELCOME.md](WELCOME.md) — bienvenida y entrada rápida.
+- [00_ORGANIZACION_PROYECTO.md](00_ORGANIZACION_PROYECTO.md) — mapa del repositorio.
+- [KALMIYA_DASHBOARD.md](KALMIYA_DASHBOARD.md) — resumen visual del proyecto.
 
-> **Sistema activo:** KALMIYA Neural Core v3.0 Autónoma  
-> **Cerebro IA:** Gemini 2.5 Flash + Ollama + Claude  
-> **Última actualización:** julio 2026
+## Carpetas clave
 
----
+### Documentación
 
-## 🤖 KALMIYA System
+- [00_docs_chat/](00_docs_chat/)
+- [00_docs_project/](00_docs_project/)
+- [00_docs_updates/](00_docs_updates/)
+- [06_docs/](06_docs/)
+- [07_notes/](07_notes/)
+- [08_reports/](08_reports/)
 
-**Ruta:** `c:\Users\maria\env\01_systems\KALMIYA_System\`
+### Sistema
 
-| Componente | Estado |
-|------------|--------|
-| Núcleo autónomo (piensa solo) | ✅ Activo |
-| Cerebro IA triple (Gemini 2.5 + Ollama + Claude) | ✅ Activo |
-| HUD flotante | ✅ Activo |
-| Chat directo desde escritorio | ✅ Activo |
-| Fondo de pantalla personalizado | ✅ Activo |
-| Anti-eco de voz | ✅ Activo |
-| 41 módulos extendidos | ✅ Integrados (opción M) |
-| Protección familiar | ✅ Activo |
-| Conexión remota sin WiFi | ✅ Activo |
-| Permisos de administrador | ✅ Activo |
-| Vault Obsidian conectado a IA | ✅ Activo |
-| Backups automáticos | ✅ Activo |
+- [01_systems/KALMIYA_System/](01_systems/KALMIYA_System/)
+- [01_systems/KALMIYA/](01_systems/KALMIYA/)
+- [01_systems/RAPTOR/](01_systems/RAPTOR/)
+- [01_systems/LLM_Wiki/](01_systems/LLM_Wiki/)
 
-**Arrancar KALMIYA:**
-```
-Doble clic en: Lanzar_KALMIYA.vbs
-Abrir solo chat: "KALMIYA Chat" en el escritorio
-O ejecutar:    python kalmiya_launcher.py
-```
+### Infraestructura y configuración
 
----
+- [02_infrastructure/](02_infrastructure/)
+- [03_launchers/](03_launchers/)
+- [04_config/](04_config/)
+- [04_config/requirements.txt](04_config/requirements.txt)
 
-## 📚 Documentación
+### Validación
 
-- [[WELCOME|Bienvenida]]
-- [[KALMIYA_DASHBOARD|📊 Dashboard en tiempo real]]
-- [[MODULOS_IMPLEMENTADOS|📦 Módulos Implementados (41+)]]
-- [[KALMIYA_FUNCIONES|⚙️ Funciones del Sistema]]
-- [[FUNCIONES_IMPLEMENTACION|🚀 Implementaciones]]
-- [[CHAT_GUIA|💬 Guía de Chat]]
-- [[OBSIDIAN_SETUP|🔧 Setup Obsidian]]
-- [[CONTRIBUTING|🤝 Cómo Contribuir]]
-- [[ISSUES|🐛 Reportar Issues]]
+- [05_tests/](05_tests/)
+- [05_tests/test_open_chat_paths.py](05_tests/test_open_chat_paths.py)
+- [pytest.ini](pytest.ini)
 
-### 🗒️ Notas del Sistema
+## Puntos de entrada
 
-- [[07_notes/KALMIYA_Biometria_y_Audio|🔒 Biometría y Audio]] — Verificación facial/voz/PIN + perfiles de audio
-- [[ESTRUCTURA_VISUAL|🗺️ Estructura Visual]] — Mapa visual del proyecto
-- [[08_reports/graphify-out/GRAPH_REPORT|📊 Reporte del Grafo]] — Estado de conexiones del vault
-- [[LICENSE|📄 Licencia MIT]] — Términos de uso del proyecto
+- [03_launchers/chat.py](03_launchers/chat.py)
+- [03_launchers/chat_simple.py](03_launchers/chat_simple.py)
+- [03_launchers/chat_ultra.py](03_launchers/chat_ultra.py)
+- [03_launchers/chat_optimized.py](03_launchers/chat_optimized.py)
+- [01_systems/KALMIYA_System/main.py](01_systems/KALMIYA_System/main.py)
 
----
+## Estado actual
 
-## ⚡ Accesos rápidos
+- El núcleo del proyecto ya está validado con la prueba real del prompt.
+- Las dependencias opcionales de audio y Google se manejan como componentes no bloqueantes para la importación principal.
 
-| Acción | Cómo |
-|--------|------|
-| Iniciar KALMIYA completo | `Lanzar_KALMIYA.vbs` |
+## Sugerencia de lectura
+
+1. [README.md](README.md)
+2. [00_ORGANIZACION_PROYECTO.md](00_ORGANIZACION_PROYECTO.md)
+3. [03_launchers/README.md](03_launchers/README.md)
+4. [05_tests/test_open_chat_paths.py](05_tests/test_open_chat_paths.py)
+5. [06_docs/](06_docs/)
 | Solo chat IA | Ícono **"KALMIYA Chat"** en escritorio |
 | Chat desde raíz | `python 03_launchers/chat.py` |
 | Chat con consola | `03_launchers/Chat_KALMIYA.bat` |
@@ -95,58 +86,65 @@ Desde chat: *"KALMIYA, inicia sesión de estudio de Java"* o *"¿Qué entregas t
 
 ---
 
-## 🧹 Mantenimiento del vault
+## 🏗️ Estructura de Carpetas - Resumen
 
-| Recurso | Ubicación canónica |
-|---------|-------------------|
-| LLM_Wiki | [[01_systems/LLM_Wiki/README\|01_systems/LLM_Wiki/]] |
-| Secretos | `01_systems/KALMIYA_System/.env` (ver `.env.example`) |
-| Backups BD | `_BACKUPS/` |
-| Scripts obsoletos | `_UNUSED/` |
-
-### 🗂️ Infraestructura
-
-- [[02_infrastructure/Scripts/README\|⚙️ Scripts]] — Automatización y utilidades
-- [[02_infrastructure/reports/README\|📊 Reports]] — Auditorías y logs
-- [[02_infrastructure/scratch/README\|🧪 Scratch]] — Área de experimentación
-
-### 📚 LLM Wiki
-
-- [[01_systems/LLM_Wiki/README\|📚 LLM Wiki]] — Knowledge base integrada
-- [[01_systems/LLM_Wiki/schema/SCHEMA\|🎯 Schema]] — Convenciones de la wiki
-- [[01_systems/LLM_Wiki/wiki/index\|📑 Wiki Index]] — Índice de páginas
-- [[01_systems/LLM_Wiki/wiki/log\|📝 Wiki Log]] — Historial de cambios
-
-### 🏗️ Sistema Principal
-
-- [[01_systems/KALMIYA_System/README\|🤖 KALMIYA System]] — Núcleo principal
-- [[01_systems/KALMIYA_System/kalmiya_docs\|📋 Docs técnicos]]
-- [[01_systems/KALMIYA_System/standards\|⚙️ Estándares de código]]
-- [[01_systems/KALMIYA/README\|📖 KALMIYA Vault]] — Bóveda personal
-- [[01_systems/KALMIYA/Bienvenido\|👋 Bienvenido]]
-- [[01_systems/KALMIYA/cree un enlace\|🔗 Crear enlace]]
-
-### 📁 Proyecto SENA
-
-- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README\|🏢 Sistema Gestión Bienes]]
-- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB\|✅ Checklist GitHub]]
-- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB\|📤 Instrucciones GitHub]]
-- [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/examples/README\|💡 Ejemplos de componentes]]
+| Carpeta | Función | Enlace |
+|---------|---------|--------|
+| `.skills/` | 9 skills centralizados de JARVIS OS | — |
+| `01_systems/` | Motor principal + módulos | [[01_systems/README\|📖 README]] |
+| `02_infrastructure/` | Entorno Python + dependencias | [[02_infrastructure/README\|📖 README]] |
+| `03_launchers/` | Scripts de inicio rápido | [[03_launchers/README\|📖 README]] |
+| `04_config/` | Configuración Python | [[04_config/README\|📖 README]] |
+| `05_tests/` | Tests y validación | [[05_tests/README\|📖 README]] |
+| `06_docs/` | Documentación completa | [[06_docs/ROOT_STRUCTURE\|📖 README]] |
+| `07_notes/` | Notas del sistema | [[07_notes/README\|📖 README]] |
+| `08_reports/` | Reportes y análisis | [[08_reports/README\|📖 README]] |
+| `_BACKUPS/` | Copias de seguridad | [[_BACKUPS/README\|📖 README]] |
+| `_TEMP/` | Archivos temporales | [[_TEMP/README\|📖 README]] |
+| `_UNUSED/` | Scripts obsoletos | [[_UNUSED/README\|📖 README]] |
 
 ---
 
 ## 🔑 Configuración (.env)
 
 ```env
+# Usuario
 USER=Sara Kerrigan
 BOTNAME=KALMIYA
+
+# IA
 AI_MODE=auto
 AI_MODEL=llama3.2
 GEMINI_API_KEY=✅ configurada
+
+# JARVIS OS (Nuevo)
+PTT_HOTKEY=ctrl+alt+m
+NEURAL_VOICE=es-ES-ElviraNeural
+
+# Rutas
 OBSIDIAN_VAULT_PATH=c:\Users\maria\env
+
+# Características
 KALMIYA_ENABLE_WALLPAPER=true
 KALMIYA_ENABLE_SERVER=true
 ```
+
+---
+
+## ✨ Resumen - JARVIS OS Integration
+
+**Status**: ✅ Completado (8/8 tareas)
+
+- ✅ Estructura de skills centralizada (.skills/)
+- ✅ Audio 100% privado (Vosk + pyttsx3)
+- ✅ Push-to-Talk global (Ctrl+Alt+M)
+- ✅ Memoria organizada (raw/outputs/wiki)
+- ✅ Karpaty Graph configurado
+- ✅ Documentación completa
+- ✅ Privacidad garantizada
+- ✅ Listo para producción
+
+**Comenzar**: [[06_docs/JARVIS_OS/README|🌟 JARVIS OS README]]
 
 ---
 

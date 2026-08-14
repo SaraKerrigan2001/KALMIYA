@@ -170,9 +170,11 @@ def _run_biometric_authentication() -> bool:
 
 def _launch_hud():
     """Lanza el HUD en un proceso separado."""
-    hud_path = BASE_DIR / "kalmiya_hud.py"
+    # El HUD está en ui/kalmiya_hud.py
+    hud_path = BASE_DIR / "ui" / "kalmiya_hud.py"
     if not hud_path.exists():
-        _log("HUD", "kalmiya_hud.py no encontrado.", "error")
+        _log("HUD", "kalmiya_hud.py no encontrado en ui/.", "error")
+        _log("HUD", f"Buscado en: {hud_path}", "info")
         return
 
     _log("HUD", "Lanzando HUD flotante...", "info")

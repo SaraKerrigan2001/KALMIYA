@@ -1,14 +1,14 @@
 ---
 title: "KALMIYA Dashboard"
 tags: [kalmiya, dashboard, sistema]
-updated: "2026-08-04 16:29:54"
+updated: "2026-08-13 18:03:09"
 ---
 
 # 🤖 KALMIYA — Dashboard
-> Última actualización: **Tuesday 04 de August de 2026 — 16:29:54**
+> Última actualización: **Thursday 13 de August de 2026 — 18:03:09**
 
 **Navegación del vault:**
-[[INDEX]] | [[README]]
+[[INDEX]] | [[LISTA_NUEVAS_FUNCIONES]] | [[README]] | [[RESUMEN_COMPLETO_ACTUALIZACIONES]] | [[WELCOME]]
 
 ---
 
@@ -16,9 +16,9 @@ updated: "2026-08-04 16:29:54"
 
 | Componente | Estado | Uso |
 |---|---|---|
-| CPU | 🟢 Normal | ██░░░░░░░░░░░░░ 20% |
-| RAM | 15.3 / 31.6 GB | ███████░░░░░░░░ 48% |
-| Disco C | 95.4 GB libre | ███████████░░░░ 80% |
+| CPU | 🟢 Normal | █████░░░░░░░░░░ 37% |
+| RAM | 17.5 / 31.6 GB | ████████░░░░░░░ 55% |
+| Disco C | 61.0 GB libre | █████████████░░ 87% |
 
 ## 🧠 Motores de IA
 
@@ -33,11 +33,11 @@ updated: "2026-08-04 16:29:54"
 
 ## 🗄️ Base de Datos
 
-- 💬 Historial de comandos: **1413** entradas
-- 🧠 Pensamientos autónomos: **1763** guardados
-- 🔑 Memoria de Sara: **27** claves
-- 📋 Auditoría de memoria: **531** cambios
-- 💾 Tamaño: **1376.0 KB**
+- 💬 Historial de comandos: **1523** entradas
+- 🧠 Pensamientos autónomos: **1781** guardados
+- 🔑 Memoria de Sara: **36** claves
+- 📋 Auditoría de memoria: **670** cambios
+- 💾 Tamaño: **1416.0 KB**
 - ⚡ Triggers activos: 5
 
 ## 👤 Perfil de Sara Kerrigan
@@ -55,25 +55,25 @@ updated: "2026-08-04 16:29:54"
 
 ## 💬 Últimas Conversaciones
 
-**2026-08-04 21:28:41**
+**2026-08-13 23:03:10**
 > 👤 [AUDIO] Perfil
 > 🤖 normal
 
-**2026-08-04 21:28:41**
+**2026-08-13 23:03:10**
 > 👤 [AUDIO] EQ
 > 🤖 Graves:0 Medios:0 Agudos:0
 
-**2026-08-04 21:28:41**
+**2026-08-13 23:03:10**
 > 👤 [AUDIO] Micrófono
 > 🤖 80%
 
-**2026-08-04 21:28:41**
+**2026-08-13 23:03:10**
 > 👤 [AUDIO] Volumen
 > 🤖 70%
 
-**2026-08-02 20:36:27**
-> 👤 [AUDIO] Perfil
-> 🤖 normal
+**2026-08-13 23:03:07**
+> 👤 [BIOMETRÍA] ACCESO AUTORIZADO
+> 🤖 Usuario: Sara Kerrigan | Nivel: 5 | Método: pin
 
 ## 📝 Notas Recientes
 
@@ -92,7 +92,10 @@ updated: "2026-08-04 16:29:54"
 ### Documentos raíz
 
 - [[INDEX]]
+- [[LISTA_NUEVAS_FUNCIONES]]
 - [[README]]
+- [[RESUMEN_COMPLETO_ACTUALIZACIONES]]
+- [[WELCOME]]
 
 ### Notas clave del proyecto
 
@@ -112,7 +115,11 @@ updated: "2026-08-04 16:29:54"
 - [[01_systems/KALMIYA_System/standards|standards]]
 - [[01_systems/KALMIYA/Bienvenido|Bienvenido]]
 - [[01_systems/KALMIYA/cree un enlace|cree un enlace]]
+- [[01_systems/KALMIYA/KARPATY_SETUP|KARPATY_SETUP]]
+- [[01_systems/KALMIYA/outputs/README|README]]
+- [[01_systems/KALMIYA/raw/README|README]]
 - [[01_systems/KALMIYA/README|README]]
+- [[01_systems/KALMIYA/wiki/README|README]]
 - [[01_systems/LLM_Wiki/KALMIYA/Bienvenido|Bienvenido]]
 - [[01_systems/LLM_Wiki/README|README]]
 - [[01_systems/LLM_Wiki/schema/SCHEMA|SCHEMA]]
@@ -191,4 +198,4 @@ updated: "2026-08-04 16:29:54"
 - FUNCIONES_IMPLEMENTACION — Estado de implementación
 
 ---
-*Dashboard generado automáticamente por KALMIYA — 2026-08-04 16:29*
+*Dashboard generado automáticamente por KALMIYA — 2026-08-13 18:03*

@@ -1,11 +1,30 @@
-# 07_notes — Notas y referencias
+---
+title: "Notas del Sistema"
+tags: [notes, observations, context]
+---
+
+# 07_notes — Notas y Referencias
+
+[[INDEX|← Índice]] | [[WELCOME|Inicio]]
 
 Aquí se almacenan observaciones importantes, notas de contexto y referencias de uso del sistema.
 
-## Contenido actual
+---
 
-- KALMIYA_Biometria_y_Audio.md: información sobre biometría, audio y verificación.
+## 📝 Contenido Actual
 
-## Recomendación
+- [[KALMIYA_Biometria_y_Audio|🔒 Biometría y Audio]] — Información sobre biometría, audio y verificación
 
-Usa esta carpeta para registrar aprendizajes, decisiones técnicas y contexto que no deba perderse.
+---
+
+## 💡 Recomendación
+
+Usa esta carpeta para registrar:
+- Aprendizajes técnicos
+- Decisiones de arquitectura
+- Contexto que no debe perderse
+- Observaciones de comportamiento del sistema
+
+---
+
+[[INDEX|← Volver al índice]]

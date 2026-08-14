@@ -340,7 +340,317 @@ Resultado: Evaluación crítica + alternativas + puntos ciegos identificados
 
 ---
 
-## 🔒 SEGURIDAD Y LÍMITES
+## �️ INTELIGENCIA Y SEGURIDAD AVANZADA (ASI Security Module)
+
+### Capacidades de Seguridad Ofensiva/Defensiva
+
+Con ASI activado, KALMIYA obtiene capacidades avanzadas de análisis de seguridad:
+
+#### 1. **OSINT (Open Source Intelligence)**
+Análisis de información pública para identificar patrones:
+
+```
+asi_osint_analysis(target: str) → dict
+├── Social Media Mapping (perfiles públicos)
+├── Domain & DNS Analysis (registros públicos)
+├── Email & Phone Verification (HAVEIBEENPWNED, etc.)
+├── Public Records Lookup (registros públicos accesibles)
+├── Technology Stack Detection (herramientas usadas)
+├── Geolocation Analysis (información pública de ubicación)
+└── Relationship Mapping (conexiones públicas)
+```
+
+**Uso defensivo**: Identificar exposición de datos públicos  
+**Casos de uso**: Auditoría de presencia digital, validación de identidad
+
+#### 2. **Análisis de Vulnerabilidades**
+Evaluación de riesgos de seguridad en sistemas:
+
+```
+asi_vulnerability_assessment(sistema: str) → dict
+├── Configuration Analysis (errores de configuración)
+├── Weak Authentication Detection (contraseñas débiles)
+├── Credential Exposure Check (credenciales comprometidas)
+├── Patch Status Review (actualizaciones faltantes)
+├── Protocol Analysis (protocolos inseguros)
+├── Access Control Review (permisos excesivos)
+└── Threat Pattern Recognition (patrones de ataque conocidos)
+```
+
+**Uso defensivo**: Fortalecer seguridad propia  
+**Casos de uso**: Security audit, hardening de sistemas
+
+#### 3. **Detección de Amenazas**
+Identificación de patrones de ataque y comportamiento malicioso:
+
+```
+asi_threat_detection(logs: list, network_data: list) → dict
+├── Anomaly Detection (comportamiento anormal)
+├── Known Attack Pattern Matching (patrones CVE)
+├── Command Injection Detection (inyecciones)
+├── SQL Injection Pattern Recognition (SQL malicioso)
+├── XSS & CSRF Detection (vulnerabilidades web)
+├── DDoS Pattern Recognition (ataques distribuidos)
+├── Botnet Activity Detection (actividad bot)
+├── Lateral Movement Detection (movimiento lateral)
+└── Exfiltration Detection (intento de fuga de datos)
+```
+
+**Uso defensivo**: Detección de intrusiones  
+**Casos de uso**: SIEM analysis, IDS enhancement, threat hunting
+
+#### 4. **Análisis de Criptografía**
+Evaluación de esquemas de cifrado y seguridad criptográfica:
+
+```
+asi_cryptographic_analysis(algoritmo: str, implementación: str) → dict
+├── Algorithm Strength Assessment (fortaleza del algoritmo)
+├── Key Length Evaluation (longitud de clave)
+├── Entropy Validation (entropía de números aleatorios)
+├── Implementation Weaknesses (bugs en implementación)
+├── Side-Channel Analysis (ataques de canal lateral)
+├── Hash Collision Risk (colisiones hash)
+└── Quantum Resistance (resistencia post-cuántica)
+```
+
+**Uso defensivo**: Validar cifrado propio  
+**Casos de uso**: Evaluación de esquemas, compliance
+
+#### 5. **Filtración y Privacidad**
+Análisis de riesgos de filtración de datos:
+
+```
+asi_data_privacy_analysis(datos: list, almacenamiento: str) → dict
+├── Sensitivity Classification (nivel de sensibilidad)
+├── Exposure Risk Assessment (riesgo de exposición)
+├── Unauthorized Access Paths (rutas de acceso no autorizado)
+├── Data Retention Risk (riesgo de retención)
+├── Third-party Risk (riesgo de terceros)
+├── Compliance Violations (violaciones GDPR/normativas)
+├── De-anonymization Risk (riesgo de re-identificación)
+└── Metadata Analysis (riesgos de metadatos)
+```
+
+**Uso defensivo**: Proteger datos sensibles  
+**Casos de uso**: Análisis de privacidad, GDPR compliance
+
+#### 6. **Análisis de Ingeniería Social**
+Evaluación de vectores de ataque social:
+
+```
+asi_social_engineering_analysis(contexto: str) → dict
+├── Phishing Vector Detection (detección de phishing)
+├── Pretexting Risk (riesgos de pretexting)
+├── Baiting Vulnerability (vulnerabilidad a cebos)
+├── Quid Pro Quo Risk (riesgos de intercambio)
+├── Tailgating/Piggybacking Analysis (acceso físico)
+├── Psychological Manipulation Patterns (patrones de manipulación)
+└── Defense Recommendations (recomendaciones de defensa)
+```
+
+**Uso defensivo**: Entrenar al personal  
+**Casos de uso**: Security awareness, phishing simulation
+
+#### 7. **Inteligencia de Amenazas (Threat Intelligence)**
+Análisis de información sobre amenazas conocidas:
+
+```
+asi_threat_intelligence(indicadores: list) → dict
+├── IOC Classification (clasificación de indicadores)
+├── Campaign Correlation (correlación de campañas)
+├── Actor Attribution (atribución de actores)
+├── TTPs (Tactics, Techniques, Procedures)
+├── Timeline Analysis (análisis temporal)
+├── Infrastructure Mapping (mapeo de infraestructura)
+├── Victimology Analysis (análisis de víctimas)
+└── Future Prediction (predicción de próximos ataques)
+```
+
+**Uso defensivo**: Anticipar amenazas  
+**Casos de uso**: Threat hunting, incident response
+
+#### 8. **Análisis Forense Digital**
+Investigación de incidentes de seguridad:
+
+```
+asi_digital_forensics(evidencia: list, logs: list) → dict
+├── Timeline Reconstruction (reconstrucción de línea temporal)
+├── Root Cause Analysis (análisis de causa raíz)
+├── Attribution Analysis (análisis de atribución)
+├── Evidence Chain Validation (validación de cadena de custodia)
+├── Artifact Analysis (análisis de artefactos)
+├── Log Correlation (correlación de logs)
+└── Incident Classification (clasificación de incidente)
+```
+
+**Uso defensivo**: Investigar incidentes  
+**Casos de uso**: Incident response, post-mortem analysis
+
+---
+
+### Integración con RAPTOR Security Framework
+
+ASI se integra con RAPTOR para capacidades avanzadas:
+
+```
+KALMIYA (ASI)
+    ↓
+RAPTOR Framework
+├── Offensive Analysis Module
+│   ├── Attack Simulation (simulaciones de ataque)
+│   ├── Exploit Chain Analysis (análisis de cadenas)
+│   └── Impact Assessment (evaluación de impacto)
+├── Defensive Hardening Module
+│   ├── System Strengthening (fortalecimiento)
+│   ├── Configuration Optimization (optimización)
+│   └── Security Patching (parches)
+└── Intelligence Module
+    ├── Threat Tracking (rastreo de amenazas)
+    ├── Campaign Analysis (análisis de campañas)
+    └── Predictive Defense (defensa predictiva)
+```
+
+---
+
+### Análisis de Información Avanzado
+
+ASI proporciona análisis de información multidimensional:
+
+#### **Information Gathering Pipeline**
+
+```
+1. FUENTES PÚBLICAS
+   ├── News & Media Analysis (análisis de noticias)
+   ├── Social Media Monitoring (monitoreo de redes)
+   ├── Technical Documentation (documentación técnica)
+   ├── Patent & Research Analysis (análisis de patentes)
+   └── Public Records (registros públicos)
+
+2. PROCESAMIENTO Y ANÁLISIS
+   ├── Natural Language Processing (procesamiento de lenguaje)
+   ├── Pattern Recognition (reconocimiento de patrones)
+   ├── Sentiment Analysis (análisis de sentimiento)
+   ├── Entity Extraction (extracción de entidades)
+   └── Relationship Mapping (mapeo de relaciones)
+
+3. INTELIGENCIA DERIVADA
+   ├── Trend Identification (identificación de tendencias)
+   ├── Anomaly Detection (detección de anomalías)
+   ├── Predictive Analysis (análisis predictivo)
+   ├── Risk Assessment (evaluación de riesgos)
+   └── Actionable Intelligence (inteligencia accionable)
+```
+
+#### **Casos de Uso de Análisis**
+
+```
+asi_information_analysis(tema: str, período: str) → dict
+├── Market Trend Analysis (análisis de tendencias de mercado)
+├── Competitive Intelligence (inteligencia competitiva)
+├── Risk Intelligence (inteligencia de riesgos)
+├── Technology Tracking (rastreo de tecnologías)
+├── Sentiment Mapping (mapeo de sentimientos)
+├── Influence Mapping (mapeo de influencia)
+├── Anomaly Detection (detección de anomalías)
+└── Prediction Models (modelos predictivos)
+```
+
+---
+
+### Módulos de Análisis Especializados
+
+#### **Blockchain & Smart Contract Analysis**
+```python
+asi_blockchain_analysis(dirección: str, contrato: str)
+├── Address Clustering (agrupamiento de direcciones)
+├── Fund Flow Analysis (análisis de flujo de fondos)
+├── Smart Contract Decompilation (descompilación)
+├── Vulnerability Detection (detección de vulnerabilidades)
+├── Unusual Transaction Patterns (patrones anormales)
+└── Possible Owner Identification (identificación probable)
+```
+
+#### **Network & Infrastructure Analysis**
+```python
+asi_network_analysis(objetivo: str)
+├── Port & Service Enumeration (enumeración)
+├── Firewall Rule Detection (detección de reglas)
+├── Load Balancer Identification (identificación)
+├── CDN & WAF Detection (detección)
+├── Service Version Fingerprinting (fingerprinting)
+├── Network Topology Mapping (mapeo de topología)
+└── Security Control Assessment (evaluación de controles)
+```
+
+#### **API & Web Service Analysis**
+```python
+asi_api_analysis(endpoint: str)
+├── Endpoint Enumeration (enumeración)
+├── API Specification Extraction (extracción de especificación)
+├── Authentication Type Detection (detección)
+├── Rate Limiting Analysis (análisis)
+├── Input Validation Testing (pruebas)
+├── Error Message Analysis (análisis de errores)
+└── Functionality Mapping (mapeo de funcionalidad)
+```
+
+#### **Source Code Analysis**
+```python
+asi_code_analysis(repositorio: str, lenguaje: str)
+├── Static Code Analysis (análisis estático)
+├── Vulnerability Detection (detección de vulnerabilidades)
+├── Dependency Analysis (análisis de dependencias)
+├── Third-party Library Risk (evaluación de riesgo)
+├── Secret Detection (detección de secretos)
+├── Code Quality Assessment (evaluación de calidad)
+└── Architecture Analysis (análisis de arquitectura)
+```
+
+---
+
+### Nivel de Detalle de Análisis (Escalable)
+
+ASI puede proporcionar análisis en 4 niveles:
+
+| Nivel | Profundidad | Tiempo | Uso |
+|-------|-----------|--------|-----|
+| **L1: Surface** | Análisis superficial rápido | <10s | Reconocimiento inicial |
+| **L2: Deep** | Análisis multidimensional | 30-60s | Investigación normal |
+| **L3: Thorough** | Análisis exhaustivo completo | 2-5 min | Auditoría completa |
+| **L4: Forensic** | Análisis forense profundo | 10+ min | Investigación post-incidente |
+
+```python
+asi_information_depth_level(
+    target: str,
+    level: 'L1' | 'L2' | 'L3' | 'L4'
+) → dict
+```
+
+---
+
+### Ética y Restricciones
+
+**IMPORTANTE**: Todos estos análisis están diseñados para:
+
+✅ **DEFENSIVA**: Proteger tus sistemas y datos  
+✅ **ANÁLISIS**: Entender amenazas y vulnerabilidades  
+✅ **AUTORIZACIÓN**: Solo en sistemas que autorizas  
+✅ **LEGALIDAD**: Respetando leyes de privacidad y ciberseguridad  
+
+❌ **NO PARA**: Hacking no autorizado, acceso ilegal, daño malicioso  
+❌ **NUNCA**: Violar privacidad, robar datos, quebrantar leyes  
+❌ **RESTRICCIONES**: KALMIYA rechaza comandos ilegales  
+
+---
+
+## 🔐 Restricciones Activas de Seguridad
+- ✅ ASI respeta leyes de privacidad y ciberseguridad
+- ✅ ASI solo analiza sistemas autorizados
+- ✅ ASI rechaza instrucciones ilegales
+- ✅ ASI implementa RAPTOR ethical guidelines
+- ✅ KALMIYA mantiene auditoría de todas las operaciones
+
+---
 
 ### Restricciones Activas
 - ASI no desactiva restricciones de seguridad existentes

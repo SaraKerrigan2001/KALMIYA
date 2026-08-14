@@ -1,6 +1,6 @@
 ﻿# Ejemplos de Uso de Componentes
 
-[[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README|← README proyecto]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB|✅ Checklist]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB|📤 Instrucciones]] | [[CONTRIBUTING|🤝 Contribuir]]
+[[INDEX|← Índice Principal]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README|📄 README proyecto]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB|✅ Checklist]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB|📤 Instrucciones]]
 
 Esta carpeta contiene archivos de ejemplo `App.jsx` para cada componente del sistema. Cada archivo muestra cómo usar un componente específico de forma independiente.
 

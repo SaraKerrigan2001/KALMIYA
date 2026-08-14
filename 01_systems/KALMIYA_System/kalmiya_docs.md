@@ -1,13 +1,12 @@
 ---
 title: "KALMIYA — Documentación Completa"
 tags: [kalmiya, documentation, guide]
+ubicacion: 01_systems/KALMIYA_System/kalmiya_docs.md
 ---
 
 # 📋 KALMIYA — Guía Completa
 
-> [[KALMIYA_DASHBOARD|📊 Dashboard]] | [[INDEX|📋 Índice]] | [[WELCOME|👋 Bienvenida]]
-
-[[KALMIYA_System/README|← KALMIYA]] | [[INDEX|Hub]] | [[WELCOME|← Bienvenida]]
+[[INDEX|← Índice]] | [[KALMIYA_DASHBOARD|📊 Dashboard]] | [[WELCOME|👋 Bienvenida]] | [[01_systems/KALMIYA_System/README|← KALMIYA System]]
 
 Sistema de asistente autónomo con IA dual, seguridad y familia.
 

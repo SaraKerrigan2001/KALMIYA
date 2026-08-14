@@ -53,6 +53,13 @@ except ImportError:
     logger.warning("[BIO] SpeechRecognition no disponible — verificación de voz desactivada")
 
 try:
+    import pyaudio  # required by speech_recognition Microphone
+    PYAUDIO_OK = True
+except ImportError:
+    PYAUDIO_OK = False
+    logger.warning("[BIO] PyAudio no disponible — verificación de voz desactivada")
+
+try:
     import numpy as np
     NUMPY_OK = True
 except ImportError:
@@ -242,8 +249,8 @@ def verificar_voz(intentos: int = 2) -> Optional[dict]:
     Returns:
         Usuario reconocido o None si falla.
     """
-    if not SR_OK:
-        logger.warning("[BIO] SpeechRecognition no disponible — saltando verificación de voz")
+    if not SR_OK or not PYAUDIO_OK:
+        logger.warning("[BIO] SpeechRecognition o PyAudio no disponibles — saltando verificación de voz")
         return None
 
     reconocedor = sr.Recognizer()
@@ -288,6 +295,14 @@ def verificar_voz(intentos: int = 2) -> Optional[dict]:
             speak("No escuché nada. Inténtalo de nuevo.")
         except sr.UnknownValueError:
             speak("No pude entender lo que dijiste.")
+        except OSError as e:
+            error_msg = str(e).lower()
+            if "pyaudio" in error_msg or "portaudio" in error_msg or "could not find pyaudio" in error_msg:
+                logger.warning("[BIO-VOZ] PyAudio no disponible o micrófono inaccesible")
+                speak("No pude acceder al micrófono. Verificación de voz desactivada.")
+                return None
+            logger.warning(f"[BIO-VOZ] Error de micrófono: {e}")
+            speak("Hubo un problema con el micrófono.")
         except Exception as e:
             logger.warning(f"[BIO-VOZ] Error: {e}")
             speak("Hubo un problema con el micrófono.")
@@ -526,9 +541,10 @@ def estado_biometrico() -> dict:
         "nivel":             _sesion_activa.get("nivel_acceso", 0) if _sesion_activa else 0,
         "intentos_fallidos": _intentos_fallidos,
         "opencv_ok":         OPENCV_OK,
-        "speech_ok":         SR_OK,
+        "speech_ok":         SR_OK and PYAUDIO_OK,
+        "pyaudio_ok":        PYAUDIO_OK,
         "metodos_activos":   [m for m, ok in
-                              [("facial", OPENCV_OK), ("voz", SR_OK), ("pin", True)]
+                              [("facial", OPENCV_OK), ("voz", SR_OK and PYAUDIO_OK), ("pin", True)]
                               if ok],
     }
 

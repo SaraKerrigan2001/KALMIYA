@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
 Test script para RAPTOR Security Agent
+
+Documentación: [[06_docs/RAPTOR_INTEGRATION|🔒 RAPTOR Integration]]
+Índice: [[INDEX|← Índice Principal]]
+Ubicación: 05_tests/test_raptor.py
 """
 
 import sys

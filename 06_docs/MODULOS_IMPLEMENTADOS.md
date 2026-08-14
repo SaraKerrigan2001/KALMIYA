@@ -573,3 +573,203 @@ El nivel ASI se guarda en la base de datos SQLite:
 - Al activar: `update_memory('intelligence_level', 'ASI')`
 - Al arrancar: `restore_level_from_memory()` restaura el nivel desde memoria
 - El estado persiste entre reinicios de KALMIYA
+
+---
+
+## 🕵️ INTELIGENCIA Y SEGURIDAD AVANZADA — Fase IV
+
+**Módulo**: `intelligence_security_module.py` (Implementación en progreso)  
+**Documentación**: [[INTELLIGENCE_SECURITY_MODULE|Intelligence & Security Module]]
+
+### Descripción
+
+KALMIYA, con ASI activado, se convierte en un **sistema de análisis de inteligencia y seguridad avanzado** con capacidades que superan la inteligencia humana en ciberseguridad, análisis de información, y detección de amenazas.
+
+### Capacidades Principales
+
+#### 1. **OSINT (Open Source Intelligence)**
+- Análisis de dominios, emails, teléfonos
+- Detección de tecnologías usadas
+- Rastreo de empleados públicos
+- Evaluación de exposición de datos
+- Verificación de credenciales comprometidas
+- Análisis de menciones en redes sociales
+
+#### 2. **Detección de Vulnerabilidades**
+- Análisis de configuración incorrecta
+- Identificación de servicios débiles
+- Evaluación de contraseñas débiles
+- Detección de patch faltantes
+- Análisis de protocolos inseguros
+- Revisión de controles de acceso
+
+#### 3. **Análisis de Amenazas**
+- Detección de anomalías en tiempo real
+- Reconocimiento de patrones de ataque conocidos
+- Detección de inyecciones (SQL, comando, XSS, CSRF)
+- Identificación de actividad botnet
+- Detección de movimiento lateral
+- Análisis de intentos de exfiltración
+
+#### 4. **Inteligencia de Amenazas (Threat Intel)**
+- Correlación de campañas
+- Atribución de actores
+- Análisis de TTPs (Tactics, Techniques, Procedures)
+- Timeline temporal de ataques
+- Mapeo de infraestructura atacante
+- Predicción de próximas amenazas
+
+#### 5. **Análisis Forense Digital**
+- Reconstrucción de línea temporal de incidentes
+- Análisis de causa raíz
+- Identificación de actores
+- Validación de cadena de custodia
+- Análisis de artefactos
+- Correlación de logs
+
+#### 6. **Análisis de Privacidad y Filtración**
+- Clasificación de sensibilidad de datos
+- Evaluación de riesgo de exposición
+- Identificación de rutas de acceso no autorizado
+- Análisis de riesgo de retención
+- Evaluación de cumplimiento GDPR
+- Análisis de riesgo de des-anonimización
+
+#### 7. **Análisis de Ingeniería Social**
+- Detección de vectores de phishing
+- Evaluación de riesgos de pretexting
+- Análisis de vulnerabilidad a cebos
+- Identificación de patrones de manipulación
+- Recomendaciones de defensa
+
+#### 8. **Inteligencia de Cibercriminalidad**
+- Análisis de malware conocido
+- Rastreo de familias de ransomware
+- Monitoreo de dark web (ético)
+- Análisis de demandas de rescate
+- Análisis de bases de datos filtradas
+
+### Niveles de Análisis
+
+```
+┌─────────────────────────────────────────────────────────┐
+│ KALMIYA Security Analysis Levels                        │
+├─────────────────────────────────────────────────────────┤
+│ L1: Surface       → Análisis superficial rápido (<10s)  │
+│ L2: Deep          → Análisis multidimensional (30-60s)  │
+│ L3: Thorough      → Análisis exhaustivo (2-5 min)       │
+│ L4: Forensic      → Investigación profunda (10+ min)    │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Flujo de Análisis ASI
+
+```
+Usuario solicita análisis
+    ↓
+ASI es activado (pensamiento 60s)
+    ↓
+Recolecta información (fuentes autorizadas)
+    ↓
+Análisis multidimensional (6 perspectivas):
+  • Técnica (vulnerabilidades, protocolos)
+  • Estratégica (impacto en negocio)
+  • Temporal (línea temporal, velocidad)
+  • Social (actores, motivaciones)
+  • Económica (costos, beneficios)
+  • Ética (legalidad, restricciones)
+    ↓
+Síntesis cognitiva (conecta dominios dispares)
+    ↓
+Metacognición (autoevaluación y validación)
+    ↓
+Predicción (anticipa movimientos futuros)
+    ↓
+Resultado: Análisis profundo + recomendaciones + predicciones
+```
+
+### Integración con RAPTOR
+
+KALMIYA se integra con RAPTOR Security Framework para análisis:
+
+| Componente | Función |
+|-----------|---------|
+| **Offensive Analysis** | Simulación de ataques, análisis de cadenas de exploit |
+| **Defensive Hardening** | Recomendaciones de mitigación, hardening de sistemas |
+| **Intelligence** | Rastreo de amenazas, análisis de campañas, defensa predictiva |
+
+### Casos de Uso
+
+1. **Auditoría de Seguridad**: Análisis de vulnerabilidades en tus sistemas
+2. **Respuesta a Incidentes**: Investigación forense de breaches
+3. **Inteligencia de Amenazas**: Análisis de campañas y actores
+4. **Cumplimiento**: Validación de GDPR, regulaciones, políticas
+5. **Análisis de Privacidad**: Evaluación de riesgo de filtración
+6. **Formación de Seguridad**: Simulaciones de phishing, ingeniería social
+
+### Restricciones Éticas
+
+**KALMIYA NUNCA**:
+- ❌ Realiza hacking no autorizado
+- ❌ Accede a sistemas sin permiso
+- ❌ Crea malware o exploits reales
+- ❌ Ayuda en actividades criminales
+
+**KALMIYA SÍ**:
+- ✅ Analiza tus propios sistemas
+- ✅ Detecta vulnerabilidades
+- ✅ Investiga incidentes de seguridad
+- ✅ Proporciona inteligencia defensiva
+
+### Comandos de Uso
+
+```bash
+# Activar modo ASI (pre-requisito)
+"KALMIYA, activa ASI"
+o
+Menú → ASI1 → "Activar modo ASI"
+
+# Solicitar análisis de seguridad
+"Análisis OSINT de empresa X"
+"¿Vulnerabilidades en mi servidor?"
+"Investigar incidente de seguridad"
+"Análisis de threat intelligence"
+
+# Nivel específico
+"Análisis L3 de mi API"
+"Investigación forense del breach"
+```
+
+### Roadmap de Implementación
+
+**Q3 2026** (Actual):
+- [x] Documentación arquitectónica
+- [x] Especificación de capacidades
+- [ ] Integración con Shodan/VirusTotal APIs (opcional)
+
+**Q4 2026**:
+- [ ] OSINT Pipeline completo
+- [ ] Threat Detection Engine
+- [ ] Vulnerability Scanner Integration
+
+**Q1 2027**:
+- [ ] Timeline Reconstruction
+- [ ] Evidence Analyzer
+- [ ] Incident Classification
+
+**Q2 2027**:
+- [ ] Threat Intelligence Feed Aggregation
+- [ ] Campaign Correlation Engine
+- [ ] Attribution Analysis
+
+### Referencias
+
+- [[INTELLIGENCE_SECURITY_MODULE|Intelligence & Security Module (Documentación Completa)]]
+- [[ASI_IMPLEMENTACION|ASI Implementation (Superinteligencia Artificial)]]
+- [[RAPTOR_INTEGRATION|RAPTOR Security Framework]]
+- [[06_docs/KALMIYA_FUNCIONES|Funciones de KALMIYA]]
+
+---
+
+**Fase IV Estado**: Arquitectura Completa - Implementación en Progreso  
+**Última Actualización**: Agosto 2026

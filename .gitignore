@@ -16,6 +16,19 @@ _BACKUPS/
 01_systems/KALMIYA_System/rag_db/
 01_systems/KALMIYA_System/temp_audio/
 
+# ── JARVIS OS Memory System ───────────────────────────────────────────────────
+# raw/: Datos crudos ingesta - nunca procesados, privados
+01_systems/KALMIYA/raw/**
+!01_systems/KALMIYA/raw/README.md
+
+# outputs/: Resultados de skills - generados dinámicamente
+01_systems/KALMIYA/outputs/**
+!01_systems/KALMIYA/outputs/README.md
+
+# wiki/: Conocimiento depurado - COMMIT estos cambios
+# (no ignorar - es código/conocimiento)
+
+
 # ── Python ────────────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]

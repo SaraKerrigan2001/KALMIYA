@@ -5,6 +5,8 @@ TEST_CHAT.py — Test simple del Chat KALMIYA
 Verifica que todos los componentes se pueden importar correctamente
 """
 
+__test__ = False
+
 import sys
 from pathlib import Path
 

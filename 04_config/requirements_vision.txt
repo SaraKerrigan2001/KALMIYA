@@ -1,0 +1,35 @@
+# KALMIYA Vision System - Dependencias
+# =====================================
+# Sistema de reconocimiento facial y análisis visual
+
+# Core de visión por computadora
+opencv-python>=4.8.0          # Captura y procesamiento de video
+numpy>=1.24.0                 # Operaciones con arrays
+
+# Reconocimiento facial (CRÍTICO)
+face-recognition>=1.3.0       # Librería principal de reconocimiento
+dlib>=19.24.0                 # Motor de ML para face_recognition
+cmake>=3.27.0                 # Requerido para compilar dlib (Windows)
+
+# Análisis de emociones (OPCIONAL)
+deepface>=0.0.79              # Detección de emociones
+tensorflow>=2.13.0            # Backend para deepface (CPU version)
+
+# Utilidades
+pillow>=10.0.0                # Manipulación de imágenes
+scikit-learn>=1.3.0           # ML utilities
+
+# Nota para Windows:
+# ====================
+# 1. Instalar Visual Studio Build Tools primero
+# 2. Instalar CMake: pip install cmake
+# 3. Instalar dlib: pip install dlib
+# 4. Si dlib falla, descargar wheel precompilado:
+#    https://github.com/z-mahmud22/Dlib_Windows_Python3.x
+#
+# Alternativa rápida (sin compilar):
+# pip install cmake
+# pip install dlib-bin  # Si está disponible
+#
+# Para TensorFlow CPU (más ligero que GPU):
+# pip install tensorflow-cpu

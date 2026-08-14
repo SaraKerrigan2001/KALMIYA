@@ -332,5 +332,12 @@ class KalmiyaHUD:
         self._start_stats()
         self.root.mainloop()
 
+
+def main():
+    """Función main para importación desde wrapper"""
+    hud = KalmiyaHUD()
+    hud.run()
+
+
 if __name__ == "__main__":
-    KalmiyaHUD().run()
+    main()

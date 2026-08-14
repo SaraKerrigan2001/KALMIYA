@@ -1,4 +1,11 @@
-﻿# 📤 Instrucciones para Subir el Proyecto a GitHub
+﻿---
+title: "Instrucciones GitHub - Proyecto Elementos"
+tags: [github, instrucciones, proyecto]
+---
+
+# 📤 Instrucciones para Subir el Proyecto a GitHub
+
+[[INDEX|← Índice Principal]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README|📄 README Proyecto]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB|✅ Checklist]]
 
 ## ✅ Estado Actual
 - Repositorio remoto ya configurado: https://github.com/AALGarcia/proyecto_elementos.git

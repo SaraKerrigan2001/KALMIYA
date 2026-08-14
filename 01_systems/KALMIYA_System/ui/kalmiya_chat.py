@@ -598,19 +598,20 @@ class KalmiyaChat:
                 text=f"  {label}", fg=color))
         except Exception:
             pass
-        self._update_loop()
+        self._schedule_update_loop()
 
-    def _update_loop(self):
-        while self._running:
-            try:
-                now = datetime.now().strftime("%H:%M:%S")
-                self.root.after(0, lambda t=now: self.time_label.configure(text=t))
-                self._pulse_state = not self._pulse_state
-                color = SUCCESS if self._pulse_state else "#004422"
-                self.root.after(0, lambda c=color: self._draw_status_dot(c))
-            except Exception:
-                break
-            time.sleep(1)
+    def _schedule_update_loop(self):
+        if not self._running:
+            return
+        try:
+            now = datetime.now().strftime("%H:%M:%S")
+            self.root.after(0, lambda t=now: self.time_label.configure(text=t))
+            self._pulse_state = not self._pulse_state
+            color = SUCCESS if self._pulse_state else "#004422"
+            self.root.after(0, lambda c=color: self._draw_status_dot(c))
+        except Exception:
+            return
+        self.root.after(1000, self._schedule_update_loop)
 
     def _draw_status_dot(self, color):
         self.status_dot.delete("all")
@@ -653,6 +654,17 @@ class KalmiyaChat:
                     pass
             return False
 
+        def tick():
+            if not self._running:
+                return
+            if not is_launcher_running():
+                try:
+                    from wallpaper_engine import update_wallpaper
+                    update_wallpaper()
+                except Exception:
+                    pass
+            self.root.after(60000, tick)
+
         # Primera actualización al iniciar el chat (para asegurar que coincide al instante con la hora exacta)
         if not is_launcher_running():
             try:
@@ -661,22 +673,7 @@ class KalmiyaChat:
             except Exception:
                 pass
 
-        while self._running:
-            # Esperar 60 segundos
-            for _ in range(60):
-                if not self._running:
-                    break
-                time.sleep(1)
-
-            if not self._running:
-                break
-
-            if not is_launcher_running():
-                try:
-                    from wallpaper_engine import update_wallpaper
-                    update_wallpaper()
-                except Exception:
-                    pass
+        self.root.after(60000, tick)
 
     def _on_close(self):
         self._running = False

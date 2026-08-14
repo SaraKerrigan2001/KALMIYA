@@ -1,4 +1,11 @@
-﻿# ✅ Checklist para Subir a GitHub
+﻿---
+title: "Checklist GitHub - Proyecto Elementos"
+tags: [checklist, github, proyecto]
+---
+
+# ✅ Checklist para Subir a GitHub
+
+[[INDEX|← Índice Principal]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README|📄 README Proyecto]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB|📤 Instrucciones]]
 
 ## 📝 Preparación (Completado)
 

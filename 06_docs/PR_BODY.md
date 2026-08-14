@@ -1,3 +1,15 @@
+---
+title: "Template de PR Body"
+tags: [pr, template, github]
+ubicacion: 06_docs/PR_BODY.md
+---
+
+# 📝 Template de Pull Request Body
+
+[[INDEX|← Índice]] | [[06_docs/CONTRIBUTING|🤝 Contribuir]]
+
+---
+
 ## Resumen
 
 Este PR integra varias mejoras y correcciones menores que hacen más robusta la experiencia del chat y la organización del repositorio.
@@ -27,4 +39,6 @@ Este PR integra varias mejoras y correcciones menores que hacen más robusta la 
 
 ---
 
-Autogenerado por el flujo de trabajo local de desarrollo. Gracias.
+**Autogenerado por el flujo de trabajo local de desarrollo.**
+
+[[06_docs/CONTRIBUTING|← Ver guía de contribución]]

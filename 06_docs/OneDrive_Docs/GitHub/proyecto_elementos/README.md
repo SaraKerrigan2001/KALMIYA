@@ -1,4 +1,11 @@
+---
+title: "Sistema de Gestión de Bienes - SENA"
+tags: [proyecto, sena, bienes, inventario]
+---
+
 # 🏢 Sistema de Gestión de Bienes - SENA
+
+[[INDEX|← Índice Principal]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB|✅ Checklist]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB|📤 Instrucciones]]
 
 Sistema web moderno para la gestión integral de inventario, asignación de bienes y control de cuentadantes del SENA.
 

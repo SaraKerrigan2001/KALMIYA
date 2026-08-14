@@ -1,11 +1,12 @@
 ---
 title: "Schema — Estructura de Wiki"
 tags: [schema, structure, standards]
+ubicacion: 01_systems/LLM_Wiki/schema/SCHEMA.md
 ---
 
 # 🎯 SCHEMA — Estructura de Páginas
 
-[[LLM_Wiki/README|← Wiki]] | [[INDEX|Hub]] | [[WELCOME|← Bienvenida]] | [[KALMIYA_DASHBOARD|📊 Dashboard]]
+[[INDEX|← Índice]] | [[01_systems/LLM_Wiki/README|← Wiki]] | [[WELCOME|👋 Bienvenida]] | [[KALMIYA_DASHBOARD|📊 Dashboard]]
 
 ## Convenciones
 

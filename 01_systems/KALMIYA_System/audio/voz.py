@@ -2,12 +2,16 @@ import os
 import re
 import asyncio
 import subprocess
-import pyttsx3
 import uuid
 import threading
 import time as _time
 from decouple import config
 from database import get_memory, update_memory
+
+try:
+    import pyttsx3
+except ModuleNotFoundError:  # pragma: no cover - optional runtime dependency
+    pyttsx3 = None
 
 # Configuración básica
 USERNAME = config('USER', default='Usuario')
@@ -29,6 +33,8 @@ LAST_SPEECH_END = 0.0
 
 def _init_pyttsx3():
     """Inicializa el motor offline como respaldo."""
+    if pyttsx3 is None:
+        return None
     try:
         engine = pyttsx3.init('sapi5')
         engine.setProperty('rate', 145)
@@ -38,7 +44,7 @@ def _init_pyttsx3():
         if spanish_voice:
             engine.setProperty('voice', spanish_voice)
         return engine
-    except:
+    except Exception:
         return None
 
 offline_engine = _init_pyttsx3()

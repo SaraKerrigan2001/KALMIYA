@@ -385,6 +385,108 @@ def _check_suspicious_connections() -> list[dict]:
     return suspicious
 
 
+def analyze_domain_security(domain: str, timeout: float = 4.0) -> dict:
+    """
+    Realiza un análisis ético básico de seguridad de un dominio.
+
+    No hace explotación ni acceso no autorizado. Solo resuelve DNS, prueba
+    conectividad en puertos de uso común y inspecciona cabeceras HTTP/S para
+    detectar controles defensivos básicos.
+    """
+    clean_domain = (domain or '').strip().lower().replace('https://', '').replace('http://', '').rstrip('/')
+    if not clean_domain:
+        return {
+            'domain': '',
+            'resolved_ips': [],
+            'summary': 'Sin dominio especificado',
+            'risk_score': 0,
+            'security_headers': {},
+            'notes': ['Debes indicar un dominio válido para analizar.']
+        }
+
+    ip_list = []
+    try:
+        infos = socket.getaddrinfo(clean_domain, None, proto=socket.IPPROTO_TCP)
+        ip_list = sorted({item[4][0] for item in infos})
+    except OSError:
+        ip_list = []
+
+    security_headers = {}
+    http_status = None
+    is_https_reachable = False
+    is_http_reachable = False
+
+    try:
+        if REQUESTS_OK:
+            try:
+                resp = requests.get(f'https://{clean_domain}', timeout=timeout, allow_redirects=True)
+                http_status = resp.status_code
+                is_https_reachable = True
+                security_headers = {
+                    'strict_transport_security': 'strict-transport-security' in resp.headers,
+                    'x_frame_options': 'x-frame-options' in resp.headers,
+                    'x_content_type_options': 'x-content-type-options' in resp.headers,
+                    'content_security_policy': 'content-security-policy' in resp.headers,
+                }
+            except Exception:
+                try:
+                    resp = requests.get(f'http://{clean_domain}', timeout=timeout, allow_redirects=True)
+                    http_status = resp.status_code
+                    is_http_reachable = True
+                    security_headers = {
+                        'strict_transport_security': 'strict-transport-security' in resp.headers,
+                        'x_frame_options': 'x-frame-options' in resp.headers,
+                        'x_content_type_options': 'x-content-type-options' in resp.headers,
+                        'content_security_policy': 'content-security-policy' in resp.headers,
+                    }
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    if not security_headers:
+        security_headers = {
+            'strict_transport_security': False,
+            'x_frame_options': False,
+            'x_content_type_options': False,
+            'content_security_policy': False,
+        }
+
+    risk_score = 20
+    if not ip_list:
+        risk_score += 35
+    if not is_https_reachable and not is_http_reachable:
+        risk_score += 20
+
+    for header_name, present in security_headers.items():
+        if not present:
+            risk_score += 10
+
+    risk_score = max(0, min(100, risk_score))
+
+    if risk_score >= 75:
+        summary = 'Alto riesgo de seguridad'
+    elif risk_score >= 45:
+        summary = 'Riesgo medio'
+    else:
+        summary = 'Riesgo bajo'
+
+    return {
+        'domain': clean_domain,
+        'resolved_ips': ip_list,
+        'http_status': http_status,
+        'https_reachable': is_https_reachable,
+        'http_reachable': is_http_reachable,
+        'summary': summary,
+        'risk_score': risk_score,
+        'security_headers': security_headers,
+        'notes': [
+            'Revisión de dominio realizada con enfoque defensivo y ético.',
+            'No se realizaron ataques ni accesos no autorizados.',
+        ],
+    }
+
+
 def select_raptor_runtime_profile() -> str:
     """Solicita el perfil de ejecución de RAPTOR para la instalación actual."""
     print("\n🔴 Perfil de adaptación RAPTOR")

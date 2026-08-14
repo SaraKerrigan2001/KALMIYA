@@ -1,0 +1,145 @@
+# KALMIYA v3.6 - Requirements
+# Instalar con: pip install -r requirements_v36.txt
+
+# === CORE DEPENDENCIES ===
+# Asistente IA y procesamiento
+openai>=1.0.0
+anthropic>=0.7.0
+google-generativeai>=0.3.0
+
+# Procesamiento de lenguaje natural
+langchain>=0.1.0
+langchain-community>=0.0.13
+
+# === AUDIO (100% Local/Privado) ===
+# Speech-to-Text local (Vosk)
+vosk>=0.3.45
+sounddevice>=0.4.6
+soundfile>=0.12.1
+
+# Speech Recognition
+SpeechRecognition>=3.10.0
+pocketsphinx>=5.0.0  # NUEVO v3.6: Wake Word Detection
+
+# Text-to-Speech local (pyttsx3)
+pyttsx3>=2.90
+pywin32>=305  # Para voces Windows SAPI5
+pyaudio>=0.2.13
+
+# === VOICE CONTROL ===
+keyboard>=0.13.5  # Push-to-Talk global
+
+# === NUEVO v3.6: DASHBOARD VISUAL ===
+flask>=3.0.0
+flask-socketio>=5.3.0
+python-socketio>=5.10.0
+werkzeug>=3.0.0
+
+# Métricas del sistema
+psutil>=5.9.0
+
+# === NUEVO v3.6: VECTOR DATABASE ===
+chromadb>=0.4.18
+sentence-transformers>=2.2.2
+
+# Embeddings
+langchain-community>=0.0.13
+tiktoken>=0.5.2
+
+# === NUEVO v3.6: GOOGLE CALENDAR ===
+google-api-python-client>=2.108.0
+google-auth-httplib2>=0.1.1
+google-auth-oauthlib>=1.2.0
+
+# === NUEVO v3.6: CONFIGURACIÓN SKILLS ===
+pyyaml>=6.0.1
+schedule>=1.2.0
+
+# === OBSIDIAN & NOTAS ===
+markdown>=3.5.1
+python-frontmatter>=1.0.0
+
+# === SISTEMA DE ARCHIVOS ===
+watchdog>=3.0.0
+
+# === RAPTOR SECURITY ===
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.3
+
+# === NETWORKING ===
+httpx>=0.25.2
+aiohttp>=3.9.1
+
+# === DATABASE ===
+sqlalchemy>=2.0.23
+
+# === UTILITIES ===
+python-dotenv>=1.0.0
+colorama>=0.4.6
+tqdm>=4.66.1
+rich>=13.7.0
+
+# === DATA PROCESSING ===
+pandas>=2.1.4
+numpy>=1.26.2
+
+# === DATE & TIME ===
+python-dateutil>=2.8.2
+pytz>=2023.3
+
+# === JSON & YAML ===
+pyyaml>=6.0.1
+jsonschema>=4.20.0
+
+# === TESTING (Development) ===
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+pytest-cov>=4.1.0
+
+# === CODE QUALITY (Development) ===
+black>=23.12.1
+flake8>=6.1.0
+mypy>=1.7.1
+
+# === DOCUMENTATION (Development) ===
+mkdocs>=1.5.3
+mkdocs-material>=9.5.3
+
+# === OPTIONAL: ADVANCED FEATURES ===
+# Uncomment if needed
+
+# Machine Learning
+# scikit-learn>=1.3.2
+# torch>=2.1.2
+# transformers>=4.36.2
+
+# Computer Vision
+# opencv-python>=4.8.1
+# pillow>=10.1.0
+
+# Home Automation
+# homeassistant-api>=4.1.2
+
+# Social Media
+# tweepy>=4.14.0
+# python-telegram-bot>=20.7
+
+# Email
+# imaplib2>=3.6
+# smtplib>=3.11
+
+# === PLATFORM SPECIFIC ===
+# Windows only
+pywin32>=305
+winsdk>=1.0.0b9
+
+# === NOTES ===
+# Para instalar todas las dependencias:
+# pip install -r requirements_v36.txt
+
+# Para instalar solo core (sin features opcionales):
+# pip install -r requirements_v36.txt --no-deps
+
+# Para actualizar todas las dependencias:
+# pip install -U -r requirements_v36.txt

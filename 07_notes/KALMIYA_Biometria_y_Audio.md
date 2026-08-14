@@ -8,9 +8,12 @@ tags:
   - seguridad
   - nuevo
 source: KALMIYA
+ubicacion: 07_notes/KALMIYA_Biometria_y_Audio.md
 ---
 
 # KALMIYA_Biometria_y_Audio
+
+[[INDEX|← Índice]] | [[07_notes/README|📝 Notas]]
 
 ## 🔒 Sistema Biométrico — kalmiya_biometrics.py
 

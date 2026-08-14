@@ -1,6 +1,7 @@
 """
 kalmiya_lupa.py - Acceso Directo por Voz (La Lupa de KALMIYA)
 Botón flotante minimalista para hablar con la IA directamente.
+Usa STT/TTS completamente locales (privado, sin APIs).
 """
 
 import customtkinter as ctk
@@ -8,8 +9,27 @@ import tkinter as tk
 import threading
 import sys
 import os
-import speech_recognition as sr
-from voz import speak, BOTNAME, USERNAME
+
+# Importar audio local (privado)
+try:
+    from audio.audio_local import listen, speak
+except ImportError:
+    # Fallback a speech_recognition (con APIs)
+    print("[LUPA] ADVERTENCIA: audio_local no disponible, usando fallback con APIs")
+    import speech_recognition as sr
+    
+    def listen(*args, **kwargs):
+        """Fallback usando Google Speech Recognition (tiene API)"""
+        r = sr.Recognizer()
+        with sr.Microphone() as source:
+            try:
+                audio = r.listen(source, timeout=5, phrase_time_limit=10)
+                return r.recognize_google(audio, language="es-ES")
+            except:
+                return None
+    
+    from voz import speak
+
 from brain import ask_kalmiya
 
 # Configuración Estética (Match con el HUD)
@@ -62,31 +82,31 @@ class KalmiyaLupa:
 
     def start_listening(self):
         self.listening = True
-        self.canvas.itemconfig(self.outer_circle, outline="#ff00ff") # Cambia a magenta al escuchar
-        self.canvas.itemconfig(self.handle, fill="#ff00ff")
+        self.canvas.itemconfig(self.outer_circle, outline="#00ff00") # Verde cuando escucha
+        self.canvas.itemconfig(self.handle, fill="#00ff00")
         
         threading.Thread(target=self._listen_worker, daemon=True).start()
 
     def _listen_worker(self):
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("[LUPA] Escuchando...")
-            # Feedback sutil (podría ser un sonido)
-            try:
-                audio = r.listen(source, timeout=5, phrase_time_limit=10)
-                self.canvas.itemconfig(self.outer_circle, outline=ACCENT) # Vuelve al cyan
-                self.canvas.itemconfig(self.handle, fill=ACCENT)
-                
-                query = r.recognize_google(audio, language="es-ES")
+        try:
+            print("[LUPA] Escuchando... (click izquierdo para activar)")
+            query = listen(timeout=3.0, phrase_limit=8.0)
+            
+            # Volver a color normal
+            self.canvas.itemconfig(self.outer_circle, outline=ACCENT)
+            self.canvas.itemconfig(self.handle, fill=ACCENT)
+            
+            if query:
                 print(f"[LUPA] Usuario: {query}")
-                
                 response = ask_kalmiya(query)
                 speak(response)
+            else:
+                print("[LUPA] No se escuchó nada")
                 
-            except Exception as e:
-                print(f"[LUPA] Error o silencio: {e}")
-                self.canvas.itemconfig(self.outer_circle, outline=ACCENT)
-                self.canvas.itemconfig(self.handle, fill=ACCENT)
+        except Exception as e:
+            print(f"[LUPA] Error: {e}")
+            self.canvas.itemconfig(self.outer_circle, outline=ACCENT)
+            self.canvas.itemconfig(self.handle, fill=ACCENT)
         
         self.listening = False
 

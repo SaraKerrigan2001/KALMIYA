@@ -1,0 +1,182 @@
+# KALMIYA Skills Configuration v3.6
+# Configuración centralizada para todos los skills JARVIS OS
+
+# === CONFIGURACIÓN GLOBAL ===
+global:
+  enabled: true
+  auto_start: true
+  log_level: INFO
+  
+  # Scheduler inteligente
+  smart_scheduling:
+    enabled: true
+    learn_patterns: true
+    respect_focus_mode: true
+    
+  # Horas silenciosas (no ejecutar skills automáticos)
+  quiet_hours:
+    enabled: true
+    start: "22:00"
+    end: "07:00"
+  
+  # Horas de trabajo (optimizar para productividad)
+  work_hours:
+    start: "08:00"
+    end: "18:00"
+
+# === SKILLS INDIVIDUALES ===
+
+metrics:
+  enabled: true
+  schedule: "07:00"  # 7:00 AM
+  interval: daily
+  priority: high
+  sources:
+    - youtube_analytics
+    - twitter_api
+    - instagram_api
+  output_path: "01_systems/KALMIYA/outputs/metricas/"
+  notifications:
+    enabled: true
+    threshold_changes: 10  # Notificar si cambio > 10%
+
+bandeja:
+  enabled: true
+  schedule: "07:00"  # 7:00 AM
+  interval: daily
+  priority: high
+  voice_output: true
+  include:
+    - calendar_events
+    - email_summary
+    - news_briefing
+    - weather
+  output_path: "01_systems/KALMIYA/outputs/bandeja/"
+
+plan:
+  enabled: true
+  schedule: "09:00"  # 9:00 AM
+  interval: daily
+  priority: high
+  max_priorities: 3
+  sources:
+    - google_calendar
+    - todoist
+    - metrics_analysis
+  consider_context: true
+  output_path: "01_systems/KALMIYA/outputs/plan/"
+
+tendencias:
+  enabled: true
+  schedule: "14:00"  # 2:00 PM
+  interval: daily
+  priority: medium
+  analysis_window: 30  # días
+  detect_anomalies: true
+  threshold: 2.0  # desviaciones estándar
+  output_path: "01_systems/KALMIYA/outputs/tendencias/"
+
+boveda:
+  enabled: true
+  schedule: manual  # Bajo demanda
+  priority: high
+  vector_db: true
+  embedding_model: "sentence-transformers"
+  search_results: 5
+  vault_path: "01_systems/KALMIYA/wiki/"
+  
+audio:
+  enabled: true
+  schedule: continuous  # 24/7
+  priority: critical
+  stt_engine: vosk
+  tts_engine: pyttsx3
+  wake_word: "hey kalmiya"
+  hotkey: "ctrl+alt+m"
+  language: es-ES
+  voice_rate: 150
+  
+biometria:
+  enabled: true
+  schedule: "*/30 * * * *"  # Cada 30 minutos
+  interval: periodic
+  priority: medium
+  sources:
+    - fitbit
+    - apple_health
+    - location_services
+  privacy_mode: local_only
+  output_path: "01_systems/KALMIYA/raw/biometria/"
+
+seguridad:
+  enabled: true
+  schedule: "14:45"  # 2:45 PM
+  interval: daily
+  priority: high
+  raptor_integration: true
+  scan_depth: full
+  auto_remediate: false  # Requiere confirmación
+  output_path: "08_reports/security_reports/"
+
+inteligencia:
+  enabled: true
+  schedule: manual  # Bajo demanda
+  priority: high
+  deep_analysis: true
+  scenario_generation: true
+  prediction_horizon: 90  # días
+  confidence_threshold: 0.7
+
+# === INTEGRACIONES ===
+integrations:
+  google_calendar:
+    enabled: false  # Requiere credentials.json
+    sync_interval: 15  # minutos
+  
+  todoist:
+    enabled: false  # Requiere API token
+    sync_interval: 30
+  
+  spotify:
+    enabled: false
+  
+  home_assistant:
+    enabled: false
+
+# === NOTIFICACIONES ===
+notifications:
+  enabled: true
+  channels:
+    - voice  # TTS
+    - desktop  # Windows notifications
+    - telegram  # Requiere bot token
+  
+  priority_filter: medium  # Solo medium, high, critical
+
+# === MODO FOCUS ===
+focus_mode:
+  enabled: true
+  default_duration: 90  # minutos
+  block_notifications: true
+  mute_audio: false  # Mantener comandos de voz
+  pause_skills:
+    - bandeja
+    - tendencias
+  allow_skills:
+    - audio
+    - seguridad
+  productivity_tracking: true
+
+# === BACKUP Y LOGS ===
+backup:
+  enabled: true
+  interval: 360  # minutos (6 horas)
+  retention_days: 30
+  include_vault: true
+  
+logging:
+  enabled: true
+  level: INFO
+  rotation: daily
+  max_size: 10MB
+  path: "01_systems/KALMIYA_System/logs/"
