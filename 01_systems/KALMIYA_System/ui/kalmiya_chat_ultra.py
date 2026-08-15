@@ -1040,147 +1040,205 @@ Esc - Minimizar ventana
         self.char_count.configure(text=str(count))
     
     def _start_animations(self):
-        """Inicia animaciones del avatar"""
-        threading.Thread(target=self._blink_animation, daemon=True).start()
-        threading.Thread(target=self._arm_wave_animation, daemon=True).start()
-        threading.Thread(target=self._head_tilt_animation, daemon=True).start()
-        threading.Thread(target=self._heart_beat_animation, daemon=True).start()
-        threading.Thread(target=self._ear_wiggle_animation, daemon=True).start()
-        # NUEVAS animaciones de cuerpo completo
-        threading.Thread(target=self._body_bounce_animation, daemon=True).start()
-        threading.Thread(target=self._body_sway_animation, daemon=True).start()
-        threading.Thread(target=self._body_rotation_animation, daemon=True).start()
-        threading.Thread(target=self._update_time, daemon=True).start()
+        """Inicia animaciones del avatar (sin threads bloqueantes)"""
+        self._blink_cycle()
+        self._arm_wave_cycle()
+        self._head_tilt_cycle()
+        self._heart_beat_cycle()
+        self._ear_wiggle_cycle()
+        self._body_bounce_cycle()
+        self._body_sway_cycle()
+        self._body_rotation_cycle()
+        self._schedule_time_update()
         if PSUTIL_OK:
-            threading.Thread(target=self._update_stats, daemon=True).start()
+            self._schedule_stats_update()
     
-    def _blink_animation(self):
-        """Animación de parpadeo"""
-        while self._running:
-            time.sleep(random.uniform(2, 5))  # Parpadeo aleatorio
-            if self._running:
-                self._blink_state = False
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.15)
-                self._blink_state = True
-                self.root.after(0, self._draw_animated_avatar)
+    def _blink_cycle(self):
+        """Animación de parpadeo (no bloqueante)"""
+        if not self._running:
+            return
+        wait_time = int(random.uniform(2000, 5000))
+        def do_blink():
+            self._blink_state = False
+            self.root.after(0, self._draw_animated_avatar)
+            self.root.after(150, lambda: self._set_and_redraw_blink(True))
+        self.root.after(wait_time, do_blink)
     
-    def _arm_wave_animation(self):
-        """Animación de brazos (arriba, medio, abajo)"""
-        while self._running:
-            # Ciclo: arriba → medio → abajo → medio → arriba
-            positions = [0, 1, 2, 1]
-            for pos in positions:
-                if not self._running:
-                    break
-                self._arm_position = pos
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(1.5)  # 1.5s por posición
-            time.sleep(random.uniform(3, 6))  # Pausa entre ciclos
+    def _set_and_redraw_blink(self, state):
+        if self._running:
+            self._blink_state = state
+            self.root.after(0, self._draw_animated_avatar)
+            self.root.after(random.randint(2000, 5000), self._blink_cycle)
     
-    def _head_tilt_animation(self):
-        """Animación de cabeza (inclina levemente)"""
-        while self._running:
-            # Ciclo: centro → izq → centro → der → centro
-            tilts = [0, -1, -2, -1, 0, 1, 2, 1, 0]
-            for tilt in tilts:
-                if not self._running:
-                    break
-                self._head_tilt = tilt
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.3)  # Movimiento suave
-            time.sleep(random.uniform(5, 10))  # Pausa entre ciclos
+    def _arm_wave_cycle(self):
+        """Animación de brazos (no bloqueante)"""
+        if not self._running:
+            return
+        self._arm_positions_queue = [0, 1, 2, 1]
+        self._arm_position_index = 0
+        self._animate_arm_position()
     
-    def _heart_beat_animation(self):
-        """Animación de corazón (late)"""
-        while self._running:
-            # Late: normal → grande → normal
-            for _ in range(2):  # 2 latidos
-                if not self._running:
-                    break
-                self._heart_size = 1
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.15)
-                self._heart_size = 0
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.15)
-            time.sleep(random.uniform(2, 4))  # Pausa entre latidos
+    def _animate_arm_position(self):
+        if not self._running or not hasattr(self, '_arm_positions_queue'):
+            return
+        if self._arm_position_index < len(self._arm_positions_queue):
+            self._arm_position = self._arm_positions_queue[self._arm_position_index]
+            self.root.after(0, self._draw_animated_avatar)
+            self._arm_position_index += 1
+            self.root.after(1500, self._animate_arm_position)
+        else:
+            pause = int(random.uniform(3000, 6000))
+            self.root.after(pause, self._arm_wave_cycle)
     
-    def _ear_wiggle_animation(self):
-        """Animación de orejas (mueven)"""
-        while self._running:
-            # Wiggle: normal → izq → normal → der → normal
-            wiggles = [0, 1, 0, 2, 0]
-            for wiggle in wiggles:
-                if not self._running:
-                    break
-                self._ear_wiggle = wiggle
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.2)
-            time.sleep(random.uniform(8, 15))  # Pausa entre wiggles
+    def _head_tilt_cycle(self):
+        """Animación de cabeza (no bloqueante)"""
+        if not self._running:
+            return
+        self._head_tilts_queue = [0, -1, -2, -1, 0, 1, 2, 1, 0]
+        self._head_tilt_index = 0
+        self._animate_head_tilt()
     
-    def _body_bounce_animation(self):
-        """NUEVA: Animación de salto/rebote (cuerpo sube y baja)"""
-        while self._running:
-            # Rebote: normal → sube → normal → mini rebote
-            bounces = [0, 2, 4, 6, 8, 6, 4, 2, 0, 1, 0]
-            for bounce in bounces:
-                if not self._running:
-                    break
-                self._body_bounce = bounce
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.08)  # Rápido para efecto realista
-            time.sleep(random.uniform(6, 12))  # Pausa entre rebotes
+    def _animate_head_tilt(self):
+        if not self._running or not hasattr(self, '_head_tilts_queue'):
+            return
+        if self._head_tilt_index < len(self._head_tilts_queue):
+            self._head_tilt = self._head_tilts_queue[self._head_tilt_index]
+            self.root.after(0, self._draw_animated_avatar)
+            self._head_tilt_index += 1
+            self.root.after(300, self._animate_head_tilt)
+        else:
+            pause = int(random.uniform(5000, 10000))
+            self.root.after(pause, self._head_tilt_cycle)
     
-    def _body_sway_animation(self):
-        """NUEVA: Animación de balanceo lateral (izq/der)"""
-        while self._running:
-            # Balanceo suave: centro → izq → centro → der → centro
-            sways = [0, -1, -2, -3, -4, -3, -2, -1, 0, 1, 2, 3, 4, 3, 2, 1, 0]
-            for sway in sways:
-                if not self._running:
-                    break
-                self._body_sway = sway
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.15)  # Balanceo suave
-            time.sleep(random.uniform(10, 18))  # Pausa entre balanceos
+    def _heart_beat_cycle(self):
+        """Animación de corazón (no bloqueante)"""
+        if not self._running:
+            return
+        self._heartbeat_count = 0
+        self._animate_heartbeat()
     
-    def _body_rotation_animation(self):
-        """NUEVA: Animación de rotación leve (gira ligeramente)"""
-        while self._running:
-            # Rotación leve: centro → der → centro → izq → centro
-            rotations = [0, 1, 2, 1, 0, -1, -2, -1, 0]
-            for rotation in rotations:
-                if not self._running:
-                    break
-                self._body_rotation = rotation
-                self.root.after(0, self._draw_animated_avatar)
-                time.sleep(0.25)  # Rotación lenta
-            time.sleep(random.uniform(12, 20))  # Pausa entre rotaciones
+    def _animate_heartbeat(self):
+        if not self._running:
+            return
+        if self._heartbeat_count < 2:
+            self._heart_size = 1
+            self.root.after(0, self._draw_animated_avatar)
+            self.root.after(150, lambda: self._heartbeat_shrink())
+            self._heartbeat_count += 1
+        else:
+            pause = int(random.uniform(2000, 4000))
+            self.root.after(pause, self._heart_beat_cycle)
     
-    def _update_time(self):
-        """Actualiza reloj"""
-        while self._running:
-            try:
-                current_time = datetime.now().strftime("%H:%M")
-                self.root.after(0, lambda: self.time_label.configure(text=current_time))
-            except:
-                pass
-            time.sleep(30)
+    def _heartbeat_shrink(self):
+        if self._running:
+            self._heart_size = 0
+            self.root.after(0, self._draw_animated_avatar)
+            self.root.after(150, self._animate_heartbeat)
     
-    def _update_stats(self):
-        """Actualiza stats del sistema"""
-        while self._running:
-            try:
-                cpu = psutil.cpu_percent(interval=1)
-                ram = psutil.virtual_memory().percent
-                disk = psutil.disk_usage('C:\\' if sys.platform == 'win32' else '/').percent
-                
-                text = f"CPU: {cpu:.0f}% | RAM: {ram:.0f}% | Disco: {disk:.0f}%"
-                self.root.after(0, lambda: self.stats_label.configure(text=text))
-            except:
-                pass
-            time.sleep(5)
+    def _ear_wiggle_cycle(self):
+        """Animación de orejas (no bloqueante)"""
+        if not self._running:
+            return
+        self._wiggle_queue = [0, 1, 0, 2, 0]
+        self._wiggle_index = 0
+        self._animate_wiggle()
+    
+    def _animate_wiggle(self):
+        if not self._running or not hasattr(self, '_wiggle_queue'):
+            return
+        if self._wiggle_index < len(self._wiggle_queue):
+            self._ear_wiggle = self._wiggle_queue[self._wiggle_index]
+            self.root.after(0, self._draw_animated_avatar)
+            self._wiggle_index += 1
+            self.root.after(200, self._animate_wiggle)
+        else:
+            pause = int(random.uniform(8000, 15000))
+            self.root.after(pause, self._ear_wiggle_cycle)
+    
+    def _body_bounce_cycle(self):
+        """NUEVA: Animación de salto/rebote (no bloqueante)"""
+        if not self._running:
+            return
+        self._bounce_queue = [0, 2, 4, 6, 8, 6, 4, 2, 0, 1, 0]
+        self._bounce_index = 0
+        self._animate_bounce()
+    
+    def _animate_bounce(self):
+        if not self._running or not hasattr(self, '_bounce_queue'):
+            return
+        if self._bounce_index < len(self._bounce_queue):
+            self._body_bounce = self._bounce_queue[self._bounce_index]
+            self.root.after(0, self._draw_animated_avatar)
+            self._bounce_index += 1
+            self.root.after(80, self._animate_bounce)
+        else:
+            pause = int(random.uniform(6000, 12000))
+            self.root.after(pause, self._body_bounce_cycle)
+    
+    def _body_sway_cycle(self):
+        """NUEVA: Animación de balanceo lateral (no bloqueante)"""
+        if not self._running:
+            return
+        self._sway_queue = [0, -1, -2, -3, -4, -3, -2, -1, 0, 1, 2, 3, 4, 3, 2, 1, 0]
+        self._sway_index = 0
+        self._animate_sway()
+    
+    def _animate_sway(self):
+        if not self._running or not hasattr(self, '_sway_queue'):
+            return
+        if self._sway_index < len(self._sway_queue):
+            self._body_sway = self._sway_queue[self._sway_index]
+            self.root.after(0, self._draw_animated_avatar)
+            self._sway_index += 1
+            self.root.after(150, self._animate_sway)
+        else:
+            pause = int(random.uniform(10000, 18000))
+            self.root.after(pause, self._body_sway_cycle)
+    
+    def _body_rotation_cycle(self):
+        """NUEVA: Animación de rotación leve (no bloqueante)"""
+        if not self._running:
+            return
+        self._rotation_queue = [0, 1, 2, 1, 0, -1, -2, -1, 0]
+        self._rotation_index = 0
+        self._animate_rotation()
+    
+    def _animate_rotation(self):
+        if not self._running or not hasattr(self, '_rotation_queue'):
+            return
+        if self._rotation_index < len(self._rotation_queue):
+            self._body_rotation = self._rotation_queue[self._rotation_index]
+            self.root.after(0, self._draw_animated_avatar)
+            self._rotation_index += 1
+            self.root.after(250, self._animate_rotation)
+        else:
+            pause = int(random.uniform(12000, 20000))
+            self.root.after(pause, self._body_rotation_cycle)
+    
+    def _schedule_time_update(self):
+        """Actualiza reloj (no bloqueante)"""
+        if not self._running:
+            return
+        try:
+            current_time = datetime.now().strftime("%H:%M")
+            self.root.after(0, lambda: self.time_label.configure(text=current_time))
+        except:
+            pass
+        self.root.after(30000, self._schedule_time_update)
+    
+    def _schedule_stats_update(self):
+        """Actualiza stats del sistema (no bloqueante)"""
+        if not self._running:
+            return
+        try:
+            cpu = psutil.cpu_percent(interval=0.1)
+            ram = psutil.virtual_memory().percent
+            disk = psutil.disk_usage('C:\\' if sys.platform == 'win32' else '/').percent
+            text = f"CPU: {cpu:.0f}% | RAM: {ram:.0f}% | Disco: {disk:.0f}%"
+            self.root.after(0, lambda t=text: self.stats_label.configure(text=t))
+        except:
+            pass
+        self.root.after(5000, self._schedule_stats_update)
     
     def _get_greeting(self):
         """Saludo según hora"""
