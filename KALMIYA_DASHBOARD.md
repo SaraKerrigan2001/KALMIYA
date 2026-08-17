@@ -1,14 +1,14 @@
 ---
 title: "KALMIYA Dashboard"
 tags: [kalmiya, dashboard, sistema]
-updated: "2026-08-13 18:03:09"
+updated: "2026-08-16 11:10:36"
 ---
 
 # 🤖 KALMIYA — Dashboard
-> Última actualización: **Thursday 13 de August de 2026 — 18:03:09**
+> Última actualización: **Sunday 16 de August de 2026 — 11:10:36**
 
 **Navegación del vault:**
-[[INDEX]] | [[LISTA_NUEVAS_FUNCIONES]] | [[README]] | [[RESUMEN_COMPLETO_ACTUALIZACIONES]] | [[WELCOME]]
+[[00_ORGANIZACION_PROYECTO]] | [[INDEX]] | [[README]] | [[WELCOME]]
 
 ---
 
@@ -16,9 +16,9 @@ updated: "2026-08-13 18:03:09"
 
 | Componente | Estado | Uso |
 |---|---|---|
-| CPU | 🟢 Normal | █████░░░░░░░░░░ 37% |
-| RAM | 17.5 / 31.6 GB | ████████░░░░░░░ 55% |
-| Disco C | 61.0 GB libre | █████████████░░ 87% |
+| CPU | 🟢 Normal | ████░░░░░░░░░░░ 32% |
+| RAM | 17.8 / 31.6 GB | ████████░░░░░░░ 56% |
+| Disco C | 58.8 GB libre | █████████████░░ 88% |
 
 ## 🧠 Motores de IA
 
@@ -33,11 +33,11 @@ updated: "2026-08-13 18:03:09"
 
 ## 🗄️ Base de Datos
 
-- 💬 Historial de comandos: **1523** entradas
-- 🧠 Pensamientos autónomos: **1781** guardados
-- 🔑 Memoria de Sara: **36** claves
-- 📋 Auditoría de memoria: **670** cambios
-- 💾 Tamaño: **1416.0 KB**
+- 💬 Historial de comandos: **1539** entradas
+- 🧠 Pensamientos autónomos: **1782** guardados
+- 🔑 Memoria de Sara: **37** claves
+- 📋 Auditoría de memoria: **711** cambios
+- 💾 Tamaño: **1420.0 KB**
 - ⚡ Triggers activos: 5
 
 ## 👤 Perfil de Sara Kerrigan
@@ -55,23 +55,23 @@ updated: "2026-08-13 18:03:09"
 
 ## 💬 Últimas Conversaciones
 
-**2026-08-13 23:03:10**
+**2026-08-16 16:03:07**
 > 👤 [AUDIO] Perfil
-> 🤖 normal
+> 🤖 estudio
 
-**2026-08-13 23:03:10**
+**2026-08-16 16:03:07**
 > 👤 [AUDIO] EQ
-> 🤖 Graves:0 Medios:0 Agudos:0
+> 🤖 Graves:-2 Medios:2 Agudos:1
 
-**2026-08-13 23:03:10**
+**2026-08-16 16:03:07**
 > 👤 [AUDIO] Micrófono
-> 🤖 80%
+> 🤖 85%
 
-**2026-08-13 23:03:10**
+**2026-08-16 16:03:07**
 > 👤 [AUDIO] Volumen
-> 🤖 70%
+> 🤖 40%
 
-**2026-08-13 23:03:07**
+**2026-08-16 16:03:04**
 > 👤 [BIOMETRÍA] ACCESO AUTORIZADO
 > 🤖 Usuario: Sara Kerrigan | Nivel: 5 | Método: pin
 
@@ -91,10 +91,9 @@ updated: "2026-08-13 18:03:09"
 
 ### Documentos raíz
 
+- [[00_ORGANIZACION_PROYECTO]]
 - [[INDEX]]
-- [[LISTA_NUEVAS_FUNCIONES]]
 - [[README]]
-- [[RESUMEN_COMPLETO_ACTUALIZACIONES]]
 - [[WELCOME]]
 
 ### Notas clave del proyecto
@@ -198,4 +197,4 @@ updated: "2026-08-13 18:03:09"
 - FUNCIONES_IMPLEMENTACION — Estado de implementación
 
 ---
-*Dashboard generado automáticamente por KALMIYA — 2026-08-13 18:03*
+*Dashboard generado automáticamente por KALMIYA — 2026-08-16 11:10*

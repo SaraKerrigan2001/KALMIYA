@@ -1,4 +1,4 @@
-﻿# Índice del proyecto
+# Índice del proyecto
 
 ## Documentación principal
 
@@ -12,7 +12,6 @@
 ### Documentación
 
 - [00_docs_chat/](00_docs_chat/)
-- [00_docs_project/](00_docs_project/)
 - [00_docs_updates/](00_docs_updates/)
 - [06_docs/](06_docs/)
 - [07_notes/](07_notes/)
@@ -99,6 +98,7 @@ Desde chat: *"KALMIYA, inicia sesión de estudio de Java"* o *"¿Qué entregas t
 | `06_docs/` | Documentación completa | [[06_docs/ROOT_STRUCTURE\|📖 README]] |
 | `07_notes/` | Notas del sistema | [[07_notes/README\|📖 README]] |
 | `08_reports/` | Reportes y análisis | [[08_reports/README\|📖 README]] |
+| `09_diagnostics/` | Scripts de diagnóstico | — |
 | `_BACKUPS/` | Copias de seguridad | [[_BACKUPS/README\|📖 README]] |
 | `_TEMP/` | Archivos temporales | [[_TEMP/README\|📖 README]] |
 | `_UNUSED/` | Scripts obsoletos | [[_UNUSED/README\|📖 README]] |

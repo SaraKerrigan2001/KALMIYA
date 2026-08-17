@@ -1,8 +1,0 @@
-# Obsidian configuration (vault maestro)
-.obsidian/
-.DS_Store
-
-# No sincronizar archivos temporales
-.obsidian/plugins/
-.obsidian/appearance.json
-.obsidian/workspace.json

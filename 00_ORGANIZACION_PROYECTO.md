@@ -5,7 +5,6 @@
 ```text
 ENV/
 ├── 00_docs_chat/         # documentación del chat y guías de uso
-├── 00_docs_project/      # documentación técnica del proyecto
 ├── 00_docs_updates/      # resúmenes y actualizaciones
 ├── 01_systems/           # sistemas principales
 │   ├── KALMIYA/
@@ -19,6 +18,7 @@ ENV/
 ├── 06_docs/              # documentación general y arquitectura
 ├── 07_notes/             # apuntes y notas
 ├── 08_reports/           # reportes y análisis
+├── 09_diagnostics/       # scripts de diagnóstico y utilidades
 ├── _BACKUPS/
 ├── _TEMP/
 ├── _UNUSED/

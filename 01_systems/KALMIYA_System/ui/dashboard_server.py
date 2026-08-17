@@ -161,5 +161,8 @@ Presiona Ctrl+C para detener el servidor
     # Iniciar servidor Flask
     socketio.run(app, host=host, port=port, debug=False, allow_unsafe_werkzeug=True)
 
+import os
 if __name__ == '__main__':
-    start_dashboard()
+    host = os.environ.get('DASHBOARD_HOST', '0.0.0.0')
+    port = int(os.environ.get('DASHBOARD_PORT', 5000))
+    start_dashboard(host=host, port=port)
