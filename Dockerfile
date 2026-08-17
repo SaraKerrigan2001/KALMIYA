@@ -29,12 +29,12 @@ COPY . /app/
 
 # Configurar variables de entorno
 ENV DASHBOARD_HOST=0.0.0.0
-ENV DASHBOARD_PORT=5000
+ENV DASHBOARD_PORT=8000
 ENV DISPLAY=:99
 
 # Exponer el puerto del Dashboard y de VNC
-EXPOSE 5000 5900
+EXPOSE 8000 5900
 
 # Usar el script de entrada que arranca Xvfb y VNC antes del proceso principal
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["python", "01_systems/KALMIYA_System/ui/dashboard_server.py"]
+CMD ["python", "01_systems/KALMIYA_System/api_server.py"]
