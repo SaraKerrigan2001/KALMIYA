@@ -1,0 +1,16 @@
+.venv313/
+.git/
+.github/
+.obsidian/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.log
+logs/
+data/
+chromadb/
+sqlite_db/
+**/__pycache__/
