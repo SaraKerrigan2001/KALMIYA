@@ -34,6 +34,7 @@ from modules.advanced_capabilities import (
     PersonalityStyleEngine,
     ResponsePredictionEngine,
 )
+from kalmiya_tools_schema import GEMINI_TOOLS, OPENAI_TOOLS
 
 logger = get_logger(__name__)
 
@@ -506,6 +507,7 @@ def _ask_gemini(user_input: str, extra_context: str = '') -> str:
     payload = {
         "system_instruction": {"parts": [{"text": _build_system_prompt(extra_context)}]},
         "contents": gemini_contents,
+        "tools": GEMINI_TOOLS,
         "generationConfig": {"temperature": 0.85, "maxOutputTokens": 1024, "topP": 0.95}
     }
     models_to_try = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash", "gemini-pro"]
@@ -516,7 +518,19 @@ def _ask_gemini(user_input: str, extra_context: str = '') -> str:
             response = requests.post(url, json=payload, timeout=30)
             response.raise_for_status()
             data = response.json()
-            return data['candidates'][0]['content']['parts'][0]['text'].strip()
+            
+            # Check for function call
+            candidate = data.get('candidates', [{}])[0]
+            parts = candidate.get('content', {}).get('parts', [])
+            
+            # Si Gemini devuelve una llamada a funcion
+            if parts and 'functionCall' in parts[0]:
+                func_call = parts[0]['functionCall']
+                name = func_call.get('name')
+                args = func_call.get('args', {})
+                return f"[TOOL_CALL_REQUIRED]:{name}:{json.dumps(args)}"
+                
+            return parts[0]['text'].strip()
         except requests.exceptions.HTTPError as e:
             if e.response.status_code == 404:
                 last_error = f"Modelo {model_name} no encontrado (404)"
@@ -596,6 +610,69 @@ def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -
     engine = force_engine.lower() if force_engine else AI_MODE.lower()
     extra_context = _build_obsidian_context(user_input)
     raw_response = _route_to_engine(user_input, engine, stream, extra_context)
+    
+    # Procesar Tool Calling nativo
+    if raw_response.startswith("[TOOL_CALL_REQUIRED]"):
+        try:
+            parts = raw_response.split(":", 2)
+            func_name = parts[1]
+            func_args = json.loads(parts[2]) if len(parts) > 2 else {}
+            
+            # Emitir evento a web UI
+            try:
+                from api_server import emit_sync_event
+                emit_sync_event("state_change", {"state": {"status": "tool_execution", "last_tool": func_name}})
+            except ImportError:
+                pass
+
+            # Ejecutar la funcion
+            logger.info(f"[TOOL EXECUTION] {func_name} con {func_args}")
+            if func_name == "get_system_info":
+                from .intelligence import KALMIYAIntelligence
+                intel = KALMIYAIntelligence()
+                tool_result = json.dumps(intel.get_system_info())
+            elif func_name == "analyze_network_security":
+                from .intelligence import KALMIYAIntelligence
+                intel = KALMIYAIntelligence()
+                tool_result = json.dumps(intel.analyze_network_security())
+            elif func_name == "execute_kalmiya_function":
+                from kalmiya_functions import execute_kalmiya_function
+                from kalmiya_restrictions import check_command_allowed
+                target_func = func_args.get("function_name")
+                
+                permitido, msg, requiere_confirm = check_command_allowed(target_func)
+                if not permitido:
+                    tool_result = f"Bloqueado por Scope/Guardrails: {msg}"
+                elif requiere_confirm:
+                    tool_result = f"Requiere confirmación explícita del usuario (Scope/Guardrails): {msg}"
+                else:
+                    tool_result = json.dumps(execute_kalmiya_function(target_func))
+            elif func_name == "execute_in_sandbox":
+                import subprocess
+                sandbox_cmd = func_args.get("command")
+                try:
+                    # Ejecutar en contenedor Docker aislado (ejemplo base)
+                    # Asume que existe una imagen o compose listos.
+                    docker_run = f'docker-compose -f tools_docker/docker-compose.tools.yml run --rm sandbox sh -c "{sandbox_cmd}"'
+                    output = subprocess.check_output(docker_run, shell=True, stderr=subprocess.STDOUT, timeout=30)
+                    tool_result = output.decode('utf-8', errors='replace')
+                except subprocess.TimeoutExpired:
+                    tool_result = "Error: Timeout en Sandbox (30s)"
+                except subprocess.CalledProcessError as e:
+                    tool_result = f"Error en Sandbox: {e.output.decode('utf-8', errors='replace')}"
+                except Exception as e:
+                    tool_result = f"Fallo al iniciar Sandbox: {str(e)}"
+            else:
+                tool_result = f"Error: Herramienta {func_name} no encontrada."
+            
+            # Enviar resultado de vuelta al LLM
+            _conversation_history.append({"role": "assistant", "content": f"He ejecutado la herramienta {func_name}."})
+            tool_feedback = f"El resultado de la herramienta {func_name} fue: {tool_result}. Responde al usuario basandote en esta informacion."
+            _conversation_history.append({"role": "user", "content": tool_feedback})
+            raw_response = _route_to_engine(tool_feedback, engine, stream, extra_context)
+        except Exception as e:
+            raw_response = f"Hubo un error al procesar la herramienta: {e}"
+
     clean_response, question = _extract_question(raw_response)
     if question:
         _pending_questions.append(question)
@@ -775,6 +852,8 @@ def _ask_groq(user_input: str, extra_context: str = '') -> str:
     payload = {
         "model": GROQ_MODEL,
         "messages": messages,
+        "tools": OPENAI_TOOLS,
+        "tool_choice": "auto",
         "max_tokens": 1024,
         "temperature": 0.85,
     }
@@ -784,7 +863,15 @@ def _ask_groq(user_input: str, extra_context: str = '') -> str:
     }
     response = requests.post(GROQ_BASE_URL, json=payload, headers=headers, timeout=30)
     response.raise_for_status()
-    return response.json()["choices"][0]["message"]["content"].strip()
+    data = response.json()
+    message = data["choices"][0]["message"]
+    if message.get("tool_calls"):
+        tool_call = message["tool_calls"][0]
+        func_name = tool_call["function"]["name"]
+        args = json.loads(tool_call["function"]["arguments"])
+        return f"[TOOL_CALL_REQUIRED]:{func_name}:{json.dumps(args)}"
+    
+    return message["content"].strip()
 
 
 def _ask_openrouter(user_input: str, extra_context: str = '') -> str:

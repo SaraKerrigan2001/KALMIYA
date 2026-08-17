@@ -1,11 +1,11 @@
 ---
 title: "KALMIYA Dashboard"
 tags: [kalmiya, dashboard, sistema]
-updated: "2026-08-16 11:10:36"
+updated: "2026-08-17 09:26:06"
 ---
 
 # 🤖 KALMIYA — Dashboard
-> Última actualización: **Sunday 16 de August de 2026 — 11:10:36**
+> Última actualización: **Monday 17 de August de 2026 — 09:26:06**
 
 **Navegación del vault:**
 [[00_ORGANIZACION_PROYECTO]] | [[INDEX]] | [[README]] | [[WELCOME]]
@@ -16,13 +16,13 @@ updated: "2026-08-16 11:10:36"
 
 | Componente | Estado | Uso |
 |---|---|---|
-| CPU | 🟢 Normal | ████░░░░░░░░░░░ 32% |
-| RAM | 17.8 / 31.6 GB | ████████░░░░░░░ 56% |
-| Disco C | 58.8 GB libre | █████████████░░ 88% |
+| CPU | 🟢 Normal | ██████░░░░░░░░░ 41% |
+| RAM | 19.0 / 31.6 GB | █████████░░░░░░ 60% |
+| Disco C | 26.6 GB libre | ██████████████░ 94% |
 
 ## 🧠 Motores de IA
 
-- ✅ **Ollama (local)** `mistral:latest, llama3.2:latest`
+- ⚠️ **Ollama (local)**
 - ✅ **Gemini**
 - ✅ **Claude**
 - ⚠️ **Groq**
@@ -33,10 +33,10 @@ updated: "2026-08-16 11:10:36"
 
 ## 🗄️ Base de Datos
 
-- 💬 Historial de comandos: **1539** entradas
+- 💬 Historial de comandos: **1544** entradas
 - 🧠 Pensamientos autónomos: **1782** guardados
 - 🔑 Memoria de Sara: **37** claves
-- 📋 Auditoría de memoria: **711** cambios
+- 📋 Auditoría de memoria: **723** cambios
 - 💾 Tamaño: **1420.0 KB**
 - ⚡ Triggers activos: 5
 
@@ -55,23 +55,23 @@ updated: "2026-08-16 11:10:36"
 
 ## 💬 Últimas Conversaciones
 
-**2026-08-16 16:03:07**
+**2026-08-17 14:26:06**
 > 👤 [AUDIO] Perfil
 > 🤖 estudio
 
-**2026-08-16 16:03:07**
+**2026-08-17 14:26:06**
 > 👤 [AUDIO] EQ
 > 🤖 Graves:-2 Medios:2 Agudos:1
 
-**2026-08-16 16:03:07**
+**2026-08-17 14:26:06**
 > 👤 [AUDIO] Micrófono
 > 🤖 85%
 
-**2026-08-16 16:03:07**
+**2026-08-17 14:26:06**
 > 👤 [AUDIO] Volumen
 > 🤖 40%
 
-**2026-08-16 16:03:04**
+**2026-08-17 14:26:04**
 > 👤 [BIOMETRÍA] ACCESO AUTORIZADO
 > 🤖 Usuario: Sara Kerrigan | Nivel: 5 | Método: pin
 
@@ -197,4 +197,4 @@ updated: "2026-08-16 11:10:36"
 - FUNCIONES_IMPLEMENTACION — Estado de implementación
 
 ---
-*Dashboard generado automáticamente por KALMIYA — 2026-08-16 11:10*
+*Dashboard generado automáticamente por KALMIYA — 2026-08-17 09:26*

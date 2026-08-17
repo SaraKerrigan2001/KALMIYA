@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  sandbox:
+    build: .
+    image: kalmiya_sandbox:latest
+    container_name: kalmiya_tool_sandbox
+    # No network access by default for maximum security
+    network_mode: "none"
+    # Read-only root filesystem
+    read_only: true
+    # Temp filesystem for scratch space
+    tmpfs:
+      - /tmp
+    # Limit resources
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+    # Drop privileges
+    user: "1000:1000"
+    working_dir: /tmp
+    command: ["tail", "-f", "/dev/null"]

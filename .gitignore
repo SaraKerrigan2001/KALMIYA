@@ -11,6 +11,8 @@
 *.sqlite
 *.sqlite3
 kalmiya.db
+chat_history.json
+04_config/chat_history.json
 _BACKUPS/
 01_systems/KALMIYA_System/data/
 01_systems/KALMIYA_System/rag_db/
@@ -35,11 +37,15 @@ __pycache__/
 *.pyo
 *.egg-info/
 .venv/
+.venv313/
 venv/
 02_infrastructure/Lib/
 02_infrastructure/Scripts/
+02_infrastructure/pyvenv.cfg
 .pytest_cache/
 .mypy_cache/
+
+# ── Archivos deprecados (reorganización) ─────────────────────────────────────
 
 # ── Obsidian (cache local) ────────────────────────────────────────────────────
 .obsidian/workspace.json

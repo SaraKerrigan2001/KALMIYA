@@ -211,103 +211,53 @@ def _leer_archivo(ruta: Path) -> str:
 
 def _dividir_en_chunks(texto: str, fuente: str) -> list[dict]:
     """
-    Divide un texto en chunks con solapamiento.
-    Para archivos .md usa chunking semántico por secciones (headers).
-    Para otros archivos, usa chunking por tamaño fijo.
+    Divide un texto en chunks usando RecursiveCharacterTextSplitter de LangChain.
+    Mejora enormemente la cohesión semántica de los fragmentos en comparación al método manual.
     """
+    try:
+        from langchain_text_splitters import RecursiveCharacterTextSplitter
+    except ImportError:
+        logger.warning("[RAG] LangChain no disponible. Usando fallback básico.")
+        # Fallback básico si LangChain aún no termina de instalarse
+        chunks_basicos = []
+        for i in range(0, len(texto), CHUNK_SIZE):
+            chunk = texto[i:i+CHUNK_SIZE]
+            if len(chunk.strip()) > 50:
+                chunks_basicos.append({
+                    "id": hashlib.md5(f"{fuente}_{i}".encode()).hexdigest(),
+                    "texto": chunk, "fuente": fuente, "indice": i, "longitud": len(chunk)
+                })
+        return chunks_basicos
+
     texto = re.sub(r'\n{3,}', '\n\n', texto.strip())
+    
+    # Usamos el separador recursivo que es el estándar de la industria
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=CHUNK_SIZE,
+        chunk_overlap=CHUNK_OVERLAP,
+        separators=["\n\n", "\n", r"(?<=\. )", " ", ""]
+    )
+    
+    textos_divididos = splitter.split_text(texto)
+    
     chunks = []
-    idx = 0
-
-    # Chunking semántico para Markdown
-    if fuente.endswith('.md'):
-        secciones = re.split(r'(^#{1,3}\s+.+$)', texto, flags=re.MULTILINE)
-        titulo_actual = ""
-        buffer = ""
-
-        for parte in secciones:
-            if re.match(r'^#{1,3}\s+', parte):
-                # Guardar buffer anterior si tiene contenido
-                if buffer.strip() and len(buffer.strip()) > 50:
-                    chunk_texto = f"[{titulo_actual}]\n{buffer.strip()}" if titulo_actual else buffer.strip()
-                    chunk_id = hashlib.md5(f"{fuente}_{idx}".encode()).hexdigest()
-                    chunks.append({
-                        "id": chunk_id, "texto": chunk_texto,
-                        "fuente": fuente, "indice": idx,
-                        "longitud": len(chunk_texto),
-                    })
-                    idx += 1
-                titulo_actual = parte.strip()
-                buffer = ""
-            else:
-                buffer += parte
-
-        # Último buffer
-        if buffer.strip() and len(buffer.strip()) > 50:
-            chunk_texto = f"[{titulo_actual}]\n{buffer.strip()}" if titulo_actual else buffer.strip()
+    for idx, chunk_texto in enumerate(textos_divididos):
+        if len(chunk_texto.strip()) > 50:
             chunk_id = hashlib.md5(f"{fuente}_{idx}".encode()).hexdigest()
             chunks.append({
-                "id": chunk_id, "texto": chunk_texto,
-                "fuente": fuente, "indice": idx,
+                "id": chunk_id,
+                "texto": chunk_texto,
+                "fuente": fuente,
+                "indice": idx,
                 "longitud": len(chunk_texto),
             })
-            idx += 1
-
-        # Si las secciones son muy grandes, subdividirlas
-        chunks_finales = []
-        for chunk in chunks:
-            if chunk["longitud"] > CHUNK_SIZE * 2:
-                sub_chunks = _subdividir_chunk(chunk["texto"], fuente, len(chunks_finales))
-                chunks_finales.extend(sub_chunks)
-            else:
-                chunks_finales.append(chunk)
-        if chunks_finales:
-            return chunks_finales
-
-    # Chunking por tamaño fijo (para no-markdown o markdown sin headers)
-    inicio = 0
-    while inicio < len(texto):
-        fin = min(inicio + CHUNK_SIZE, len(texto))
-        chunk = texto[inicio:fin].strip()
-
-        if len(chunk) > 50:
-            chunk_id = hashlib.md5(f"{fuente}_{idx}".encode()).hexdigest()
-            chunks.append({
-                "id":       chunk_id,
-                "texto":    chunk,
-                "fuente":   fuente,
-                "indice":   idx,
-                "longitud": len(chunk),
-            })
-            idx += 1
-
-        inicio = fin - CHUNK_OVERLAP
-        if inicio >= len(texto) - 10:
-            break
-
+            
     return chunks
 
 
 def _subdividir_chunk(texto: str, fuente: str, start_idx: int) -> list[dict]:
-    """Subdivide un chunk grande en partes más pequeñas."""
-    sub_chunks = []
-    inicio = 0
-    idx = start_idx
-    while inicio < len(texto):
-        fin = min(inicio + CHUNK_SIZE, len(texto))
-        chunk = texto[inicio:fin].strip()
-        if len(chunk) > 50:
-            chunk_id = hashlib.md5(f"{fuente}_sub_{idx}".encode()).hexdigest()
-            sub_chunks.append({
-                "id": chunk_id, "texto": chunk,
-                "fuente": fuente, "indice": idx,
-                "longitud": len(chunk),
-            })
-            idx += 1
-        inicio = fin - CHUNK_OVERLAP
-        if inicio >= len(texto) - 10:
-            break
-    return sub_chunks
+    """Deprecado: RecursiveCharacterTextSplitter ya maneja el tamaño máximo."""
+    return []
 
 
 def indexar_documento(ruta: Path, forzar: bool = False) -> int:
