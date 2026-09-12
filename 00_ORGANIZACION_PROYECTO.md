@@ -47,11 +47,11 @@ ENV/
 
 ### Lanzadores
 
-- [03_launchers/chat.py](03_launchers/chat.py)
-- [03_launchers/chat_simple.py](03_launchers/chat_simple.py)
-- [03_launchers/chat_ultra.py](03_launchers/chat_ultra.py)
-- [03_launchers/chat_optimized.py](03_launchers/chat_optimized.py)
-- [03_launchers/start_chat.py](03_launchers/start_chat.py)
+- [03_launchers/START_KALMIYA_V36.bat](03_launchers/START_KALMIYA_V36.bat)
+- [03_launchers/run_kalmiya.bat](03_launchers/run_kalmiya.bat)
+- [03_launchers/Chat_KALMIYA.bat](03_launchers/Chat_KALMIYA.bat)
+- [03_launchers/chat_kalmiya.py](03_launchers/chat_kalmiya.py)
+- [03_launchers/kalmiya_host_agent.py](03_launchers/kalmiya_host_agent.py)
 
 ### Documentación
 

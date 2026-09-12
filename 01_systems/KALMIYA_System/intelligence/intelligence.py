@@ -406,9 +406,31 @@ class KALMIYAIntelligence:
     # ==================== ANÁLISIS DEL SISTEMA ====================
 
     def get_system_info(self):
-        """Obtiene información completa del sistema."""
+        """Obtiene información completa del sistema.
+
+        Estrategia dual:
+          1. Intenta consultar el Host Agent de Windows (http://host.docker.internal:9001/system)
+             que corre en el PC real y devuelve datos de hardware verdaderos.
+          2. Si no está disponible (dev sin agent), usa psutil local como fallback.
+        """
+        # ── Intento 1: Host Agent (datos reales del PC de Sara) ───────────────
+        try:
+            host_agent_url = os.environ.get(
+                "HOST_AGENT_URL", "http://host.docker.internal:9001/system"
+            )
+            resp = requests.get(host_agent_url, timeout=3)
+            if resp.status_code == 200:
+                data = resp.json()
+                data["_fuente"] = "host_agent"
+                return data
+        except Exception:
+            pass  # Host Agent no disponible → usar fallback
+
+        # ── Intento 2: psutil local (datos del contenedor, limitados) ─────────
         try:
             info = {
+                '_fuente': 'docker_container',
+                '_nota': 'Datos del contenedor. Inicia kalmiya_host_agent.py en Windows para ver el PC real.',
                 'os': platform.platform(),
                 'processor': platform.processor(),
                 'cpu_cores': psutil.cpu_count(),

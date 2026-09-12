@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     xvfb \
     x11vnc \
     fluxbox \
+    libpq-dev \
+    dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar requirements-docker
@@ -22,7 +24,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar el script de entrada y darle permisos
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN dos2unix /entrypoint.sh && chmod +x /entrypoint.sh
 
 # Copiar el resto del código
 COPY . /app/

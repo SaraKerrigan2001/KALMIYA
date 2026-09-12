@@ -69,11 +69,11 @@ ENV/
 
 ### Lanzadores principales
 
-- [03_launchers/chat.py](03_launchers/chat.py)
-- [03_launchers/chat_simple.py](03_launchers/chat_simple.py)
-- [03_launchers/chat_ultra.py](03_launchers/chat_ultra.py)
-- [03_launchers/chat_optimized.py](03_launchers/chat_optimized.py)
-- [03_launchers/start_chat.py](03_launchers/start_chat.py)
+- [03_launchers/START_KALMIYA_V36.bat](03_launchers/START_KALMIYA_V36.bat) - *Lanzador maestro v3.6*
+- [03_launchers/run_kalmiya.bat](03_launchers/run_kalmiya.bat) - *Lanzador clásico de KALMIYA*
+- [03_launchers/Chat_KALMIYA.bat](03_launchers/Chat_KALMIYA.bat) - *Lanzador rápido (solo chat)*
+- [03_launchers/chat_kalmiya.py](03_launchers/chat_kalmiya.py) - *Punto de entrada Python principal*
+- [03_launchers/kalmiya_host_agent.py](03_launchers/kalmiya_host_agent.py) - *Agente Host de JARVIS OS*
 
 ### Sistema principal
 

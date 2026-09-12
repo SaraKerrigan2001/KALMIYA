@@ -36,11 +36,19 @@ except ImportError:
     PSUTIL_OK = False
 
 try:
-    from brain import ask_kalmiya, get_engine_status
+    from intelligence.kalmiya_agent_graph import kalmiya_brain_graph
+    from intelligence.vision_agent import VisionAgent
+    from brain import get_engine_status
+    from langchain_core.messages import HumanMessage
+    import threading
+    V4_BRAIN_OK = True
     BRAIN_OK = True
-except Exception:
+except Exception as e:
+    print(f"Error importando módulos V4: {e}")
+    V4_BRAIN_OK = False
     BRAIN_OK = False
-    def ask_kalmiya(q: str, **kwargs) -> str: return "[brain.py no disponible]"
+    kalmiya_brain_graph = None
+    VisionAgent = None
     def get_engine_status() -> dict: return {}
 
 from decouple import config
@@ -890,23 +898,40 @@ class KalmiyaChatV4:
             self.typing_label.destroy()
     
     def _process_message(self, text):
-        """Procesa mensaje"""
+        """Procesa mensaje a través de LangGraph"""
         try:
-            # Activar modo "hablando"
             self._is_talking = True
             self.root.after(0, self._draw_animated_avatar)
             
-            response = ask_kalmiya(text) if BRAIN_OK else "Sistema IA no disponible. Pero estoy aquí para ayudarte con lo que necesites. 💜"
+            if not V4_BRAIN_OK:
+                response = "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias."
+                time.sleep(0.5)
+                self._is_talking = False
+                self.root.after(0, self._draw_animated_avatar)
+                self.root.after(0, self._on_response, response)
+                return
+
+            inputs = {"messages": [HumanMessage(content=text)]}
+            final_response = ""
+            for output in kalmiya_brain_graph.stream(inputs):
+                for key, value in output.items():
+                    msgs = value.get("messages", [])
+                    if msgs:
+                        # Simulamos que cada agente responde en tiempo real
+                        agent_response = f"[{key.upper()}]: {msgs[-1].content}\n"
+                        final_response += agent_response
+                        self.root.after(0, self._add_message, f"Agente {key}", msgs[-1].content, True)
+
         except Exception as e:
-            response = f"Ups, tuve un problema: {str(e)} 😅"
+            final_response = f"Ups, tuve un problema con el Grafo: {str(e)} 😅"
+            self.root.after(0, self._add_message, "ERROR", final_response, True)
         
-        time.sleep(0.5)  # Simular pensamiento
-        
-        # Desactivar modo "hablando"
         self._is_talking = False
         self.root.after(0, self._draw_animated_avatar)
         
-        self.root.after(0, self._on_response, response)
+        # Ocultar typing indicator
+        self.root.after(0, self._remove_typing_indicator)
+        self.root.after(0, self._set_thinking, False)
     
     def _on_response(self, response):
         """Recibe respuesta"""

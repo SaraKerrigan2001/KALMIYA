@@ -38,36 +38,11 @@ sys.path.insert(0, str(KALMIYA_DIR))
 
 # ── Definición de modos ───────────────────────────────────────────────────
 MODES = {
-    "default": {
-        "module": "kalmiya_chat",
-        "class": "KalmiyaChat",
-        "label": "Chat KALMIYA (estándar)",
-    },
-    "simple": {
-        "module": "kalmiya_chat_simple_tkinter",
-        "class": "KalmiyaChatSimple",
-        "label": "Chat KALMIYA Simple (tkinter puro)",
-    },
-    "optimized": {
-        "module": "kalmiya_chat_optimized",
-        "class": "KalmiyaChatOptimized",
-        "label": "Chat KALMIYA Optimizado (500x700, ~120 MB RAM)",
-    },
-    "ultra": {
-        "module": "kalmiya_chat_ultra",
-        "class": "KalmiyaChatUltra",
-        "label": "Chat KALMIYA Ultra v3.7 (temas, avatar, historial)",
-    },
-    "v2": {
-        "module": "kalmiya_chat_v2",
-        "class": "KalmiyaChatV2",
-        "label": "Chat KALMIYA v2 (diseño futurista)",
-    },
     "v4": {
         "module": "kalmiya_chat_v4",
         "class": "KalmiyaChatV4",
         "label": "Chat KALMIYA V4.0 (Integración Total Definitiva)",
-    },
+    }
 }
 
 
