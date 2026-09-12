@@ -115,7 +115,7 @@ def _draw_top_bar(draw: ImageDraw.Draw, w: int, h: int, now: datetime):
     draw.rectangle([(60, bar_y), (w - 60, bar_y + bar_h)], fill=(0, 15, 25))
     font_bar = _load_font(14, bold=True)
     font_small = _load_font(11)
-    draw.text((80, bar_y + 10), "KALMIYA NEURAL CORE v3.5", font=font_bar, fill=C_ACCENT)
+    draw.text((80, bar_y + 10), "KALMIYA NEURAL CORE V4", font=font_bar, fill=C_ACCENT)
     full_str = now.strftime("%A, %d de %B de %Y").upper() + "  " + now.strftime("%H:%M:%S")
     bbox = draw.textbbox((0, 0), full_str, font=font_small)
     tw = bbox[2] - bbox[0]
@@ -195,7 +195,7 @@ def _draw_right_panel(draw: ImageDraw.Draw, w: int, h: int, now: datetime):
     draw.line([(px + 10, py + 24), (px + pw - 10, py + 24)], fill=C_ACCENT_DIM, width=1)
     for i, (label, value) in enumerate([
         ("USUARIO", "Sara Kerrigan"),
-        ("SISTEMA", "KALMIYA v3.5"),
+        ("SISTEMA", "KALMIYA V4"),
         ("ESTADO", "OPERATIVO"),
         ("SESION", now.strftime("%d/%m/%Y %H:%M")),
     ]):

@@ -1,5 +1,5 @@
 """
-kalmiya_v35_features.py - Nuevas capacidades para la versión 3.5 (Nexus Core)
+kalmiya_v4_features.py - Nuevas capacidades para la versión V4 (Nexus Core)
 =============================================================================
 - Escaneo avanzado de procesos sospechosos e intromisiones.
 - Integración con el motor de Inteligencia Artificial y Aprendizaje Automático.
@@ -24,8 +24,8 @@ except ImportError:
     print("[NEXUS] cyber_security_ml no disponible")
 
 def security_audit_v35():
-    """Realiza una auditoría de seguridad profunda v3.5, combinada con Inteligencia Artificial."""
-    speak("Iniciando auditoría de seguridad avanzada v3.5 con Escudo Neural.")
+    """Realiza una auditoría de seguridad profunda V4, combinada con Inteligencia Artificial."""
+    speak("Iniciando auditoría de seguridad avanzada V4 con Escudo Neural.")
     
     findings = []
     
@@ -119,7 +119,7 @@ def smart_performance_boost():
     except Exception:
         pass
     
-    speak("Optimización Nexus v3.5 finalizada. Sistema estabilizado a pleno rendimiento.")
+    speak("Optimización Nexus V4 finalizada. Sistema estabilizado a pleno rendimiento.")
     return "Optimización completada."
 
 def get_system_vitals():
@@ -132,7 +132,7 @@ def get_system_vitals():
         "boot_time": boot_time,
         "active_users": len(psutil.users()),
         "network_io": f"Enviado: {psutil.net_io_counters().bytes_sent / (1024*1024):.1f} MB",
-        "version": "3.5.0-NEXUS-ML"
+        "version": "V4.0-NEXUS-ML"
     }
     
     # Sellar firmas si no están creadas

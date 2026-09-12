@@ -24,17 +24,17 @@ from pathlib import Path
 from datetime import datetime
 from typing import Any
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from database import log_command
-from _logging import get_logger
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from database import log_command  # type: ignore
+from _logging import get_logger  # type: ignore
 
 logger = get_logger(__name__)
 
 # ── Dependencias opcionales ────────────────────────────────────────────────────
 try:
-    from mcp.server import Server
-    from mcp.server.stdio import stdio_server
-    from mcp import types as mcp_types
+    from mcp.server import Server  # type: ignore
+    from mcp.server.stdio import stdio_server  # type: ignore
+    from mcp import types as mcp_types  # type: ignore
     MCP_OK = True
 except ImportError:
     MCP_OK = False
@@ -335,7 +335,7 @@ def iniciar_servidor_http(puerto: int = 8765, host: str = "127.0.0.1"):
             elif self.path == "/status":
                 self._send_json({
                     "activo":     True,
-                    "version":    "3.5",
+                    "version":    "V4.0",
                     "n_tools":    len(HERRAMIENTAS_MCP),
                     "n_llamadas": _n_llamadas,
                     "timestamp":  datetime.now().isoformat(),

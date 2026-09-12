@@ -61,10 +61,10 @@ from brain import (ask_kalmiya, is_ollama_running, clear_conversation,
 
 # Nuevos modulos
 try:
-    from kalmiya_v35_features import security_audit_v35, smart_performance_boost, get_system_vitals
+    from kalmiya_v4_features import security_audit_v35, smart_performance_boost, get_system_vitals
     V35_OK = True
 except Exception as e:
-    print(f"[MAIN] kalmiya_v35_features no disponible: {e}")
+    print(f"[MAIN] kalmiya_v4_features no disponible: {e}")
     V35_OK = False
 
 try:
@@ -300,9 +300,9 @@ def show_menu() -> None:
     print("QW.  Consultar clima")
     print("QT.  Nueva tarea")
     print("13. Verificar salud del sistema")
-    print("\n=== KALMIYA v3.5 NEXUS CORE (ML & AUTOPROTECCIÓN) ===")
-    print("80. Auditoria de Seguridad Nexus v3.5 (Heurística Neural)")
-    print("81. Optimizacion Inteligente Nexus v3.5")
+    print("\n=== KALMIYA V4 NEXUS CORE (ML & AUTOPROTECCIÓN) ===")
+    print("80. Auditoria de Seguridad Nexus V4 (Heurística Neural)")
+    print("81. Optimizacion Inteligente Nexus V4")
     print("82. Ver Resumen Tecnico (Vitals)")
     print("83. Entrenar Red Neuronal de Ciberseguridad (ML)")
     print("84. Simular Ciberataque Táctico (DDoS/Fuerza Bruta/MITM)")
@@ -1521,7 +1521,7 @@ def main() -> None:
                 else:
                     print("[!] Módulos no disponibles.")
 
-            # === KALMIYA v3.5 NEXUS CORE ===
+            # === KALMIYA V4 NEXUS CORE ===
             elif choice == "80" and V35_OK:
                 safe_execute(security_audit_v35)
             elif choice == "81" and V35_OK:

@@ -1,5 +1,5 @@
 """
-kalmiya_biometrics.py — Sistema Biométrico Completo de KALMIYA v3.5
+kalmiya_biometrics.py — Sistema Biométrico Completo de KALMIYA V4
 ====================================================================
 Verificación de identidad por 3 métodos:
   1. Reconocimiento facial    (OpenCV + haar cascades)
@@ -162,7 +162,7 @@ def verificar_cara(timeout_seg: int = 8) -> Optional[dict]:
 
     speak("Iniciando escaneo facial. Mira fijamente a la cámara.")
     print("\n" + "═" * 60)
-    print("  🔬  ESCANEO BIOMÉTRICO FACIAL — KALMIYA v3.5")
+    print("  🔬  ESCANEO BIOMÉTRICO FACIAL — KALMIYA V4")
     print("═" * 60)
 
     cap = cv2.VideoCapture(0)
@@ -259,7 +259,7 @@ def verificar_voz(intentos: int = 2) -> Optional[dict]:
 
     speak("Verificación de voz. Di tu frase de acceso cuando escuches el tono.")
     print("\n" + "═" * 60)
-    print("  🎙️  VERIFICACIÓN BIOMÉTRICA DE VOZ — KALMIYA v3.5")
+    print("  🎙️  VERIFICACIÓN BIOMÉTRICA DE VOZ — KALMIYA V4")
     print("═" * 60)
     print("  Frases aceptadas:")
     print("    Sara      → 'kalmiya soy sara'  o  'acceso sara kerigan'")
@@ -323,7 +323,7 @@ def verificar_pin(intentos: int = 3) -> Optional[dict]:
         Usuario autenticado o None si falla.
     """
     print("\n" + "═" * 60)
-    print("  🔐  VERIFICACIÓN POR PIN BIOMÉTRICO — KALMIYA v3.5")
+    print("  🔐  VERIFICACIÓN POR PIN BIOMÉTRICO — KALMIYA V4")
     print("═" * 60)
     print("  Ingresa tu PIN para verificar tu identidad.")
     print("  (No se muestra en pantalla por seguridad)")
@@ -394,7 +394,7 @@ def verificacion_biometrica_completa(
               f"Por favor verifica tu identidad para acceder a {BOTNAME}.")
 
     print("\n" + "╔" + "═" * 60 + "╗")
-    print("║" + "  🔒  KALMIYA BIOMETRIC SECURITY SYSTEM v3.5".center(60) + "║")
+    print("║" + "  🔒  KALMIYA BIOMETRIC SECURITY SYSTEM V4".center(60) + "║")
     print("╚" + "═" * 60 + "╝")
     print(f"  Fecha : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  Sistema: {BOTNAME} — Acceso biométrico requerido\n")

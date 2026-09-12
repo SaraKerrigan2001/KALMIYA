@@ -1,5 +1,5 @@
 """
-cyber_security_ml.py - Núcleo de Aprendizaje Automático y Ciberseguridad Avanzada (KALMIYA v3.5+)
+cyber_security_ml.py - Núcleo de Aprendizaje Automático y Ciberseguridad Avanzada (KALMIYA V4+)
 =============================================================================================
 Este módulo actualiza KALMIYA con:
   1. Red Neuronal Artificial (MLP) en Python puro para detección de anomalías y patrones sospechosos.

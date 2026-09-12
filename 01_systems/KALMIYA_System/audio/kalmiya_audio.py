@@ -1,5 +1,5 @@
 """
-kalmiya_audio.py — Sistema de Audio Completo de KALMIYA v3.5
+kalmiya_audio.py — Sistema de Audio Completo de KALMIYA V4
 =============================================================
 Controla todo el audio del sistema:
   - Volumen maestro, micrófono, aplicaciones

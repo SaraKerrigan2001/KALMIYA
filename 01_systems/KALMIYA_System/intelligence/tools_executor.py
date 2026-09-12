@@ -65,6 +65,22 @@ def execute_tool(tool_name: str, args: dict) -> str:
                         return f.read()
                 return "Calendario vacio."
                 
+        elif tool_name == "execute_kalmiya_function":
+            try:
+                # Import here to avoid circular imports
+                import sys
+                import os
+                sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                from core.module_manager import manager
+                
+                func_name = args.get("function_name")
+                args_json = args.get("args_json")
+                if not func_name:
+                    return "Error: function_name is required."
+                return manager.execute_function(func_name, args_json)
+            except Exception as e:
+                return f"Error executing kalmiya function: {e}"
+                
         return f"Herramienta {tool_name} desconocida o no implementada."
     except Exception as e:
         return f"Excepcion interna al ejecutar {tool_name}: {str(e)}"

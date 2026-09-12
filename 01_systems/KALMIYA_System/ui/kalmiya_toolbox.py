@@ -496,7 +496,7 @@ class KalmiyaToolbox:
         self._set_status("Activando escudo cibernético...")
         def _run():
             try:
-                from kalmiya_v35_features import activate_nexus_shield
+                from kalmiya_v4_features import activate_nexus_shield
                 activate_nexus_shield()
                 self._show_sec_result("✅ Escudo Nexus activado.")
                 self._set_status("✅ Escudo activo.")

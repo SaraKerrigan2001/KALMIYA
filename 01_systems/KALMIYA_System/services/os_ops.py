@@ -153,7 +153,7 @@ def cancel_shutdown_timer():
     except Exception:
         return False
 
-# ==================== CONTROLES DE HARDWARE (KALMIYA v3.5) ====================
+# ==================== CONTROLES DE HARDWARE (KALMIYA V4) ====================
 
 def set_volume(action):
     """Controla el volumen del sistema."""
@@ -232,7 +232,7 @@ def press_key(key):
     return "Tecla no soportada."
 
 
-# ==================== INFORMACIÓN COMPLETA DEL SISTEMA (KALMIYA v3.5) ====================
+# ==================== INFORMACIÓN COMPLETA DEL SISTEMA (KALMIYA V4) ====================
 
 def get_full_system_info() -> dict:
     """

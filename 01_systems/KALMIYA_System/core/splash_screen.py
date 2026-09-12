@@ -22,7 +22,7 @@ FONT_SMALL    = ("Consolas", 9)
 FONT_STATUS   = ("Consolas", 10)
 
 BOOT_LINES: list[tuple[str, str, float]] = [
-    ("KALMIYA NEURAL CORE v3.5 - INICIALIZANDO", ACCENT_COLOR, 0.15),
+    ("KALMIYA NEURAL CORE V4 - INICIALIZANDO", ACCENT_COLOR, 0.15),
     ("", TEXT_COLOR, 0.05),
     ("[SYS]  Verificando integridad del nucleo...", TEXT_COLOR, 0.20),
     ("[SYS]  Nucleo verificado. OK", SUCCESS_COLOR, 0.15),
@@ -98,7 +98,7 @@ class SplashScreen:
         self.logo_label = tk.Label(frame, text="K A L M I Y A", font=FONT_LOGO,
                                    fg=ACCENT_COLOR, bg=BG_COLOR)
         self.logo_label.pack()
-        tk.Label(frame, text="NEURAL INTELLIGENCE SYSTEM  v3.5", font=("Consolas", 12),
+        tk.Label(frame, text="NEURAL INTELLIGENCE SYSTEM  V4", font=("Consolas", 12),
                  fg=DIM_COLOR, bg=BG_COLOR).pack(pady=(4, 0))
         sep = tk.Canvas(frame, width=500, height=2, bg=BG_COLOR, highlightthickness=0)
         sep.pack(pady=(12, 0))

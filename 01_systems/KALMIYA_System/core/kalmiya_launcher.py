@@ -81,7 +81,7 @@ BANNER = f"""
   ██║  ██╗██║  ██║███████╗██║ ╚═╝ ██║██║   ██║   ██║  ██║
   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝
 {C.RESET}
-{C.DIM}  NEURAL INTELLIGENCE SYSTEM  ·  v3.5  ·  SARA KERRIGAN{C.RESET}
+{C.DIM}  NEURAL INTELLIGENCE SYSTEM  ·  V4  ·  SARA KERRIGAN{C.RESET}
   {C.CYAN}{'─' * 56}{C.RESET}
 """
 

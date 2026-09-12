@@ -5,6 +5,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from langchain_core.messages import HumanMessage
 import uvicorn
 
 app = FastAPI(title="KALMIYA API Server & Neural Interface")
@@ -69,31 +70,46 @@ async def websocket_endpoint(websocket: WebSocket):
                 if kalmiya_dir not in sys.path:
                     sys.path.insert(0, kalmiya_dir)
                 
-                try:
-                    from intelligence.brain_v4 import ask_kalmiya
-                except ImportError:
-                    from intelligence.brain import ask_kalmiya
-                loop = asyncio.get_event_loop()
+                from intelligence.kalmiya_agent_graph import kalmiya_brain_graph
                 
-                # Ejecutar con timeout de 60 segundos
-                response = await asyncio.wait_for(
-                    loop.run_in_executor(None, ask_kalmiya, user_msg),
-                    timeout=60.0
-                )
-            except asyncio.TimeoutError:
-                response = "⏱️ La solicitud tardó demasiado (timeout 60s). Es posible que ningún motor de IA esté disponible. Verifica tu conexión o las API keys en el archivo .env"
+                # Ejecutar stream asíncrono
+                inputs = {"messages": [HumanMessage(content=user_msg)]}
+                
+                # Para evitar bloquear el event loop, ejecutamos el stream en un thread si es síncrono.
+                # Ya que kalmiya_brain_graph.stream es síncrono, usamos to_thread.
+                def run_graph():
+                    responses = []
+                    for output in kalmiya_brain_graph.stream(inputs):
+                        for key, value in output.items():
+                            msgs = value.get("messages", [])
+                            if msgs:
+                                responses.append({
+                                    "agent": key,
+                                    "text": msgs[-1].content
+                                })
+                    return responses
+                
+                loop = asyncio.get_event_loop()
+                stream_results = await loop.run_in_executor(None, run_graph)
+                
+                # Concatenar respuesta final para el chat si el cliente no soporta parsing avanzado
+                final_response = ""
+                for res in stream_results:
+                    final_response += f"[{res['agent'].upper()}]: {res['text']}\n"
+                    
             except Exception as e:
                 import traceback
                 error_detail = traceback.format_exc()
                 print(f"[ERROR EN BRAIN] {error_detail}")
-                response = f"⚠️ Error al procesar: {str(e)}"
+                final_response = f"⚠️ Error al procesar en el Grafo: {str(e)}"
             
             # Emitir respuesta
             await broadcast_state("idle")
             await manager.broadcast({
                 "type": "response",
                 "user": user_msg,
-                "text": response
+                "text": final_response,
+                "agents": stream_results if 'stream_results' in locals() else []
             })
             
     except WebSocketDisconnect:
@@ -119,17 +135,17 @@ def emit_sync_event(event_type: str, data: dict):
     except Exception:
         pass
 
-# Montar archivos estáticos para la interfaz Web Reactiva
-static_dir = os.path.join(os.path.dirname(__file__), "web_ui")
+# Montar interfaz web nueva (ui_web/dist) si existe
+static_dir = os.path.join(os.path.dirname(__file__), "ui_web", "dist")
 if os.path.exists(static_dir):
     app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 @app.get("/")
 async def get_index():
-    index_file = os.path.join(os.path.dirname(__file__), "web_ui", "index.html")
+    index_file = os.path.join(os.path.dirname(__file__), "ui_web", "dist", "index.html")
     if os.path.exists(index_file):
         return FileResponse(index_file)
-    return {"status": "online", "message": "KALMIYA Neural Core API Active. Interface files not found."}
+    return {"status": "online", "message": "KALMIYA Neural Core API Active. Mobile Bridge is ready on /ws"}
 
 @app.get("/api/system/status")
 async def get_system_status():

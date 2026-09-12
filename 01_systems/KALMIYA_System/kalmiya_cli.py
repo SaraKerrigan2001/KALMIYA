@@ -40,7 +40,7 @@ DIM    = "\033[2m"
 RESET  = "\033[0m"
 PURPLE = "\033[95m"
 
-VERSION = "3.5.0"
+VERSION = "V4.0.0"
 BANNER  = f"""
 {CYAN}{BOLD}╔══════════════════════════════════════════════════╗
 ║          KALMIYA Neural Core v{VERSION}              ║
