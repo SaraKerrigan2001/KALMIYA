@@ -10,6 +10,9 @@ import uvicorn
 
 app = FastAPI(title="KALMIYA API Server & Neural Interface")
 
+from kalmiya.routers.routers import router as kalmiya_router
+app.include_router(kalmiya_router, prefix="/api/kalmiya")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
