@@ -5,17 +5,15 @@ tags: [funciones, implementacion, modulos, tutorial]
 
 # 🚀 Funciones KALMIYA - Guía de Implementación
 
-[[WELCOME|← Bienvenida]] | [[INDEX|Hub]] | [[KALMIYA_FUNCIONES|Funciones]]
+### Phase 1: Integración en Brain.py
+✅ Módulos integrados dinámicamente mediante `core/module_manager.py`
+✅ `tools_executor.py` permite activar funciones con LLM
 
-## 📦 Sistema de Módulos Integrado
+### Phase 2: Integración en HUD
+✅ `kalmiya_hud.py` actualizado con selector de módulos.
 
-KALMIYA ahora tiene acceso a **41 funciones nuevas** completamente integradas en el sistema.
-
-### Archivos de Integración:
-
-1. **modules_manager.py** — Gestor central de módulos
-2. **kalmiya_functions.py** — Interfaz de funciones
-3. **modules/** — 41 módulos implementados
+### Phase 3: Documentación
+✅ Generación de scripts para auto-documentación en la base de conocimiento (`scripts/generate_docs.py`).
 
 ## 🎯 Cómo Usar las Funciones
 

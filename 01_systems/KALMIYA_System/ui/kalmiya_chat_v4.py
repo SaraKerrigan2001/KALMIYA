@@ -28,6 +28,12 @@ from pathlib import Path
 import random
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
+    sys.path.insert(0, os.path.join(root_dir, 'services'))
+    sys.path.insert(0, os.path.join(root_dir, 'core'))
+    sys.path.insert(0, os.path.join(root_dir, 'audio'))
 
 try:
     import psutil
@@ -38,7 +44,7 @@ except ImportError:
 try:
     from intelligence.kalmiya_agent_graph import kalmiya_brain_graph
     from intelligence.vision_agent import VisionAgent
-    from brain import get_engine_status
+    from intelligence.brain import get_engine_status
     from langchain_core.messages import HumanMessage
     import threading
     V4_BRAIN_OK = True
@@ -184,7 +190,7 @@ class KalmiyaChatV4:
     
     def _build_window(self):
         self.root = ctk.CTk()
-        self.root.title(f"✨ {BOTNAME} V4.0 V4.0 ✨")
+        self.root.title(f"✨ {BOTNAME} V4.0 ✨")
         
         # Configuración de ventana
         self.root.configure(fg_color=self.theme["bg_dark"])
@@ -236,7 +242,7 @@ class KalmiyaChatV4:
         
         ctk.CTkLabel(
             title_frame,
-            text="v3.7",
+            text="v4.0",
             font=ctk.CTkFont("Consolas", 9),
             text_color=self.theme["text_gray"]
         ).pack(side="left")
@@ -592,7 +598,7 @@ class KalmiyaChatV4:
         
         # Brazo izquierdo
         c.create_line(*left_arm[0], fill=t["robot_white"], width=8, 
-                     capstyle="round", tags="arm")
+                     capstyle="round", tags="arm") # type: ignore
         c.create_oval(left_arm[0][4] - 3, left_hand_y, left_arm[0][4] + 3, left_hand_y + 6, 
                      fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="hand")
         c.create_oval(left_arm[0][4] - 2, left_hand_y + 1, left_arm[0][4] + 2, left_hand_y + 5, 
@@ -600,7 +606,7 @@ class KalmiyaChatV4:
         
         # Brazo derecho
         c.create_line(*right_arm[0], fill=t["robot_white"], width=8, 
-                     capstyle="round", tags="arm")
+                     capstyle="round", tags="arm") # type: ignore
         c.create_oval(right_arm[0][4] - 3, right_hand_y, right_arm[0][4] + 3, right_hand_y + 6, 
                      fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="hand")
         c.create_oval(right_arm[0][4] - 2, right_hand_y + 1, right_arm[0][4] + 2, right_hand_y + 5, 
@@ -697,7 +703,7 @@ class KalmiyaChatV4:
         
         # Mensaje de bienvenida
         welcome_messages = [
-            f"¡Hola {USERNAME}! 👋 Soy {BOTNAME} V4.0 V4.0. Ahora con temas de color, animaciones y muchas mejoras. ¿Qué quieres hacer hoy? ✨",
+            f"¡Hola {USERNAME}! 👋 Soy {BOTNAME} V4.0. Ahora con temas de color, animaciones y muchas mejoras. ¿Qué quieres hacer hoy? ✨",
             f"¡Bienvenida {USERNAME}! 🌟 {BOTNAME} V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
             f"¡Hey {USERNAME}! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨"
         ]
@@ -780,7 +786,7 @@ class KalmiyaChatV4:
         
         ctk.CTkLabel(
             left_info,
-            text="• V4.0 V4.0",
+            text="• V4.0",
             font=ctk.CTkFont("Consolas", 8),
             text_color=self.theme["text_gray"]
         ).pack(side="left")
@@ -887,7 +893,7 @@ class KalmiyaChatV4:
         self.typing_label = ctk.CTkLabel(
             self.chat_frame,
             text="✨ KALMIYA está escribiendo...",
-            font=ctk.CTkFont("Consolas", 9, "italic"),
+            font=ctk.CTkFont("Consolas", 9, slant="italic"),
             text_color=self.theme["text_gray"]
         )
         self.typing_label.pack(anchor="w", padx=15, pady=2)
@@ -911,16 +917,17 @@ class KalmiyaChatV4:
                 self.root.after(0, self._on_response, response)
                 return
 
-            inputs = {"messages": [HumanMessage(content=text)]}
+            inputs = {"messages": [HumanMessage(content=text)]} # type: ignore
             final_response = ""
-            for output in kalmiya_brain_graph.stream(inputs):
-                for key, value in output.items():
-                    msgs = value.get("messages", [])
-                    if msgs:
-                        # Simulamos que cada agente responde en tiempo real
-                        agent_response = f"[{key.upper()}]: {msgs[-1].content}\n"
-                        final_response += agent_response
-                        self.root.after(0, self._add_message, f"Agente {key}", msgs[-1].content, True)
+            if kalmiya_brain_graph is not None:
+                for output in kalmiya_brain_graph.stream(inputs): # type: ignore
+                    for key, value in output.items():
+                        msgs = value.get("messages", [])
+                        if msgs:
+                            # Simulamos que cada agente responde en tiempo real
+                            agent_response = f"[{key.upper()}]: {msgs[-1].content}\n"
+                            final_response += agent_response
+                            self.root.after(0, self._add_message, f"Agente {key}", msgs[-1].content, True)
 
         except Exception as e:
             final_response = f"Ups, tuve un problema con el Grafo: {str(e)} 😅"
@@ -988,14 +995,19 @@ class KalmiyaChatV4:
         # Actualizar colores de fondo
         self.root.configure(fg_color=self.theme["bg_dark"])
         
-        # Redibujar avatar
-        self._draw_animated_avatar()
+        # Destruir todos los widgets existentes
+        for widget in self.root.winfo_children():
+            widget.destroy()
+            
+        # Reconstruir todo el layout
+        self._build_header()
+        self._build_avatar_animated()
+        self._build_chat_section()
+        self._build_input_section()
+        self._build_footer()
         
-        # Actualizar footer time
-        self._update_footer_theme()
-        
-        # Nota: Para full theme change necesitaríamos rebuild completo
-        # Por ahora cambia los elementos críticos
+        # Cargar el historial en la nueva UI
+        self._load_history_to_chat()
     
     def _update_footer_theme(self):
         """Actualiza colores del footer"""
@@ -1008,7 +1020,8 @@ class KalmiyaChatV4:
         """Toggle always on top"""
         self._always_on_top = not self._always_on_top
         self.root.attributes("-topmost", self._always_on_top)
-        self.pin_btn.configure(text="📌" if self._always_on_top else "📍")
+        if hasattr(self, 'pin_btn'):
+            getattr(self, 'pin_btn').configure(text="📌" if self._always_on_top else "📍") # type: ignore
         
         status = "activado" if self._always_on_top else "desactivado"
         self._show_notification(f"📌 Siempre encima: {status}")
@@ -1287,11 +1300,12 @@ Esc - Minimizar ventana
         if not self._running:
             return
         try:
-            cpu = psutil.cpu_percent(interval=0.1)
-            ram = psutil.virtual_memory().percent
-            disk = psutil.disk_usage('C:\\' if sys.platform == 'win32' else '/').percent
-            text = f"CPU: {cpu:.0f}% | RAM: {ram:.0f}% | Disco: {disk:.0f}%"
-            self.root.after(0, lambda t=text: self.stats_label.configure(text=t))
+            if PSUTIL_OK:
+                cpu = psutil.cpu_percent(interval=0.1) # type: ignore
+                ram = psutil.virtual_memory().percent # type: ignore
+                disk = psutil.disk_usage('C:\\' if sys.platform == 'win32' else '/').percent # type: ignore
+                text = f"CPU: {cpu:.0f}% | RAM: {ram:.0f}% | Disco: {disk:.0f}%"
+                self.root.after(0, lambda t=text: self.stats_label.configure(text=t))
         except:
             pass
         self.root.after(5000, self._schedule_stats_update)

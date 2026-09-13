@@ -8,6 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    env_file:
+      - .env
     environment:
       - PYTHONUNBUFFERED=1
     command: python api_server.py
@@ -19,6 +21,8 @@ services:
       - "8765:8765"
     volumes:
       - .:/app
+    env_file:
+      - .env
     environment:
       - PYTHONUNBUFFERED=1
     command: python intelligence/kalmiya_mcp.py --http --puerto 8765

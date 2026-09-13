@@ -8,7 +8,7 @@ Set WshShell = CreateObject("WScript.Shell")
 ' Ruta base del sistema KALMIYA
 strBase = "c:\Users\maria\env\01_systems\KALMIYA_System"
 pythonPath = "C:\Python314\python.exe"
-launcherPath = strBase & "\kalmiya_launcher.py"
+launcherPath = strBase & "\core\kalmiya_launcher.py"
 
 ' Verificar que existen los archivos
 If Not fso.FileExists(pythonPath) Then

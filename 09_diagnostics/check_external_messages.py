@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-DB_PATH = r'c:\Users\maria\env\KALMIYA_System\kalmiya.db'
+DB_PATH = r'c:\Users\maria\env\01_systems\KALMIYA_System\kalmiya.db'
 
 def read_messages():
     if not os.path.exists(DB_PATH):
@@ -28,3 +28,4 @@ def read_messages():
 
 if __name__ == "__main__":
     read_messages()
+

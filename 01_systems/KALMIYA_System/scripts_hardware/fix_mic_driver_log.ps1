@@ -1,4 +1,4 @@
-$logFile = "c:\Users\maria\env\KALMIYA_System\mic_fix_result.txt"
+$logFile = "c:\Users\maria\env\01_systems\KALMIYA_System\mic_fix_result.txt"
 
 "========================================" | Out-File $logFile
 "  KALMIYA - Microphone Driver Fix" | Out-File $logFile -Append
@@ -55,3 +55,4 @@ if ($device) {
 
 "" | Out-File $logFile -Append
 "========== FIN ==========" | Out-File $logFile -Append
+

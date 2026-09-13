@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_PATH = r"c:\Users\maria\env\KALMIYA_System\kalmiya.db"
+DB_PATH = r"c:\Users\maria\env\01_systems\KALMIYA_System\kalmiya.db"
 
 def fix_schema():
     conn = sqlite3.connect(DB_PATH)
@@ -29,3 +29,4 @@ def fix_schema():
 
 if __name__ == "__main__":
     fix_schema()
+

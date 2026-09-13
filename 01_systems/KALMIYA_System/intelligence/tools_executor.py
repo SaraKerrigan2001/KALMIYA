@@ -20,16 +20,40 @@ def execute_tool(tool_name: str, args: dict) -> str:
             results = DDGS().text(query, max_results=3)
             return "Resultados web:\n" + "\n".join([f"- {r['title']}: {r['body']}" for r in results])
             
+        elif tool_name == "get_system_info":
+            import platform
+            import psutil
+            info = {
+                "OS": platform.system() + " " + platform.release(),
+                "CPU": platform.processor(),
+                "Cores": psutil.cpu_count(logical=True),
+                "RAM_Total_GB": round(psutil.virtual_memory().total / (1024**3), 2),
+                "RAM_Used_GB": round(psutil.virtual_memory().used / (1024**3), 2),
+                "Disk_Total_GB": round(psutil.disk_usage('/').total / (1024**3), 2)
+            }
+            return f"Información del Sistema:\n" + "\n".join([f"- {k}: {v}" for k, v in info.items()])
+
         elif tool_name == "execute_python":
             code = args.get("code", "")
+            import tempfile
             try:
+                with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as f:
+                    f.write(code)
+                    temp_path = f.name
+                
                 result = subprocess.run(
-                    [sys.executable, "-c", code],
+                    [sys.executable, temp_path],
                     capture_output=True,
                     text=True,
                     timeout=10
                 )
-                output = result.stdout + result.stderr
+                
+                try:
+                    os.remove(temp_path)
+                except:
+                    pass
+                    
+                output = result.stdout + "\n" + result.stderr
                 return output.strip() if output.strip() else "Executed successfully without output."
             except subprocess.TimeoutExpired:
                 return "Error: Script timeout (10s)."
@@ -68,8 +92,6 @@ def execute_tool(tool_name: str, args: dict) -> str:
         elif tool_name == "execute_kalmiya_function":
             try:
                 # Import here to avoid circular imports
-                import sys
-                import os
                 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
                 from core.module_manager import manager
                 

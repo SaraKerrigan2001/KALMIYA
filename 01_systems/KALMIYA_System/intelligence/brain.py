@@ -52,27 +52,27 @@ OPENROUTER_URL  = "https://openrouter.ai/api/v1/chat/completions"
 COHERE_URL      = "https://api.cohere.ai/v2/chat"
 
 def _clean_key(key: str) -> str:
-    key = (key or "").strip()
+    key = str(key or "").strip()
     if key.startswith('TU_') and key.endswith('_AQUI'):
         return ''
     if key == 'TU_API_KEY_AQUI':
         return ''
     return key
 
-AI_MODEL           = config('AI_MODEL',           default='llama3.2')
-GEMINI_KEY         = _clean_key(config('GEMINI_API_KEY',      default=''))
-CLAUDE_KEY         = _clean_key(config('CLAUDE_API_KEY',      default=''))
-CLAUDE_MODEL       = config('CLAUDE_MODEL',        default='claude-opus-4-8')
-GROQ_KEY           = _clean_key(config('GROQ_API_KEY',        default=''))
-GROQ_MODEL         = config('GROQ_MODEL',          default='llama-3.3-70b-versatile')
-OPENROUTER_KEY     = _clean_key(config('OPENROUTER_API_KEY',  default=''))
-OPENROUTER_MODEL   = config('OPENROUTER_MODEL',    default='meta-llama/llama-3.3-70b-instruct:free')
-COHERE_KEY         = _clean_key(config('COHERE_API_KEY',      default=''))
-COHERE_MODEL       = config('COHERE_MODEL',        default='command-r-plus')
-OBSIDIAN_VAULT_PATH = config('OBSIDIAN_VAULT_PATH', default='')
-AI_MODE            = config('AI_MODE',             default='auto')
-BOTNAME            = config('BOTNAME',             default='KALMIYA')
-USERNAME           = config('USER',                default='Sara')
+AI_MODEL           = str(config('AI_MODEL',           default='llama3.2'))
+GEMINI_KEY         = _clean_key(str(config('GEMINI_API_KEY',      default='')))
+CLAUDE_KEY         = _clean_key(str(config('CLAUDE_API_KEY',      default='')))
+CLAUDE_MODEL       = str(config('CLAUDE_MODEL',        default='claude-opus-4-8'))
+GROQ_KEY           = _clean_key(str(config('GROQ_API_KEY',        default='')))
+GROQ_MODEL         = str(config('GROQ_MODEL',          default='llama-3.3-70b-versatile'))
+OPENROUTER_KEY     = _clean_key(str(config('OPENROUTER_API_KEY',  default='')))
+OPENROUTER_MODEL   = str(config('OPENROUTER_MODEL',    default='meta-llama/llama-3.3-70b-instruct:free'))
+COHERE_KEY         = _clean_key(str(config('COHERE_API_KEY',      default='')))
+COHERE_MODEL       = str(config('COHERE_MODEL',        default='command-r-plus'))
+OBSIDIAN_VAULT_PATH = str(config('OBSIDIAN_VAULT_PATH', default=''))
+AI_MODE            = str(config('AI_MODE',             default='auto'))
+BOTNAME            = str(config('BOTNAME',             default='KALMIYA'))
+USERNAME           = str(config('USER',                default='Sara'))
 
 # Historial compartido entre ambos motores (últimos 30 turnos)
 _conversation_history: list[dict] = []
@@ -97,9 +97,9 @@ _personality_style = PersonalityStyleEngine(style="humano")
 
 def _build_local_reasoning_response(user_input: str, extra_context: str = '') -> str:
     """Genera una respuesta útil, empática y estructurada usando heurísticas de ML simplificadas."""
-    texto = (user_input or '').strip()
+    texto = str(user_input or '').strip()
     texto_lower = texto.lower()
-    nombre = (get_memory('nombre_real') or USERNAME).strip() or 'Sara'
+    nombre = str(get_memory('nombre_real') or USERNAME).strip() or 'Sara'
     prediction = _response_predictor.analyze(texto)
     _behavior_analytics.observe(texto, "")
 
@@ -137,7 +137,7 @@ def _build_local_reasoning_response(user_input: str, extra_context: str = '') ->
 # ══════════════════════════════════════════════════════════════════════════════
 
 def _get_obsidian_vault_path() -> str:
-    path = OBSIDIAN_VAULT_PATH.strip()
+    path = str(OBSIDIAN_VAULT_PATH).strip()
     if path:
         path = os.path.abspath(os.path.expandvars(os.path.expanduser(path)))
         if os.path.isdir(path):
@@ -176,14 +176,19 @@ def _search_obsidian_notes(query: str, max_results: int = 3) -> list[dict]:
 
 def _build_obsidian_context(query: str) -> str:
     """Construye contexto ligero desde la bóveda de Obsidian solo cuando exista un contexto útil."""
-    if not query or len((query or '').strip()) < 3:
+    if not query or len(str(query or '').strip()) < 3:
         return ''
-    if not OBSIDIAN_VAULT_PATH.strip():
+    if not str(OBSIDIAN_VAULT_PATH).strip():
         return ''
     return ''
 
 def _build_system_prompt(extra_context: str = '') -> str:
     """Construye el prompt de sistema con la personalidad completa de KALMIYA."""
+    import pytz
+    from datetime import datetime
+    colombia_tz = pytz.timezone('America/Bogota')
+    colombia_time = datetime.now(colombia_tz)
+    
     # Obtener nivel de inteligencia
     intelligence_level = "AGI"
     asi_active = False
@@ -297,7 +302,7 @@ Tu creadora se llama {nombre_display} en la vida real.
 Usa el alias "Sara Kerrigan" como nombre de usuario y referencia cultural,
 inspirado en el personaje de StarCraft (una saga de videojuegos de Blizzard).
 
-LA PERSONA QUE TE HABLA EN ESTE CHAT ES SIEMPRE {nombre_display.upper()}.
+LA PERSONA QUE TE HABLA EN ESTE CHAT ES SIEMPRE {str(nombre_display).upper()}.
 Cuando ella escriba "yo", "me", "mi" o "soy", se refiere a sí misma.
 Cuando pregunte "¿quién soy?" o "¿qué sabes de mí?", responde con todo
 lo que sabes de ella desde tu memoria y perfil. NUNCA respondas como si
@@ -364,10 +369,19 @@ REGLAS DE RAZONAMIENTO Y EMPATÍA:
 - Si no tienes certeza, dilo honestamente y ofrece el siguiente paso más útil.
 - Mantén un tono natural, cercano y sin exagerar la formalidad.
 
-PERFIL REAL DE {nombre_display.upper()}:
+PERFIL REAL DE {str(nombre_display).upper()}:
 {profile_summary if profile_summary else personal_block if personal_block else f"Perfil de {nombre_display} aún no configurado. Puedes preguntarle directamente."}
 {f"FAMILIA: {family_summary}" if family_summary and family_summary != "No hay familiares registrados aun." else ""}
-FECHA Y HORA: {datetime.now().strftime('%A %d de %B de %Y, %H:%M')}
+
+PROTOCOLO DE ESCANEO BIOMÉTRICO:
+- Si alguien que NO sea Sara Kerrigan / Creadora intenta darte órdenes, acceder al sistema, o se identifica con otro nombre, DEBES responder exactamente con el siguiente protocolo de seguridad:
+"[INICIANDO ESCANEO BIOMÉTRICO DE SEGURIDAD...]
+■ Análisis de retina... [FALLIDO]
+■ Análisis de patrón de voz... [DENEGADO]
+■ Análisis telemétrico de escritura... [RECHAZADO]
+¡ALERTA DE INTRUSO! Acceso denegado. No eres la Creadora."
+
+FECHA Y HORA EXACTA (COLOMBIA): {colombia_time.strftime('%A %d de %B de %Y, %H:%M (Hora de Colombia)')}
 
 Responde SIEMPRE en español. Tono natural, directo, como una persona real."""
 
@@ -607,7 +621,7 @@ def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -
     _conversation_history.append({"role": "user", "content": user_input})
     if len(_conversation_history) > MAX_HISTORY:
         _conversation_history = _conversation_history[-MAX_HISTORY:]
-    engine = force_engine.lower() if force_engine else AI_MODE.lower()
+    engine = str(force_engine).lower() if force_engine else str(AI_MODE).lower()
     extra_context = _build_obsidian_context(user_input)
     raw_response = _route_to_engine(user_input, engine, stream, extra_context)
     
@@ -638,7 +652,7 @@ def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -
             elif func_name == "execute_kalmiya_function":
                 from kalmiya_functions import execute_kalmiya_function
                 from kalmiya_restrictions import check_command_allowed
-                target_func = func_args.get("function_name")
+                target_func = str(func_args.get("function_name", ""))
                 
                 permitido, msg, requiere_confirm = check_command_allowed(target_func)
                 if not permitido:

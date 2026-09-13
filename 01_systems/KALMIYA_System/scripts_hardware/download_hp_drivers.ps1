@@ -1,7 +1,7 @@
 # KALMIYA - HP OMEN 16-b0511la Driver Downloader
 # Downloads all critical drivers from HP FTP
 
-$downloadPath = "c:\Users\maria\env\KALMIYA_System\HP_Drivers"
+$downloadPath = "c:\Users\maria\env\01_systems\KALMIYA_System\HP_Drivers"
 
 $drivers = @(
     @{ Name = "Realtek_HD_Audio_Driver";      URL = "https://ftp.hp.com/pub/softpaq/sp142001-142500/sp142490.exe";  Size = "193.4 MB" },
@@ -58,3 +58,4 @@ Write-Host "    2. Intel_Serial_IO (sp139425.exe)" -ForegroundColor White
 Write-Host "    3. Intel_MEI (sp142478.exe)" -ForegroundColor White
 Write-Host "    4. Realtek_HD_Audio (sp142490.exe) <-- MICROPHONE FIX" -ForegroundColor White
 Write-Host "    5. Reiniciar el equipo" -ForegroundColor White
+

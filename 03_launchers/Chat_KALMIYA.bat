@@ -19,11 +19,11 @@ if not exist "%USERPROFILE%\Desktop\KALMIYA Chat.lnk" (
 REM Intenta con python3 primero, luego python
 where python >nul 2>nul
 if %ERRORLEVEL% equ 0 (
-    python chat_kalmiya.py --mode default
+    python chat_kalmiya.py --mode v4
 ) else (
     where python3 >nul 2>nul
     if %ERRORLEVEL% equ 0 (
-        python3 chat_kalmiya.py --mode default
+        python3 chat_kalmiya.py --mode v4
     ) else (
         echo Error: Python no esta instalado o no esta en PATH
         pause

@@ -3,7 +3,7 @@ import os
 import json
 
 # Ensure we can import from the main directory
-sys.path.insert(0, r'c:\Users\maria\env\KALMIYA_System')
+sys.path.insert(0, r'c:\Users\maria\env\01_systems\KALMIYA_System')
 
 from security_ops import scan_network
 from phone_bridge import get_connected_devices
@@ -48,7 +48,7 @@ def audit():
 
     # 3. Check for "anonymous" messages in DB
     print("\n=== ANONYMOUS MESSAGE CHECK ===")
-    db_path = r'c:\Users\maria\env\KALMIYA_System\kalmiya.db'
+    db_path = r'c:\Users\maria\env\01_systems\KALMIYA_System\kalmiya.db'
     if os.path.exists(db_path):
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
@@ -71,3 +71,4 @@ def audit():
 
 if __name__ == "__main__":
     audit()
+
