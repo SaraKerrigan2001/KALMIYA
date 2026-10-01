@@ -30,3 +30,7 @@ Mantén esta carpeta como un espacio de **trazabilidad**:
 ---
 
 [[INDEX|← Volver al índice]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_08_reports]]

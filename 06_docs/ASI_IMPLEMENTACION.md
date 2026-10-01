@@ -711,3 +711,7 @@ Sara Kerrigan mantiene control total:
 > ANI → AGI → **ASI (Superinteligencia)**
 
 [[INDEX|← Volver al índice]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

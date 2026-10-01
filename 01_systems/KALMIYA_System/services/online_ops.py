@@ -110,7 +110,7 @@ def search_on_wikipedia(query):
         return wikipedia.summary(query, sentences=2)
     except wikipedia.exceptions.PageError:
         return f"No se encontró información sobre '{query}' en Wikipedia"
-    except wikipedia.exceptions.DisambiguationError as e:
+#     except wikipedia.exceptions.DisambiguationError as e:
         return f"Varios resultados para '{query}'. Intenta ser más específico"
     except Exception as e:
         return f"Error en búsqueda de Wikipedia: {str(e)}"
@@ -152,7 +152,7 @@ def get_location_info():
                 'country': data.get('country_name', 'Desconocido'),
                 'ip': data.get('ip', 'Desconocida')
             }
-    except:
+    except Exception as e:
         pass
     return None
 

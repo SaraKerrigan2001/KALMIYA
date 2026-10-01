@@ -399,7 +399,7 @@ def get_mcp_status() -> dict:
 # CONFIGURACIÓN PARA CLIENTES MCP
 # ══════════════════════════════════════════════════════════════════════════════
 
-def generar_config_cliente(cliente: str = "claude_desktop") -> dict:
+def generar_config_cliente(_cliente: str = "claude_desktop") -> dict:
     """
     Genera la configuración JSON para conectar un cliente MCP a KALMIYA.
 

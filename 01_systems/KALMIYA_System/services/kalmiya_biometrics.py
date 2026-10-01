@@ -1,3 +1,6 @@
+from core.database import log_command, update_memory
+from audio.voz import speak
+from utils.config import BOTNAME
 """
 kalmiya_biometrics.py — Sistema Biométrico Completo de KALMIYA V4
 ====================================================================
@@ -21,18 +24,12 @@ import os
 import sys
 import time
 import hashlib
-import threading
-import json
 import ctypes
-import subprocess
 from datetime import datetime
-from pathlib import Path
 from typing import Optional
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from database import log_command, update_memory, get_memory
-from voz import speak, BOTNAME, USERNAME
 from _logging import get_logger
 
 logger = get_logger(__name__)
@@ -53,14 +50,12 @@ except ImportError:
     logger.warning("[BIO] SpeechRecognition no disponible — verificación de voz desactivada")
 
 try:
-    import pyaudio  # required by speech_recognition Microphone
     PYAUDIO_OK = True
 except ImportError:
     PYAUDIO_OK = False
     logger.warning("[BIO] PyAudio no disponible — verificación de voz desactivada")
 
 try:
-    import numpy as np
     NUMPY_OK = True
 except ImportError:
     NUMPY_OK = False

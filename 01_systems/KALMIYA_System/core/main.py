@@ -2,9 +2,14 @@ import os
 import sys
 from pathlib import Path
 
+# Setup paths
+_ROOT = Path(__file__).resolve().parent.parent
+for _d in [_ROOT, _ROOT / 'core', _ROOT / 'services', _ROOT / 'kalmiya', _ROOT / 'intelligence', _ROOT / 'modules']:
+    if str(_d) not in sys.path:
+        sys.path.append(str(_d))
+
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
-
 from bienvenida import greet_user
 from decouple import config
 from online_ops import (
@@ -20,7 +25,7 @@ from online_ops import (
     get_news_headlines,
     speak_news_headlines,
 )
-from intelligence import (
+from intelligence.intelligence import (
     investigate_domain,
     check_system_health,
     scan_security,
@@ -54,8 +59,7 @@ from os_ops import (
     restore_microphone
 )
 from voz import BOTNAME, USERNAME, speak
-from brain import (ask_kalmiya, is_ollama_running, clear_conversation,
-                   get_available_models, get_engine_status, set_ai_mode,
+from brain import (get_available_models, get_engine_status, set_ai_mode,
                    get_pending_question, answer_kalmiya_question,
                    is_gemini_configured, is_claude_configured)
 
@@ -68,7 +72,7 @@ except Exception as e:
     V35_OK = False
 
 try:
-    from sara_profile import (load_profile, save_profile, setup_profile_interactive,
+    from sara_profile import (
                                add_social_network, add_account, add_family_member,
                                add_device, get_profile_summary, get_family)
     PROFILE_OK = True
@@ -84,7 +88,7 @@ except Exception as e:
     PHONE_OK = False
 
 try:
-    from security_ops import (scan_network, scan_ports, audit_local_security,
+    from security_ops import (
                                analyze_password_strength, generate_strong_password,
                                analyze_url_safety, full_security_report,
                                start_intrusion_monitor, stop_intrusion_monitor)
@@ -94,7 +98,7 @@ except Exception as e:
     SECURITY_OK = False
 
 try:
-    from family_guard import (register_family_member, send_family_alert,
+    from family_guard import (
                                send_emergency_alert, get_family_status,
                                start_family_monitor, setup_family_interactive,
                                family_check_in, learn_about_family_member)
@@ -104,7 +108,7 @@ except Exception as e:
     FAMILY_OK = False
 
 try:
-    from remote_bridge import (start_remote_connection, get_connection_status,
+    from remote_bridge import (
                                 stop_all_tunnels, start_telegram_bot,
                                 send_telegram_message)
     REMOTE_OK = True
@@ -1838,7 +1842,7 @@ def _handle_nuevas_funciones(choice: str) -> None:
 
 def _handle_sys(choice: str) -> None:
     """Gestiona todas las opciones de sistema, discos C/D y archivos."""
-    from kalmiya_system_info import (
+    from pc_manager import (
         resumen_sistema_completo, imprimir_resumen_sistema,
         espacio_libre_rapido, info_disco, info_ambos_discos,
         archivos_grandes, carpetas_pesadas, buscar_archivos,
@@ -2034,7 +2038,7 @@ def _handle_bio(choice: str) -> None:
 def _handle_aud(choice: str) -> None:
     """Gestiona todas las opciones del sistema de audio."""
     try:
-        from kalmiya_audio import (
+        from audio.kalmiya_audio import (
             get_estado_audio, imprimir_estado_audio,
             set_volumen_maestro, subir_volumen, bajar_volumen,
             toggle_mute, set_volumen_microfono,
@@ -2114,7 +2118,7 @@ def _handle_aud(choice: str) -> None:
 
 def _handle_rag(choice: str) -> None:
     try:
-        from kalmiya_rag import (indexar_vault, buscar_rag, get_rag_stats,
+        from kalmiya_rag import (indexar_vault, buscar_en_vault,
                                   imprimir_rag_stats, responder_con_rag,
                                   _init_rag, VAULT_PATH)
     except ImportError as e:

@@ -5,7 +5,6 @@
 import sys
 import time
 import random
-import threading
 import pyautogui
 
 # Asegurar codificación utf-8 en Windows

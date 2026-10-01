@@ -537,3 +537,6 @@ Para detalles específicos, ver:
 
 **JARVIS OS — Inteligencia Autónoma Centralizada**  
 🌟 *Privacidad. Autonomía. Conocimiento Local.*
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

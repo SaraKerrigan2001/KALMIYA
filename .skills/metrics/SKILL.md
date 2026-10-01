@@ -57,3 +57,7 @@ Métricas Obtenidas
 ---
 **Creado:** 2026-08-12  
 **Estado:** Implementado ✅
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

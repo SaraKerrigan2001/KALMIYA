@@ -32,7 +32,9 @@ import random
 import psutil
 from datetime import datetime
 from database import get_memory, update_memory, log_command, save_thought
-from voz import speak, USERNAME, BOTNAME
+from utils.config import config
+
+USERNAME = config("USER", default="Sara")
 
 # ── Clasificación de niveles de inteligencia ─────────────────────────────────
 
@@ -267,7 +269,7 @@ def asi_predictive_thought() -> str:
         dia_semana = datetime.now().strftime("%A")
         cpu = f"{psutil.cpu_percent()}%" if _psutil_ok() else "N/A"
         ram = f"{psutil.virtual_memory().percent}%" if _psutil_ok() else "N/A"
-        color = get_memory("color_favorito") or "desconocido"
+#         color = get_memory("color_favorito") or "desconocido"
         gustos = get_memory("gustos") or "no registrados"
         trabajo = get_memory("trabajo") or "SENA ADSO"
 

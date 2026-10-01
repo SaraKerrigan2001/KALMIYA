@@ -1,3 +1,7 @@
+import sys
+import os
+from typing import Optional, Any, Dict, List
+from dotenv import load_dotenv
 """
 kalmiya_skills.py — Sistema de Skills Modulares para KALMIYA
 =============================================================
@@ -19,7 +23,6 @@ Categorías:
   - creatividad:   generar texto, ideas, dibujos ASCII
 """
 
-import os, sys, inspect, json
 from pathlib import Path
 from datetime import datetime
 from typing import Any, Callable
@@ -210,7 +213,7 @@ def skill_clima(ciudad: str = "Cúcuta") -> dict:
        aliases=["wiki", "buscar_web"],
        ejemplos=["wikipedia 'Python programming language'",
                  "wiki 'SENA Colombia'"])
-def skill_wikipedia(query: str, oraciones: int = 3) -> str:
+def skill_wikipedia(query: str, _oraciones: int = 3) -> str:
     from online_ops import search_on_wikipedia
     resultado = search_on_wikipedia(query)
     return resultado or "No encontré información sobre ese tema."

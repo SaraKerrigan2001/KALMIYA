@@ -1,4 +1,4 @@
-
+# flake8: noqa
 # Wrapper que prioriza audio_local (privado) sobre audio.voz (APIs)
 # JARVIS OS: Completamente local y privado
 

@@ -1,5 +1,4 @@
 from datetime import datetime
-from voz import speak, USERNAME, BOTNAME
 from online_ops import get_location_info
 from database import update_memory
 
@@ -43,7 +42,6 @@ def daily_routine():
     """Ejecuta la rutina diaria de KALMIYA."""
     try:
         from modules.daily_activities import DailyActivities
-        import os
         
         speak("Iniciando mi rutina diaria. Verificando tus módulos de productividad.")
         

@@ -20,11 +20,8 @@ Configuración en .env:
 import os
 import json
 import re
-import random
 import requests
-from datetime import datetime
 from decouple import config
-from _logging import get_logger, setup_logging
 from database import get_memory, update_memory, log_command, save_thought
 from os_ops import load_obsidian_vault_path
 from modules.advanced_capabilities import (
@@ -35,6 +32,7 @@ from modules.advanced_capabilities import (
     ResponsePredictionEngine,
 )
 from kalmiya_tools_schema import GEMINI_TOOLS, OPENAI_TOOLS
+from _logging import get_logger
 
 logger = get_logger(__name__)
 
@@ -408,7 +406,7 @@ def _extract_question(response: str) -> tuple[str, str]:
 def _save_answer_to_memory(question: str, answer: str):
     """Guarda la respuesta de Sara a una pregunta de KALMIYA en memoria."""
     q_lower = question.lower()
-    a_lower = answer.lower().strip()
+#     a_lower = answer.lower().strip()
     if any(w in q_lower for w in ['color', 'favorito']):
         update_memory('color_favorito', answer)
     elif any(w in q_lower for w in ['aplicacion', 'app', 'programa', 'software']):
@@ -611,7 +609,7 @@ def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -
         Respuesta de KALMIYA como string.
         Si KALMIYA tiene una pregunta, se agrega a _pending_questions.
     """
-    global _conversation_history, _pending_questions
+    global _conversation_history
     if user_input and (domain_response := _handle_domain_security_request(user_input)):
         _conversation_history.append({"role": "user", "content": user_input})
         _conversation_history.append({"role": "assistant", "content": domain_response})

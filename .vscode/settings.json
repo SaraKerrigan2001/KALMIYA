@@ -1,0 +1,7 @@
+{
+    "python.defaultInterpreterPath": "c:\\Users\\maria\\env\\.venv313\\Scripts\\python.exe",
+    "python.analysis.extraPaths": [
+        "c:\\Users\\maria\\env\\.venv313\\Lib\\site-packages",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System"
+    ]
+}

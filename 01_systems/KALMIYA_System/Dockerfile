@@ -1,24 +1,29 @@
 FROM python:3.11-slim
 
-WORKDIR /app
+# Evitar que Python genere archivos .pyc y forzar logs sin buffer
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies (e.g. for audio/opencv)
-RUN apt-get update && apt-get install -y \
+# Instalar dependencias del sistema operativo (para OpenCV, Audio, etc.)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    libpq-dev \
-    libasound2-dev \
-    portaudio19-dev \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
     libgl1 \
-    libglib2.0-0 \
+    libportaudio2 \
+    portaudio19-dev \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /app
+
+# Instalar dependencias de Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copiar el código del proyecto
 COPY . .
 
-# Expone puertos comunes (API y MCP)
-EXPOSE 8000
-EXPOSE 8765
-
-CMD ["python", "api_server.py"]
+# Comando de inicio del orquestador
+CMD ["python", "core/main.py"]

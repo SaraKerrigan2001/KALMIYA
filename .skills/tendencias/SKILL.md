@@ -68,3 +68,7 @@ El skill **Tendencias** analiza el movimiento en tus datos a lo largo del tiempo
 ---
 **Creado:** 2026-08-12  
 **Estado:** Implementado ✅
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

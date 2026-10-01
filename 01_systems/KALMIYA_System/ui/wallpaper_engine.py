@@ -4,7 +4,6 @@ Genera y aplica un fondo de pantalla personalizado estilo HUD militar.
 """
 
 import ctypes
-import os
 import sys
 from datetime import datetime
 from pathlib import Path

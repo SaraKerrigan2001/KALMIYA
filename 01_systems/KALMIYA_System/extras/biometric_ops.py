@@ -11,13 +11,9 @@ Este módulo implementa:
 
 import os
 import time
-import json
 import ctypes
-import random
 import math
 from datetime import datetime
-from typing import Dict, List, Tuple, Any
-from database import log_command, update_memory, get_memory
 from sara_profile import load_profile, save_profile
 from voz import speak
 
@@ -217,7 +213,7 @@ def run_biometric_face_scan() -> Tuple[bool, Dict[str, Any]]:
 def process_biometric_authorization(user: Dict[str, Any]) -> bool:
     """Procesa la autorización del PC y bloquea si el usuario no es autorizado."""
     nombre = user["nombre"]
-    rol = user["rol"]
+#     rol = user["rol"]
     nivel = user["nivel_acceso"]
     
     if "NIVEL 5" in nivel:

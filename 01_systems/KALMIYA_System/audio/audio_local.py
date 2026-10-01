@@ -11,7 +11,6 @@ Implementa:
 import os
 import threading
 import json
-from pathlib import Path
 from decouple import config
 
 try:
@@ -26,19 +25,29 @@ except ModuleNotFoundError:  # pragma: no cover - optional runtime dependency
 USERNAME = config('USER', default='Usuario')
 BOTNAME = config('BOTNAME', default='JARVIS')
 
-# TTS: Inicializar pyttsx3
-if pyttsx3 is None:
-    _tts_engine = None
-    TTS_AVAILABLE = False
-else:
+# TTS: Inicialización Lazy
+_tts_engine = None
+_tts_initialized = False
+TTS_AVAILABLE = False
+
+def _init_tts():
+    global _tts_engine, _tts_initialized, TTS_AVAILABLE
+    if _tts_initialized:
+        return
+    _tts_initialized = True
+    
+    if pyttsx3 is None:
+        TTS_AVAILABLE = False
+        return
+        
     try:
         _tts_engine = pyttsx3.init('sapi5')  # Windows SAPI5
         _tts_engine.setProperty('rate', 150)  # Velocidad
         _tts_engine.setProperty('volume', 0.75)  # Volumen
 
         # Buscar voz en español
-        voices = _tts_engine.getProperty('voices')
-        spanish_voices = [v for v in voices if 'spanish' in v.name.lower() or 'españa' in v.name.lower()]
+        voices = _tts_engine.getProperty('voices') # type: ignore
+        spanish_voices = [v for v in list(voices) if 'spanish' in v.name.lower() or 'españa' in v.name.lower()]
         if spanish_voices:
             _tts_engine.setProperty('voice', spanish_voices[0].id)
 
@@ -51,7 +60,6 @@ else:
 # STT: Intentar usar Vosk
 try:
     from vosk import Model, KaldiRecognizer
-    import pyaudio
     STT_ENGINE = 'vosk'
     STT_AVAILABLE = True
     
@@ -60,22 +68,20 @@ try:
     if not os.path.exists(MODEL_PATH):
         MODEL_PATH = os.path.expanduser("~/.vosk/model")
     
-    try:
-        model = Model(MODEL_PATH)
-    except Exception:
-        print(f"[AUDIO_LOCAL] Modelo Vosk no encontrado en {MODEL_PATH}")
-        model = None
-        STT_AVAILABLE = False
+    # Se inicializa de forma lazy
+    model = None
         
 except ImportError:
     STT_ENGINE = None
     STT_AVAILABLE = False
+    Model = None
+    KaldiRecognizer = None
+    model = None
     print("[AUDIO_LOCAL] Vosk no instalado. Para STT local, instala: pip install vosk pyaudio")
 
 # Alternativa: Vosk fallback a offline-speech-recognition si es necesario
 if not STT_AVAILABLE:
     try:
-        import speech_recognition as sr_lib
         STT_ENGINE = 'sr_local'
         # NOTA: Aunque SpeechRecognition por defecto usa Google, se puede usar offline si se configura
         STT_AVAILABLE = True
@@ -101,7 +107,8 @@ def speak(text: str, wait: bool = True) -> bool:
     Returns:
         True si fue exitoso
     """
-    if not TTS_AVAILABLE:
+    _init_tts()
+    if _tts_engine is None or not TTS_AVAILABLE:
         print(f"[{BOTNAME}] (sin audio): {text}")
         return False
     
@@ -111,9 +118,10 @@ def speak(text: str, wait: bool = True) -> bool:
     with _speak_lock:
         try:
             print(f"[{BOTNAME}]: {text}")
-            _tts_engine.say(text)
-            if wait:
-                _tts_engine.runAndWait()
+            if _tts_engine is not None:
+                _tts_engine.say(text)
+                if wait:
+                    _tts_engine.runAndWait()
             return True
         except Exception as e:
             print(f"[AUDIO_LOCAL] Error en TTS: {e}")
@@ -126,7 +134,8 @@ def speak_async(text: str) -> None:
 
 def get_tts_status() -> dict:
     """Retorna el estado del motor TTS."""
-    if not TTS_AVAILABLE:
+    _init_tts()
+    if _tts_engine is None or not TTS_AVAILABLE:
         return {"available": False, "engine": None, "reason": "TTS no disponible"}
     
     try:
@@ -141,7 +150,7 @@ def get_tts_status() -> dict:
             "rate": rate,
             "volume": volume,
             "voice": voice,
-            "voices_available": len(voices)
+            "voices_available": len(list(voices)) if voices else 0
         }
     except Exception as e:
         return {"available": False, "error": str(e)}
@@ -174,11 +183,17 @@ def listen(timeout: float = 5.0, phrase_limit: float = 10.0) -> str | None:
 
 def _listen_vosk(timeout: float, phrase_limit: float) -> str | None:
     """Escucha usando Vosk (offline, privado)."""
+    global model
     with _listen_lock:
         try:
             import pyaudio
             
+            if model is None and MODEL_PATH and os.path.exists(MODEL_PATH):
+                print(f"[AUDIO_LOCAL] Cargando modelo Vosk desde {MODEL_PATH}...")
+                model = Model(MODEL_PATH)
+            
             if not model:
+                print(f"[AUDIO_LOCAL] No se pudo cargar el modelo Vosk")
                 return None
             
             recognizer = KaldiRecognizer(model, 16000)
@@ -249,23 +264,23 @@ def _listen_sr_local(timeout: float, phrase_limit: float) -> str | None:
     try:
         import speech_recognition as sr_lib
         
-        recognizer = sr_lib.Recognizer()
+#         recognizer = sr_lib.Recognizer()
         
-        with sr_lib.Microphone() as source:
-            print(f"[{BOTNAME}] Escuchando... (máx {phrase_limit}s)")
+#         with sr_lib.Microphone() as source:
+        print(f"[{BOTNAME}] Escuchando... (máx {phrase_limit}s)")
             
-            # Nota: SpeechRecognition default usa Google API
-            # Para local puro, deberías usar Vosk o similar
-            try:
-                audio = recognizer.listen(source, timeout=timeout, phrase_time_limit=phrase_limit)
-                # ADVERTENCIA: Esta línea usa Google API (no es local)
-                # Para verdadero local, usar Vosk arriba
-                print("[AUDIO_LOCAL] ADVERTENCIA: SpeechRecognition usa Google API, no es privado")
-                return None  # Retornar None fuerza a usar Vosk
-            except sr_lib.RequestError:
-                return None
-            except sr_lib.UnknownValueError:
-                return None
+        # Nota: SpeechRecognition default usa Google API
+        # Para local puro, deberías usar Vosk o similar
+        try:
+#                 audio = recognizer.listen(source, timeout=timeout, phrase_time_limit=phrase_limit)
+            # ADVERTENCIA: Esta línea usa Google API (no es local)
+            # Para verdadero local, usar Vosk arriba
+            print("[AUDIO_LOCAL] ADVERTENCIA: SpeechRecognition usa Google API, no es privado")
+            return None  # Retornar None fuerza a usar Vosk
+        except sr_lib.RequestError:
+            return None
+        except sr_lib.UnknownValueError:
+            return None
                 
     except Exception as e:
         print(f"[AUDIO_LOCAL] Error en SR STT: {e}")

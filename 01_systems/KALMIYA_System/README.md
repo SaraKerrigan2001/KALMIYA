@@ -27,3 +27,7 @@ Asistente autónomo con IA dual, seguridad activa y protección familiar.
 ---
 
 **v3.0** | ✅ Activo | [[INDEX|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

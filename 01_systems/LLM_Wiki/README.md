@@ -25,3 +25,7 @@ Ingest → Crear/actualizar → Query → Lint
 ---
 
 **Integración**: Completa | [[INDEX|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

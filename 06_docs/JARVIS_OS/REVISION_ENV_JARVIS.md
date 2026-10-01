@@ -143,3 +143,7 @@ Comparación entre la estructura de JARVIS OS (según imágenes) y la implementa
 
 **Fecha de revisión:** 2026-08-12  
 **Basado en:** JARVIS OS diagrams por @danielbrown.ia
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

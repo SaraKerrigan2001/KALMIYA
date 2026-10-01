@@ -2,7 +2,7 @@ import os
 from decouple import Config, RepositoryEnv, UndefinedValueError
 
 # Load .env from the KALMIYA_System directory
-ENV_PATH = os.path.join(os.path.dirname(__file__), '..', 'KALMIYA_System', '.env')
+ENV_PATH = os.path.join(os.path.dirname(__file__), '..', '.env')
 config = Config(RepositoryEnv(ENV_PATH))
 
 REQUIRED_KEYS = [
@@ -11,6 +11,8 @@ REQUIRED_KEYS = [
     "KALMIYA_SERVER_PORT",
     "KALMIYA_ENABLE_WALLPAPER",
 ]
+
+USERNAME = config("BOTNAME", default="KALMIYA")
 
 def get_config(key: str, default=None):
     """Fetch a configuration value, raising a clear error if missing and no default provided."""

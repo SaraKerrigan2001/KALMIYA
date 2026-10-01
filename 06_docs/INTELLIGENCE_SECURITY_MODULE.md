@@ -526,3 +526,7 @@ La responsabilidad legal es del usuario. KALMIYA rechaza instrucciones ilegales 
 **Estado**: Architecture Complete - Implementation in Progress
 
 [[INDEX|← Volver al índice]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

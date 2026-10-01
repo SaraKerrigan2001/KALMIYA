@@ -1,3 +1,5 @@
+from flask import Flask, request, jsonify
+from core.database import log_command, update_memory
 """
 phone_bridge.py - Puente de conexion celular-PC para KALMIYA
 =============================================================
@@ -19,16 +21,12 @@ El celular y la PC deben estar en la misma red WiFi.
 """
 
 import socket
-import json
 import threading
 import time
 import os
-import sys
 import qrcode
 from datetime import datetime
-from flask import Flask, request, jsonify, render_template_string
 from flask_cors import CORS
-from database import log_command, update_memory, get_memory
 from voz import speak, BOTNAME
 
 # ── Configuracion ──────────────────────────────────────────────────────────────
@@ -460,7 +458,7 @@ def send_notification_to_phones(text: str, app_name: str = "KALMIYA"):
         })
 
 
-def start_bridge(show_qr: bool = True) -> threading.Thread:
+def start_bridge(_show_qr: bool = True) -> threading.Thread:
     """
     Inicia el servidor de puente en un hilo separado.
     

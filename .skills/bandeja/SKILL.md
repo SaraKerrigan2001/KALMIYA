@@ -73,3 +73,7 @@ El skill **Bandeja** es tu resumen matutino. Cada mañana a las 7 AM, JARVIS te 
 ---
 **Creado:** 2026-08-12  
 **Estado:** Implementado ✅
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

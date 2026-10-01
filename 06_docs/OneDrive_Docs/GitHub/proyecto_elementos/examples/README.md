@@ -212,3 +212,7 @@ Si un ejemplo no funciona:
 ---
 
 [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README|← README proyecto]] | [[CONTRIBUTING|🤝 Contribuir KALMIYA]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

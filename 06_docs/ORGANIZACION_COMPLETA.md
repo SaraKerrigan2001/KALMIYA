@@ -256,3 +256,7 @@ Esto actualizará el grafo con la nueva estructura.
 **Proyecto KALMIYA completamente organizado y listo para desarrollo.**
 
 [[INDEX|← Volver al índice]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

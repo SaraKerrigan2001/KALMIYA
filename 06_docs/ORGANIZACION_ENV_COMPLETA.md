@@ -216,3 +216,7 @@ c:\Users\maria\env\
 ---
 
 [[INDEX|← Volver al índice]] | [[06_docs/ROOT_STRUCTURE|🗂️ Estructura Raíz]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

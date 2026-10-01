@@ -25,3 +25,7 @@ Esta carpeta centraliza la configuración del proyecto para Python y la distribu
 
 [[INDEX|← Volver al índice]]
 - Evita modificar archivos generados a menos que sepas exactamente por qué.
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_04_config]]

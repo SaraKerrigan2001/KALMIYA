@@ -26,6 +26,6 @@ class GestureRecognition:
         """Get available gesture commands."""
         return self.gestures
 
-    def train_gesture(self, gesture_name, samples):
+    def train_gesture(self, gesture_name, _samples):
         """Train gesture recognition with samples."""
         return {'gesture': gesture_name, 'trained': True}

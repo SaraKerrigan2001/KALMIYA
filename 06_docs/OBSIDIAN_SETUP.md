@@ -22,3 +22,7 @@ Vault configurado para funcionamiento óptimo.
 - [[OPEN_VAULT|Abrir el vault]]
 
 [[WELCOME|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

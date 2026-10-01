@@ -26,3 +26,7 @@ Esta carpeta reúne pruebas automáticas, comprobaciones del sistema y utilidade
 ---
 
 [[INDEX|← Volver al índice]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_05_tests]]

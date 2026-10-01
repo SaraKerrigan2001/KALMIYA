@@ -70,3 +70,7 @@ Presiona micrófono → Comienza a grabar
 **Creado:** 2026-08-12  
 **Estado:** Parcialmente Implementado ⚠️  
 **TODO**: Verificar STT/TTS son 100% locales
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

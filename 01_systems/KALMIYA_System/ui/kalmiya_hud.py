@@ -294,7 +294,7 @@ class KalmiyaHUD:
             # Ejecutamos la limpieza en consola sin enviar todo el string a la UI
             smart_performance_boost()
             self.root.after(0, self._on_res, "⚡ Optimización completada. El sistema está ahora a su máximo rendimiento.")
-        except: self.root.after(0, self._on_res, "Boost fallido.")
+        except Exception: self.root.after(0, self._on_res, "Boost fallido.")
 
     def _start_stats(self):
         self._stats_running = True

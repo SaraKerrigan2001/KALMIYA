@@ -1,3 +1,4 @@
+from typing import Dict, Any, List
 """
 pc_manager.py — Módulo de Control y Organización de PC para KALMIYA
 =====================================================================
@@ -12,7 +13,6 @@ import subprocess
 import difflib
 import re
 from pathlib import Path
-from typing import Dict, List, Any, Optional
 from _logging import get_logger
 
 logger = get_logger(__name__)

@@ -62,3 +62,7 @@ git push origin feature/nombre-del-ajuste
 ---
 
 [[INDEX|← Volver al Índice]] | [[README|📄 README]] | [[ISSUES|🐛 Reportar un Issue]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

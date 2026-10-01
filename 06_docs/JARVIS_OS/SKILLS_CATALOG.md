@@ -288,3 +288,7 @@ Suelta → Respuesta inmediata en voz
 **Documento Generated**: 2026-08-12  
 **Basado en**: JARVIS OS Architecture (@danielbrown.ia)  
 **Versión**: KALMIYA v3.5 + JARVIS Enhancement
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

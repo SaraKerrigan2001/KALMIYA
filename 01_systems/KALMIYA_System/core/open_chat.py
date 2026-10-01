@@ -7,7 +7,6 @@ Se puede llamar desde HUD, launcher, o línea de comandos.
 
 import subprocess
 import sys
-import os
 from pathlib import Path
 
 
@@ -25,10 +24,10 @@ def open_kalmiya_chat():
     # Cuando este módulo se carga desde core/, el directorio base es core/;
     # el widget real vive bajo KALMIYA_System/ui/ y no bajo core/ui/.
     candidates = [
-        kalmiya_dir.parent / "ui" / "kalmiya_chat.py",
-        kalmiya_dir / "ui" / "kalmiya_chat.py",
-        kalmiya_dir.parent / "kalmiya_chat.py",
-        kalmiya_dir / "kalmiya_chat.py",
+        kalmiya_dir.parent / "ui" / "kalmiya_chat_v4.py",
+        kalmiya_dir / "ui" / "kalmiya_chat_v4.py",
+        kalmiya_dir.parent / "kalmiya_chat_v4.py",
+        kalmiya_dir / "kalmiya_chat_v4.py",
     ]
 
     chat_file = None

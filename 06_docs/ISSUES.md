@@ -62,3 +62,7 @@ Gracias por contribuir a KALMIYA. Si encuentras un error, un comportamiento ines
 
 **Salida:**
 - Mensaje de error completo o captura de pantalla si es posible.
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

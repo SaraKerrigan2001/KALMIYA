@@ -6,8 +6,6 @@ Pantalla de inicio estilo terminal militar con animacion de boot.
 import tkinter as tk
 import threading
 import time
-import sys
-import os
 from typing import Optional
 
 BG_COLOR      = "#000000"

@@ -7,7 +7,6 @@ Rastrea productividad y genera reportes de tiempo enfocado
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional
 import json
 import threading
 
@@ -51,7 +50,7 @@ class FocusMode:
         self.current_task = task_name
         
         # Generar sesión
-        session_id = self.session_start.strftime("%Y%m%d_%H%M%S")
+#         session_id = self.session_start.strftime("%Y%m%d_%H%M%S")
         
         print(f"""
 ╔══════════════════════════════════════════════════════════════╗
@@ -243,7 +242,7 @@ class FocusMode:
                 with open(self.history_file, 'r', encoding='utf-8') as f:
                     self.sessions_history = json.load(f)
                 print(f"📊 {len(self.sessions_history)} sesiones cargadas del historial")
-            except:
+            except Exception:
                 self.sessions_history = []
 
 

@@ -21,3 +21,7 @@ Sistema de asistente autónomo con IA dual, seguridad y familia.
 ---
 
 [[KALMIYA_System/README|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

@@ -5,3 +5,6 @@ Cree una nota de algo, [[cree un enlace]], o pruebe [el Importador](https://help
 Cuando esté listo, borre esta nota y aprópiese de la bóveda.
 
 > [[KALMIYA_DASHBOARD|📊 Dashboard]] | [[INDEX|📋 Índice]] | [[WELCOME|👋 Bienvenida]]
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

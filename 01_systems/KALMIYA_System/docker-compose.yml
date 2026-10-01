@@ -1,28 +1,23 @@
 version: '3.8'
 
 services:
-  kalmiya-api:
+  kalmiya-system:
     build: .
-    container_name: kalmiya_api
+    container_name: kalmiya-system
+    restart: unless-stopped
+    volumes:
+      # Mapear volumen local para persistir base de datos
+      - ./chroma_db:/app/chroma_db
+      # Puedes descomentar esto si quieres pasar modelos locales en vez de descargarlos
+      # - ./model-es:/app/model-es
+      # Mapear configuración o memoria SQLite
+      # - ./kalmiya_memory.sqlite:/app/kalmiya_memory.sqlite
+    environment:
+      # Definir entorno
+      - ENVIRONMENT=production
+      # - OLLAMA_HOST=http://host.docker.internal:11434
     ports:
+      # Si exponen un API (ej. api_server.py en el puerto 8000)
       - "8000:8000"
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    environment:
-      - PYTHONUNBUFFERED=1
-    command: python api_server.py
-
-  kalmiya-mcp:
-    build: .
-    container_name: kalmiya_mcp
-    ports:
-      - "8765:8765"
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    environment:
-      - PYTHONUNBUFFERED=1
-    command: python intelligence/kalmiya_mcp.py --http --puerto 8765
+    # privileged: true # Descomentar si necesitas acceso a hardware USB (solo Linux)
+    # network_mode: "host" # Puede ayudar con integraciones locales

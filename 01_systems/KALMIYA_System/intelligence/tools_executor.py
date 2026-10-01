@@ -50,7 +50,7 @@ def execute_tool(tool_name: str, args: dict) -> str:
                 
                 try:
                     os.remove(temp_path)
-                except:
+                except Exception:
                     pass
                     
                 output = result.stdout + "\n" + result.stderr

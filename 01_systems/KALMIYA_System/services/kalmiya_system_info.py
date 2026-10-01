@@ -1,3 +1,4 @@
+from core.database import log_command
 """
 kalmiya_system_info.py — Información Completa del Sistema para KALMIYA
 =======================================================================
@@ -14,11 +15,9 @@ Le da a KALMIYA acceso total al PC:
 import os, sys, json, hashlib, subprocess as sp
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from voz import speak, USERNAME
-from database import log_command, update_memory
 from _logging import get_logger
 
 logger = get_logger(__name__)

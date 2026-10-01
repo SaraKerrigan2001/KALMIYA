@@ -21,7 +21,7 @@ def find_heavy_files(folders, min_size_mb=100):
                             'size_mb': size_mb,
                             'date': datetime.fromtimestamp(mtime).strftime('%Y-%m-%d')
                         })
-                except:
+                except Exception:
                     continue
     
     heavy_files.sort(key=lambda x: x['size_mb'], reverse=True)

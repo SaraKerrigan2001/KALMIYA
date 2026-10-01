@@ -145,3 +145,7 @@ Karpaty permite exportar visualizaciones:
 
 **Última actualización**: 2026-08-12  
 **Basado en**: JARVIS OS Architecture
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

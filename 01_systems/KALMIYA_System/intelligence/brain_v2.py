@@ -8,15 +8,11 @@ de LLMs locales y en la nube.
 import os
 import sys
 import json
-import re
-from datetime import datetime
 from decouple import config
 
 # Apuntar a la raíz de KALMIYA_System para poder importar database, os_ops, etc.
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import get_memory, update_memory, log_command, save_thought
-from os_ops import load_obsidian_vault_path
 from _logging import get_logger
 from kalmiya_tools_schema import OPENAI_TOOLS
 
@@ -175,7 +171,7 @@ def _route_to_engine_langchain(user_input: str, engine: str, extra_context: str 
 
 def ask_kalmiya(user_input: str, force_engine: str = '') -> str:
     """Función principal del cerebro v2 compatible con la v1."""
-    global _conversation_history, _pending_questions
+    global _conversation_history
     
     # 1. Registrar entrada
     _conversation_history.append({"role": "user", "content": user_input})

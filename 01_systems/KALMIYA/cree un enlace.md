@@ -32,3 +32,7 @@ Para crear un enlace usa: `[[nombre del archivo]]`
 ---
 
 [[KALMIYA/Bienvenido|← Atrás]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

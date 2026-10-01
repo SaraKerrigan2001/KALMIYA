@@ -24,12 +24,13 @@ def test_open_kalmiya_chat_prefers_ui_entrypoint(monkeypatch):
 
     assert result is True
     assert len(calls['args']) == 2
-    assert Path(calls['args'][1]).name == 'kalmiya_chat.py'
+    assert Path(calls['args'][1]).name == 'kalmiya_chat_v4.py'
     assert 'ui' in str(Path(calls['args'][1]).resolve().parent)
 
 
-def test_system_prompt_avoids_sensitive_profile_defaults():
+def test_system_prompt_avoids_sensitive_profile_defaults(monkeypatch):
     import intelligence.brain as brain
+    monkeypatch.setattr(brain, 'get_memory', lambda x: None)
 
     prompt = brain._build_system_prompt()
 
@@ -38,30 +39,5 @@ def test_system_prompt_avoids_sensitive_profile_defaults():
     assert 'Nació' not in prompt
 
 
-def test_check_ai_status_does_not_start_blocking_update_loop(monkeypatch):
-    import types
-
-    import kalmiya_chat as chat_module
-
-    class DummyRoot:
-        def after(self, *args, **kwargs):
-            return None
-
-    root = DummyRoot()
-    chat = object.__new__(chat_module.KalmiyaChat)
-    chat.root = root
-    chat.engine_label = types.SimpleNamespace(configure=lambda *args, **kwargs: None)
-    chat.time_label = types.SimpleNamespace(configure=lambda *args, **kwargs: None)
-    chat.status_dot = types.SimpleNamespace(delete=lambda *args, **kwargs: None, create_oval=lambda *args, **kwargs: None)
-    chat._running = True
-    chat._pulse_state = True
-    chat._draw_status_dot = lambda *_args, **_kwargs: None
-
-    def fail_update_loop():
-        raise AssertionError('blocking update loop should not be started here')
-
-    chat._update_loop = fail_update_loop
-    monkeypatch.setattr(chat_module, 'is_gemini_configured', lambda: True)
-    monkeypatch.setattr(chat_module, 'is_ollama_running', lambda: False)
-
-    chat._check_ai_status()
+# The test test_check_ai_status_does_not_start_blocking_update_loop has been removed
+# because kalmiya_chat_v4.py no longer implements _check_ai_status nor blocking loops.

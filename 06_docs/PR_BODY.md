@@ -42,3 +42,7 @@ Este PR integra varias mejoras y correcciones menores que hacen más robusta la 
 **Autogenerado por el flujo de trabajo local de desarrollo.**
 
 [[06_docs/CONTRIBUTING|← Ver guía de contribución]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

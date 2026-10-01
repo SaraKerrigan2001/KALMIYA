@@ -8,7 +8,6 @@ import cv2
 import threading
 import time
 from typing import Optional, Callable
-from pathlib import Path
 
 try:
     from .camera_recognition import KalmiyaVision

@@ -5,7 +5,6 @@ Usa Pocketsphinx (open-source) como alternativa a Porcupine
 """
 
 import speech_recognition as sr
-from pocketsphinx import LiveSpeech, get_model_path
 import threading
 import time
 from pathlib import Path
@@ -170,7 +169,7 @@ class WakeWordDetector:
             text: Texto que activó el wake word
         """
         self.detection_count += 1
-        timestamp = datetime.now().isoformat()
+#         timestamp = datetime.now().isoformat()
         
         print(f"""
 ╔══════════════════════════════════════════════════════════════╗
@@ -221,7 +220,7 @@ class WakeWordDetector:
                     data = json.load(f)
                     self.detection_count = data.get('total_detections', 0)
                     self.false_positives = data.get('false_positives', 0)
-            except:
+            except Exception:
                 pass
     
     def save_stats(self):

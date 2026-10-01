@@ -325,7 +325,7 @@ class KALMIYAIntelligence:
         try:
             hostname = socket.gethostbyaddr(ip)[0]
             return hostname
-        except:
+        except Exception:
             return "Desconocido"
 
     def _analyze_device_security(self, device):
@@ -927,7 +927,7 @@ try {
                 f.write(log_entry)
             speak(f"Información sobre {topic} integrada en mi base de datos interna. Mi conocimiento sigue expandiéndose.")
             return True
-        except:
+        except Exception:
             return False
 
     def system_optimize(self):
@@ -1232,7 +1232,6 @@ def boost_ai_memory():
     """Optimiza y prioriza la memoria RAM para los procesos de KALMIYA."""
     import psutil
     import os
-    import random
     
     try:
         speak("Iniciando expansión de memoria neural.")

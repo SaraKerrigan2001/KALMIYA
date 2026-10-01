@@ -471,3 +471,7 @@ Para post-mortem: L4 (forense)
 **Restricciones Éticas**: ✅ Implementadas
 
 [[INDEX|← Volver al índice principal]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

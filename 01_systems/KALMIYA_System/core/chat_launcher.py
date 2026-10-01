@@ -6,9 +6,7 @@ Se puede integrar en HUD, scripts, o comandos de voz.
 """
 
 import sys
-import os
 from pathlib import Path
-from typing import Optional
 
 # Setup paths — este archivo ya está dentro de KALMIYA_System
 KALMIYA_DIR = Path(__file__).parent

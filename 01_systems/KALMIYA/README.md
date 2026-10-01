@@ -23,3 +23,7 @@ Bóveda personal de Obsidian con notas, reflexiones y documentación.
 ---
 
 **Tipo**: Personal | [[INDEX|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

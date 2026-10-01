@@ -1,5 +1,4 @@
 import random
-import re
 
 class JavaTutor:
     def __init__(self):

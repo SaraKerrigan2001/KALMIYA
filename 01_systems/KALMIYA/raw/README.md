@@ -44,3 +44,7 @@ Ver configuración de sincronización en: `01_systems/KALMIYA_System/config/sync
 
 ---
 **Última actualización**: 2026-08-12
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

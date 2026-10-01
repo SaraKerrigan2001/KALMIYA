@@ -1,24 +1,26 @@
 # Índice del proyecto
 
 ## Documentación principal
-
 - [README.md](README.md) — visión general del proyecto.
 - [WELCOME.md](WELCOME.md) — bienvenida y entrada rápida.
-- [00_ORGANIZACION_PROYECTO.md](00_ORGANIZACION_PROYECTO.md) — mapa del repositorio.
 - [KALMIYA_DASHBOARD.md](KALMIYA_DASHBOARD.md) — resumen visual del proyecto.
 
 ## Carpetas clave
 
 ### Documentación
 
-- [00_docs_chat/](00_docs_chat/)
-- [00_docs_updates/](00_docs_updates/)
+- [[INDEX_06_docs|📚 Documentación]]
+- [[INDEX_07_notes|📝 Notas]]
+- [[INDEX_08_reports|📊 Reportes]]
+- [06_docs/chat/](06_docs/chat/)
+- [06_docs/updates/](06_docs/updates/)
 - [06_docs/](06_docs/)
 - [07_notes/](07_notes/)
 - [08_reports/](08_reports/)
 
 ### Sistema
 
+- [[INDEX_01_systems|⚙️ Sistemas (KALMIYA, RAPTOR, Wiki)]]
 - [01_systems/KALMIYA_System/](01_systems/KALMIYA_System/)
 - [01_systems/KALMIYA/](01_systems/KALMIYA/)
 - [01_systems/RAPTOR/](01_systems/RAPTOR/)
@@ -26,6 +28,9 @@
 
 ### Infraestructura y configuración
 
+- [[INDEX_02_infrastructure|🏗️ Infraestructura]]
+- [[INDEX_03_launchers|🚀 Launchers]]
+- [[INDEX_04_config|⚙️ Configuración]]
 - [02_infrastructure/](02_infrastructure/)
 - [03_launchers/](03_launchers/)
 - [04_config/](04_config/)
@@ -33,6 +38,7 @@
 
 ### Validación
 
+- [[INDEX_05_tests|✅ Pruebas y Validación]]
 - [05_tests/](05_tests/)
 - [05_tests/test_open_chat_paths.py](05_tests/test_open_chat_paths.py)
 - [pytest.ini](pytest.ini)
@@ -53,10 +59,9 @@
 ## Sugerencia de lectura
 
 1. [README.md](README.md)
-2. [00_ORGANIZACION_PROYECTO.md](00_ORGANIZACION_PROYECTO.md)
-3. [03_launchers/README.md](03_launchers/README.md)
-4. [05_tests/test_open_chat_paths.py](05_tests/test_open_chat_paths.py)
-5. [06_docs/](06_docs/)
+2. [03_launchers/README.md](03_launchers/README.md)
+3. [05_tests/test_open_chat_paths.py](05_tests/test_open_chat_paths.py)
+4. [06_docs/](06_docs/)
 | Solo chat IA | Ícono **"KALMIYA Chat"** en escritorio |
 | Chat desde raíz | `python 03_launchers/chat.py` |
 | Chat con consola | `03_launchers/Chat_KALMIYA.bat` |

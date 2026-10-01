@@ -224,3 +224,7 @@ El sistema está:
 ## 📖 Lee Primero
 
 👉 **[JARVIS_OS_README.md](JARVIS_OS_README.md)** ← Comienza aquí
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

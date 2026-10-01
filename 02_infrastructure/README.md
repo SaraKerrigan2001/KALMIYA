@@ -25,3 +25,7 @@ Esta carpeta contiene los recursos que sostienen la ejecución local de KALMIYA:
 
 [[INDEX|← Volver al índice]]
 - Mantén reports ordenado si genera información útil para revisión.
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_02_infrastructure]]

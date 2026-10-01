@@ -87,3 +87,7 @@ El skill **Inteligencia** es el pensamiento profundo de JARVIS. Combina:
 ---
 **Creado:** 2026-08-12  
 **Estado:** Implementado ✅
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

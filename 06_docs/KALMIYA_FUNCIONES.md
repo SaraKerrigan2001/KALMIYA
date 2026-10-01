@@ -194,3 +194,7 @@ todo_mgr.add_todo('task1', 'Mi primera tarea', priority='high')
 **¿Cuál función te gustaría agregar primero?**
 
 [[WELCOME|← Volver a Bienvenida]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

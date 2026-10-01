@@ -107,3 +107,7 @@ Reportes y resultados de análisis o diagnóstico.
 ---
 
 [[INDEX|← Volver al índice]] | [[06_docs/ESTRUCTURA_VISUAL|🗺️ Ver estructura visual]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

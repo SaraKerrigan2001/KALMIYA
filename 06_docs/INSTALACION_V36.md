@@ -457,3 +457,7 @@ python vector_store.py
 
 **Versión del documento:** 1.0  
 **Última actualización:** 13 de agosto de 2026
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

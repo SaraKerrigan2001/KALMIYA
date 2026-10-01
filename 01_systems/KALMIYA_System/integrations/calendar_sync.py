@@ -4,12 +4,10 @@ Sincronización bidireccional con Google Calendar, Outlook, y gestores de tareas
 Alimenta el skill "Plan" con datos reales de calendario y prioridades
 """
 
-import os
 import pickle
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import List, Dict, Optional
 import pickle
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow

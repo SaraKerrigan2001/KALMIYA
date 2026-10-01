@@ -21,11 +21,7 @@ KALMIYA está compuesto por cuatro capas principales:
 
 ## Organización del repositorio
 
-```text
 ENV/
-├── 00_docs_chat/          # documentación del chat y guías de uso
-├── 00_docs_project/       # documentación técnica y de proyecto
-├── 00_docs_updates/       # resumenes y actualizaciones
 ├── 01_systems/            # módulos del sistema y aplicaciones
 │   ├── KALMIYA/
 │   ├── KALMIYA_System/
@@ -46,7 +42,6 @@ ENV/
 ├── .skills/
 ├── .venv/
 ├── .venv313/
-├── 00_ORGANIZACION_PROYECTO.md
 ├── INDEX.md
 ├── KALMIYA_DASHBOARD.md
 ├── LICENSE
@@ -58,12 +53,11 @@ ENV/
 
 ## Qué mirar primero
 
-1. [00_ORGANIZACION_PROYECTO.md](00_ORGANIZACION_PROYECTO.md) — mapa del repositorio.
-2. [INDEX.md](INDEX.md) — índice general de documentación.
-3. [WELCOME.md](WELCOME.md) — bienvenida de entrada.
-4. [03_launchers/README.md](03_launchers/README.md) — lanzadores importantes.
-5. [04_config/requirements.txt](04_config/requirements.txt) — dependencias del entorno.
-6. [05_tests/test_open_chat_paths.py](05_tests/test_open_chat_paths.py) — prueba real de validación del núcleo.
+1. [INDEX.md](INDEX.md) — índice general de documentación.
+2. [WELCOME.md](WELCOME.md) — bienvenida de entrada.
+3. [03_launchers/README.md](03_launchers/README.md) — lanzadores importantes.
+4. [04_config/requirements.txt](04_config/requirements.txt) — dependencias del entorno.
+5. [05_tests/test_open_chat_paths.py](05_tests/test_open_chat_paths.py) — prueba real de validación del núcleo.
 
 ## Puntos de entrada del sistema
 
@@ -95,8 +89,8 @@ Resultado verificado:
 
 ## Recomendaciones
 
-- Mantener la documentación principal en [README.md](README.md), [INDEX.md](INDEX.md) y [00_ORGANIZACION_PROYECTO.md](00_ORGANIZACION_PROYECTO.md).
-- Usar 00_docs_* y 06_docs/ para documentación detallada.
+- Mantener la documentación principal en [README.md](README.md) y [INDEX.md](INDEX.md).
+- Usar 06_docs/ para documentación detallada.
 - Reservar _TEMP, _UNUSED y _BACKUPS para artefactos temporales y no como parte del desarrollo activo.
 - Para cambios funcionales, priorizar pruebas reales bajo 05_tests/.
 
@@ -324,3 +318,7 @@ El proyecto puede incluir archivos grandes, configuraciones locales y datos pers
 ---
 
 [[INDEX|← Índice Principal]] | [[KALMIYA_DASHBOARD|📊 Dashboard]] | [[06_docs/ROADMAP|🗺️ Roadmap]] | [[WELCOME|👋 Bienvenida]] | [[06_docs/CONTRIBUTING|🤝 Contribuir]] | [[06_docs/ISSUES|🐛 Issues]]
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

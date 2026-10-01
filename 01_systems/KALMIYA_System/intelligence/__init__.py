@@ -1,6 +1,5 @@
 # Package intelligence
 
-from .intelligence import *
 
 __all__ = [
     name for name in dir()

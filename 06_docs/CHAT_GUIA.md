@@ -94,3 +94,7 @@ El chat muestra el estado de los motores:
 **¿Listo para chatear?** → `Chat_KALMIYA.bat`
 
 [[WELCOME|← Volver a Bienvenida]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

@@ -13,7 +13,7 @@ class TranslationRealTime:
         self.active_sessions.append(session)
         return session
 
-    def translate_speech(self, audio_input, target_language):
+    def translate_speech(self, _audio_input, target_language):
         """Translate speech in real-time."""
         return {
             'source_text': None,

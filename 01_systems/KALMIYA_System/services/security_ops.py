@@ -23,24 +23,18 @@ import time
 import json
 import re
 import os
-import hashlib
 import secrets
 import string
 from datetime import datetime
-from typing import Optional
 from database import log_command, update_memory, get_memory
 from voz import speak
 
 # ── Intentar importar librerias opcionales ─────────────────────────────────────
-try:
-    import scapy.all as scapy
-    SCAPY_OK = True
-except Exception:
-    SCAPY_OK = False
-    print("[SECURITY] scapy no disponible - algunas funciones limitadas")
+# SCAPY se cargará de manera lazy en _scan_with_scapy
+SCAPY_OK = False
+scapy = None
 
 try:
-    import psutil
     PSUTIL_OK = True
 except Exception:
     PSUTIL_OK = False
@@ -95,6 +89,7 @@ def _scan_with_scapy(ip_range: str) -> list[dict]:
     """Escaneo ARP con scapy (mas preciso)."""
     devices = []
     try:
+        import scapy.all as scapy
         arp = scapy.ARP(pdst=ip_range)
         ether = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
         packet = ether / arp
@@ -115,7 +110,7 @@ def _scan_with_scapy(ip_range: str) -> list[dict]:
 
 def _scan_with_ping(ip_range: str) -> list[dict]:
     """Escaneo por ping (fallback sin scapy)."""
-    devices = []
+#     devices = []
     base = '.'.join(ip_range.split('.')[:3])
     results = []
     lock = threading.Lock()
@@ -668,7 +663,6 @@ def generate_strong_password(length: int = 20, memorable: bool = False) -> str:
         # Palabras + numeros + simbolo
         words = ["Kalmiya", "Sara", "Neural", "Cyber", "Shield", "Quantum",
                  "Nexus", "Cipher", "Vortex", "Phantom"]
-        import random
         w1 = secrets.choice(words)
         w2 = secrets.choice(words)
         num = secrets.randbelow(9999)

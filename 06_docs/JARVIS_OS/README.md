@@ -254,3 +254,7 @@ Para más detalles sobre cada componente:
 ---
 
 **¡Bienvenido a JARVIS OS!** 🌟
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

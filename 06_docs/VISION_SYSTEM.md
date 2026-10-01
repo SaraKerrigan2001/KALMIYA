@@ -558,3 +558,7 @@ with open("known_faces/known_faces.pkl", "rb") as f:
 **Última actualización:** Agosto 2026 | KALMIYA v3.6
 
 [[INDEX|← Índice]] | [[README|📄 README]] | [[06_docs/TROUBLESHOOTING|🔧 Troubleshooting]] | [[WELCOME|👋 Bienvenida]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

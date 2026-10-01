@@ -1,5 +1,4 @@
 import os
-import shutil
 
 def get_dir_size(path):
     total = 0

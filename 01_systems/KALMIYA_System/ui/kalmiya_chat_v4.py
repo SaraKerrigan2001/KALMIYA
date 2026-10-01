@@ -31,9 +31,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
-    sys.path.insert(0, os.path.join(root_dir, 'services'))
-    sys.path.insert(0, os.path.join(root_dir, 'core'))
-    sys.path.insert(0, os.path.join(root_dir, 'audio'))
+for sub in ['services', 'core', 'audio']:
+    sub_path = os.path.join(root_dir, sub)
+    if sub_path not in sys.path:
+        sys.path.insert(0, sub_path)
 
 try:
     import psutil
@@ -58,7 +59,7 @@ except Exception as e:
     def get_engine_status() -> dict: return {}
 
 from decouple import config
-USERNAME = config('USER', default='Sara')
+USERNAME = config('USER', default='Sara Kerrigan')
 BOTNAME = config('BOTNAME', default='KALMIYA')
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -176,7 +177,7 @@ class KalmiyaChatV4:
                 with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     self._history = data.get('messages', [])[-50:]  # Últimas 50
-        except:
+        except Exception:
             self._history = []
     
     def _save_history(self):
@@ -185,7 +186,7 @@ class KalmiyaChatV4:
             HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
             with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
                 json.dump({'messages': self._history}, f, ensure_ascii=False, indent=2)
-        except:
+        except Exception:
             pass
     
     def _build_window(self):
@@ -327,7 +328,7 @@ class KalmiyaChatV4:
         # Título animado
         self.greeting_label = ctk.CTkLabel(
             info,
-            text=f"👋 {greeting}, {USERNAME}!",
+            text=f"👋 {greeting} {USERNAME}",
             font=ctk.CTkFont("Consolas", 17, "bold"),
             text_color=self.theme["text_white"],
             anchor="w"
@@ -368,6 +369,18 @@ class KalmiyaChatV4:
             command=self._voice_command
         ).pack(side="left", padx=(0, 5))
         
+        # Botón de cámara (visión)
+        ctk.CTkButton(
+            quick_btns,
+            text="👁️ Cámara",
+            width=70,
+            height=28,
+            fg_color=self.theme["accent_primary"],
+            hover_color=self.theme["accent_secondary"],
+            font=ctk.CTkFont("Consolas", 10),
+            command=self._camera_command
+        ).pack(side="left", padx=(0, 5))
+        
         # Botón de comandos rápidos
         ctk.CTkButton(
             quick_btns,
@@ -381,7 +394,6 @@ class KalmiyaChatV4:
         ).pack(side="left", padx=(0, 5))
         
         # Wave indicator
-        import math
         self.wave_canvas = Canvas(
             info,
             width=280,
@@ -1013,7 +1025,7 @@ class KalmiyaChatV4:
         """Actualiza colores del footer"""
         try:
             self.time_label.configure(text_color=self.theme["text_gray"])
-        except:
+        except Exception:
             pass
     
     def _toggle_pin(self):
@@ -1072,6 +1084,27 @@ Esc - Minimizar ventana
     def _voice_command(self):
         """Placeholder para comando de voz"""
         self._show_notification("🎤 Función de voz próximamente...")
+        
+    def _camera_command(self):
+        """Activa reconocimiento facial / visión"""
+        self._show_notification("👁️ Activando visión óptica...")
+        self._add_message(BOTNAME, "He iniciado la interfaz de visión óptica en una ventana separada. ¡Salúdame a la cámara!", is_bot=True)
+        
+        def run_vision():
+            try:
+                import subprocess
+                import os
+                import sys
+                
+                # Ejecutar en proceso independiente para evitar bloqueos de UI
+                root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                script = f"import sys; sys.path.insert(0, r'{root_dir}'); from vision.camera_recognition import KalmiyaVision; KalmiyaVision().start_recognition_session(60, False)"
+                subprocess.Popen([sys.executable, "-c", script])
+            except Exception as e:
+                print(f"Error in vision: {e}")
+                
+        import threading
+        threading.Thread(target=run_vision, daemon=True).start()
     
     def _quick_commands(self):
         """Muestra comandos rápidos"""
@@ -1291,7 +1324,7 @@ Esc - Minimizar ventana
         try:
             current_time = datetime.now().strftime("%H:%M")
             self.root.after(0, lambda: self.time_label.configure(text=current_time))
-        except:
+        except Exception:
             pass
         self.root.after(30000, self._schedule_time_update)
     
@@ -1306,7 +1339,7 @@ Esc - Minimizar ventana
                 disk = psutil.disk_usage('C:\\' if sys.platform == 'win32' else '/').percent # type: ignore
                 text = f"CPU: {cpu:.0f}% | RAM: {ram:.0f}% | Disco: {disk:.0f}%"
                 self.root.after(0, lambda t=text: self.stats_label.configure(text=t))
-        except:
+        except Exception:
             pass
         self.root.after(5000, self._schedule_stats_update)
     
@@ -1316,7 +1349,7 @@ Esc - Minimizar ventana
         if 5 <= hour < 12:
             return random.choice(["Buenos días", "¡Buenos días!", "Buen día"])
         elif 12 <= hour < 19:
-            return random.choice(["Buenas tardes", "¡Buenas tardes!", "Buena tarde"])
+            return "Buenas Tardes"
         else:
             return random.choice(["Buenas noches", "¡Buenas noches!", "Buena noche"])
     
@@ -1347,7 +1380,7 @@ Esc - Minimizar ventana
             self.root.focus_force()
             # Imprimir en consola para debug
             print("✅ Ventana forzada a primer plano")
-        except:
+        except Exception:
             pass
     
     def _on_close(self):

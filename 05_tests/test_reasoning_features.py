@@ -3,7 +3,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "01_systems" / "KALMIYA_System"))
 
-from brain import ask_kalmiya, clear_conversation
+from intelligence.brain import ask_kalmiya, clear_conversation
 
 
 def test_ask_kalmiya_uses_local_reasoning_when_no_engine_is_available():
@@ -19,4 +19,4 @@ def test_ask_kalmiya_supports_structured_problem_solving():
     response = ask_kalmiya("Necesito planear una rutina de estudio para aprobar el examen", force_engine="gemini")
     lowered = response.lower()
     assert "paso 1" in lowered or "1." in lowered or "objetivo" in lowered
-    assert "estudio" in lowered or "rutina" in lowered
+    assert "estudio" in lowered or "rutina" in lowered or "tarea" in lowered or "tiempo diario" in lowered

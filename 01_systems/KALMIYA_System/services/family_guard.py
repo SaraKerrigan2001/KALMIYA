@@ -1,3 +1,5 @@
+from datetime import datetime
+from core.database import log_command, update_memory
 """
 family_guard.py - Sistema de proteccion familiar de KALMIYA
 ============================================================
@@ -14,12 +16,9 @@ import threading
 import time
 import json
 import os
-from datetime import datetime, timedelta
-from database import log_command, update_memory, get_memory
 from voz import speak
 
 try:
-    import requests
     REQUESTS_OK = True
 except Exception:
     REQUESTS_OK = False

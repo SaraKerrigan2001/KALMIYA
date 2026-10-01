@@ -31,3 +31,7 @@ Esta carpeta concentra los componentes centrales del asistente: el núcleo del s
 1. Implementa o ajusta la lógica en KALMIYA_System.
 2. Prueba los cambios desde el chat o desde los scripts de lanzamiento.
 3. Documenta mejoras en la bóveda o en la wiki si afectan la experiencia del usuario.
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

@@ -238,3 +238,7 @@ Si encuentras problemas:
 **Última actualización:** 2026-08-08  
 **Versión:** 1.0.0  
 **Estado:** ✅ Integrado
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

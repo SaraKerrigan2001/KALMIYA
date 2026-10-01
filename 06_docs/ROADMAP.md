@@ -397,3 +397,7 @@ Una plataforma de inteligencia personal que:
 
 **Última actualización:** 13 de agosto de 2026  
 **Próxima revisión:** 1 de octubre de 2026
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

@@ -21,7 +21,6 @@ import subprocess
 import ctypes
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 from decouple import config
 
 
@@ -122,10 +121,10 @@ def _run_splash() -> bool:
     _log("SPLASH", "Iniciando pantalla de arranque...", "info")
     try:
         # Ejecutar splash en proceso separado y esperar
-        proc = subprocess.run(
-            [sys.executable, str(splash_path)],
-            timeout=30
-        )
+#         proc = subprocess.run(
+#             [sys.executable, str(splash_path)],
+#             timeout=30
+#         )
         _log("SPLASH", "Pantalla de arranque completada.", "ok")
         return True
     except subprocess.TimeoutExpired:

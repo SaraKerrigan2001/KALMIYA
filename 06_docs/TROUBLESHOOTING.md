@@ -409,3 +409,7 @@ UPDATE_INTERVAL = 5  # Cada 5 segundos en vez de 2
 **Última actualización:** Agosto 2026 | KALMIYA v3.6
 
 [[INDEX|← Índice]] | [[README|📄 README]] | [[06_docs/INSTALACION_V36|📦 Instalación]] | [[WELCOME|👋 Bienvenida]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

@@ -19,7 +19,6 @@ import os, sys, json, hashlib, re
 os.environ["HF_HUB_OFFLINE"] = "1"
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from database import log_command, update_memory, get_memory
@@ -255,7 +254,7 @@ def _dividir_en_chunks(texto: str, fuente: str) -> list[dict]:
     return chunks
 
 
-def _subdividir_chunk(texto: str, fuente: str, start_idx: int) -> list[dict]:
+def _subdividir_chunk(texto: str, fuente: str, _start_idx: int) -> list[dict]:
     """Deprecado: RecursiveCharacterTextSplitter ya maneja el tamaño máximo."""
     return []
 
@@ -553,7 +552,6 @@ def responder_con_rag(query: str, force_engine: str = "") -> dict:
     Returns:
         Dict con 'response' (texto), 'rag_sources' (lista fuentes), 'rag_used' (bool).
     """
-    from brain import ask_kalmiya, _conversation_history
 
     contexto, fuentes = construir_contexto_rag(query, top_k=TOP_K)
     rag_used = False
@@ -655,7 +653,7 @@ def indexar_url(url: str) -> dict:
                 self.textos = []
                 self._skip = False
 
-            def handle_starttag(self, tag, attrs):
+            def handle_starttag(self, tag, _attrs):
                 self._skip = tag in ('script', 'style', 'nav', 'footer', 'header')
 
             def handle_endtag(self, tag):

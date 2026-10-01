@@ -46,3 +46,7 @@ python chat_kalmiya.py --list             # Listar modos disponibles
 ---
 
 [[INDEX|← Volver al índice]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_03_launchers]]

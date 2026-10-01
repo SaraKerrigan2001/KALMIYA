@@ -1,1 +1,14 @@
-{ "python.defaultInterpreterPath": "c:\\Users\\maria\\env\\Scripts\\python.exe", "python.analysis.extraPaths": ["c:\\Users\\maria\\env\\01_systems\\KALMIYA_System", "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\core", "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\intelligence"] }
+{
+  "python.defaultInterpreterPath": "c:\\Users\\maria\\env\\Scripts\\python.exe",
+  "python.analysis.extraPaths": [
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\core",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\intelligence",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\services",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\kalmiya",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\modules",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\utils",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\extras",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\memory"
+  ]
+}

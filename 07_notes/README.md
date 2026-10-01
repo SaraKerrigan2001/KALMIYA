@@ -28,3 +28,7 @@ Usa esta carpeta para registrar:
 ---
 
 [[INDEX|← Volver al índice]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_07_notes]]

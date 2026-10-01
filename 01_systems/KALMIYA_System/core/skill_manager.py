@@ -6,7 +6,6 @@ Permite habilitar/deshabilitar skills y personalizar su comportamiento
 
 import yaml
 from pathlib import Path
-from typing import Dict, List, Optional
 from datetime import datetime, time
 import schedule
 import threading

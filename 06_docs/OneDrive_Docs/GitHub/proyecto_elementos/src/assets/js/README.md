@@ -614,3 +614,6 @@ import ComponentName from './assets/js/ComponentName'
 **Versión del sistema:** 2025.1
 **Autor:** Sistema SENA BIENES
 | [[WELCOME|Inicio]]|
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

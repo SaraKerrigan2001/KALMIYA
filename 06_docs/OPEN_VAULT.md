@@ -19,3 +19,7 @@ tags: [guide, start]
 - Lee [[WELCOME|WELCOME.md]] primero
 
 [[WELCOME|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

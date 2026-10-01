@@ -46,7 +46,7 @@ class ModuleManager:
             if isinstance(args_json, str):
                 try:
                     args_dict = json.loads(args_json)
-                except:
+                except Exception as e:
                     args_dict = {}
             elif isinstance(args_json, dict):
                 args_dict = args_json

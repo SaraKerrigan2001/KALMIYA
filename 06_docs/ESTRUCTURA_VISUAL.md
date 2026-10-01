@@ -138,3 +138,7 @@ Usuario
 ---
 
 [[INDEX|← Volver al Índice]] | [[KALMIYA_DASHBOARD|📊 Dashboard]] | [[MODULOS_IMPLEMENTADOS|📦 Módulos]] | [[08_reports/graphify-out/GRAPH_REPORT|📊 Graph Report]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

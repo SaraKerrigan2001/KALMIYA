@@ -8,12 +8,9 @@ Permite a KALMIYA:
   - Organizar notas por categoría
 """
 
-import os
 import re
-import json
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 
 from _logging import get_logger
 from os_ops import load_obsidian_vault_path

@@ -773,3 +773,7 @@ Menú → ASI1 → "Activar modo ASI"
 
 **Fase IV Estado**: Arquitectura Completa - Implementación en Progreso  
 **Última Actualización**: Agosto 2026
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

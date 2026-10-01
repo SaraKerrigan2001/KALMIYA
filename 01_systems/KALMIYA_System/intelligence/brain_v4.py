@@ -7,16 +7,11 @@ de LLMs locales y en la nube.
 
 import os
 import sys
-import json
-import re
-from datetime import datetime
 from decouple import config
 
 # Apuntar a la raíz de KALMIYA_System para poder importar database, os_ops, etc.
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import get_memory, update_memory, log_command, save_thought
-from os_ops import load_obsidian_vault_path
 from _logging import get_logger
 from kalmiya_tools_schema import OPENAI_TOOLS
 
@@ -56,7 +51,7 @@ BOTNAME            = config('BOTNAME',             default='KALMIYA')
 USERNAME           = config('USER',                default='Sara')
 
 _conversation_history: list[dict] = []
-MAX_HISTORY = 30
+MAX_HISTORY = 10  # Reducido para ahorrar memoria
 _active_engine = "ninguno"
 _pending_questions: list[str] = []
 
@@ -91,16 +86,17 @@ def _get_langchain_model(engine: str):
         return None
 
     if engine == 'ollama':
-        return ChatOllama(model=AI_MODEL)
+        return ChatOllama(model=AI_MODEL, max_tokens=150)
         
     elif engine == 'gemini':
         if not GEMINI_KEY:
             return None
         # Accedemos a Gemini usando el endpoint OpenAI compatible para máxima compatibilidad
         return ChatOpenAI(
-            model="gemini-2.5-flash",
+            model="gemini-1.5-flash",  # Cambiado a un modelo más ligero/rápido
             api_key=GEMINI_KEY,
-            base_url="https://generativelanguage.googleapis.com/v1beta/openai"
+            base_url="https://generativelanguage.googleapis.com/v1beta/openai",
+            max_tokens=150
         )
         
     elif engine == 'groq':
@@ -191,7 +187,7 @@ def _route_to_engine_langchain(user_input: str, engine: str, extra_context: str 
 
 def ask_kalmiya(user_input: str, force_engine: str = '') -> str:
     """Función principal del cerebro v4 compatible con la v1."""
-    global _conversation_history, _pending_questions
+    global _conversation_history
     
     # 1. Registrar entrada
     _conversation_history.append({"role": "user", "content": user_input})

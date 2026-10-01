@@ -9,9 +9,7 @@ Automatiza la actualización de archivos Python en KALMIYA_System con:
 - Excepciones específicas
 """
 
-import os
 import re
-import sys
 from pathlib import Path
 from typing import Tuple
 

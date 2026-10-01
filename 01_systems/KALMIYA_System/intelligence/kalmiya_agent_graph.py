@@ -16,6 +16,8 @@ def route_message(state: AgentState) -> str:
         return "investigator_agent"
     elif "código" in last_msg or "programa" in last_msg:
         return "coder_agent"
+    elif "seguridad" in last_msg or "hack" in last_msg or "vulnerabilidad" in last_msg or "audita" in last_msg:
+        return "cybersecurity_agent"
     else:
         return "main_assistant"
 
@@ -28,6 +30,12 @@ def coder_agent(state: AgentState):
     print("[AgentGraph] Activando Agente Programador...")
     response = AIMessage(content="[Programador] Escribiendo el código solicitado...")
     return {"messages": [response], "current_agent": "coder_agent"}
+
+def cybersecurity_agent(state: AgentState):
+    print("[AgentGraph] Activando Agente de Ciberseguridad (RAPTOR)...")
+    # Aquí se podría integrar la llamada a subprocess.run() hacia RAPTOR/raptor_agentic.py
+    response = AIMessage(content="[RAPTOR - CyberSecurity] Analizando vulnerabilidades y vectores de ataque solicitados...")
+    return {"messages": [response], "current_agent": "cybersecurity_agent"}
 
 def main_assistant(state: AgentState):
     print("[AgentGraph] Activando Asistente Principal...")
@@ -46,6 +54,7 @@ workflow = StateGraph(AgentState)
 # Añadir nodos
 workflow.add_node("investigator_agent", investigator_agent)
 workflow.add_node("coder_agent", coder_agent)
+workflow.add_node("cybersecurity_agent", cybersecurity_agent)
 workflow.add_node("main_assistant", main_assistant)
 
 # Añadir enrutador condicional desde el inicio
@@ -54,6 +63,7 @@ workflow.set_conditional_entry_point(
     {
         "investigator_agent": "investigator_agent",
         "coder_agent": "coder_agent",
+        "cybersecurity_agent": "cybersecurity_agent",
         "main_assistant": "main_assistant"
     }
 )
@@ -61,6 +71,7 @@ workflow.set_conditional_entry_point(
 # Todos terminan
 workflow.add_edge("investigator_agent", END)
 workflow.add_edge("coder_agent", END)
+workflow.add_edge("cybersecurity_agent", END)
 workflow.add_edge("main_assistant", END)
 
 # Compilar

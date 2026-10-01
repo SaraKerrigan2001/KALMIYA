@@ -1,3 +1,4 @@
+from typing import Optional
 """
 pc_bridge.py — Puente de Control de PC para KALMIYA
 ===================================================
@@ -6,8 +7,6 @@ organización de carpetas y análisis de discos, conectándolos con pc_manager.p
 """
 
 import re
-import json
-from typing import Optional, Dict, Any
 from pc_manager import analyze_disks, organize_folder, clean_temp_files
 from _logging import get_logger
 

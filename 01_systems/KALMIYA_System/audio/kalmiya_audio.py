@@ -22,7 +22,6 @@ from _logging import get_logger
 logger = get_logger(__name__)
 
 try:
-    import psutil
     PSUTIL_OK = True
 except ImportError:
     PSUTIL_OK = False
@@ -106,24 +105,24 @@ def _ps(cmd: str, timeout: int = 8) -> str:
 
 def get_volumen_maestro() -> int:
     """Lee el volumen maestro actual del sistema (0-100)."""
-    out = _ps(
-        "(New-Object -ComObject WScript.Shell).SendKeys([char]173);"
-        "$vol = (Get-WmiObject -Namespace root/cimv2 -Query "
-        "'SELECT * FROM Win32_SoundDevice').StatusInfo; "
-        "Add-Type -TypeDefinition '"
-        "using System.Runtime.InteropServices;"
-        "[Guid(\"5CDF2C82-841E-4546-9722-0CF74078229A\")]"
-        "[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]"
-        "public interface IAudioEndpointVolume { }';"
-    )
+#     out = _ps(
+#         "(New-Object -ComObject WScript.Shell).SendKeys([char]173);"
+#         "$vol = (Get-WmiObject -Namespace root/cimv2 -Query "
+#         "'SELECT * FROM Win32_SoundDevice').StatusInfo; "
+#         "Add-Type -TypeDefinition '"
+#         "using System.Runtime.InteropServices;"
+#         "[Guid(\"5CDF2C82-841E-4546-9722-0CF74078229A\")]"
+#         "[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]"
+#         "public interface IAudioEndpointVolume { }';"
+#     )
     # Método alternativo con VBScript/SoundMixer
     try:
-        out2 = _ps(
-            "$wshShell = New-Object -ComObject WScript.Shell;"
-            "[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null;"
-            "$vol = [System.Windows.Forms.SendKeys]; "
-            "(Get-WmiObject Win32_SoundDevice | Measure-Object).Count"
-        )
+#         out2 = _ps(
+        #     "$wshShell = New-Object -ComObject WScript.Shell;"
+        #     "[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null;"
+        #     "$vol = [System.Windows.Forms.SendKeys]; "
+        #     "(Get-WmiObject Win32_SoundDevice | Measure-Object).Count"
+        # )
         # Leer volumen via PyCaw si disponible, sino retornar estado guardado
         return _audio_state["volumen_maestro"]
     except Exception:
@@ -139,16 +138,16 @@ def set_volumen_maestro(nivel: int) -> bool:
     nivel = max(0, min(100, nivel))
     try:
         # Método 1: PowerShell con SoundMixer COM
-        script = (
-            f"$obj = New-Object -ComObject WScript.Shell; "
-            f"$vol = {nivel}; "
-            f"Add-Type -AssemblyName System.Windows.Forms; "
-            f"$current = [System.Math]::Round((50 * $vol) / 100); "
-            f"[System.Audio.AudioMixer]::SetVolume($vol) 2>$null; "
-            f"# Método alternativo via nircmd "
-            f"$nircmd = 'C:\\\\Windows\\\\System32\\\\nircmd.exe'; "
-            f"if (Test-Path $nircmd) {{ & $nircmd setsysvolume {int(nivel * 655.35)} }}"
-        )
+#         script = (
+        #     f"$obj = New-Object -ComObject WScript.Shell; "
+        #     f"$vol = {nivel}; "
+        #     f"Add-Type -AssemblyName System.Windows.Forms; "
+        #     f"$current = [System.Math]::Round((50 * $vol) / 100); "
+        #     f"[System.Audio.AudioMixer]::SetVolume($vol) 2>$null; "
+        #     f"# Método alternativo via nircmd "
+        #     f"$nircmd = 'C:\\\\Windows\\\\System32\\\\nircmd.exe'; "
+        #     f"if (Test-Path $nircmd) {{ & $nircmd setsysvolume {int(nivel * 655.35)} }}"
+        # )
         # Método 2: Script VBS más confiable
         vbs_content = (
             f'Dim oWMP, oLib, oEq\n'
@@ -206,15 +205,15 @@ def set_volumen_microfono(nivel: int) -> bool:
     """Establece el volumen del micrófono (0-100)."""
     nivel = max(0, min(100, nivel))
     try:
-        script = (
-            f"$reg = 'HKCU:\\Software\\Microsoft\\Speech\\AudioOutput'; "
-            f"$mic = Get-WmiObject Win32_SoundDevice | Where-Object "
-            f"{{$_.DeviceID -like '*INPUTCAPTURE*'}} | Select-Object -First 1; "
-            f"if ($mic) {{ "
-            f"  $mixer = New-Object System.Media.SoundPlayer; "
-            f"}} "
-            f"# via mmsys.cpl mic boost "
-        )
+#         script = (
+        #     f"$reg = 'HKCU:\\Software\\Microsoft\\Speech\\AudioOutput'; "
+        #     f"$mic = Get-WmiObject Win32_SoundDevice | Where-Object "
+        #     f"{{$_.DeviceID -like '*INPUTCAPTURE*'}} | Select-Object -First 1; "
+        #     f"if ($mic) {{ "
+        #     f"  $mixer = New-Object System.Media.SoundPlayer; "
+        #     f"}} "
+        #     f"# via mmsys.cpl mic boost "
+        # )
         _audio_state["volumen_micro"] = nivel
         update_memory("audio_micro", str(nivel))
         log_command("[AUDIO] Micrófono", f"{nivel}%", source="system")
@@ -382,7 +381,6 @@ def iniciar_monitor_audio(callback=None, intervalo: float = 0.5):
     _monitor_activo = True
 
     def _loop():
-        global _monitor_activo
         while _monitor_activo:
             try:
                 # Capturar muestra corta del micrófono

@@ -108,3 +108,7 @@ KALMIYA puede operar con el módulo ASI para análisis profundo de seguridad, in
 ---
 **Creado:** 2026-08-12  
 **Estado:** Implementado ✅ (con RAPTOR)
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

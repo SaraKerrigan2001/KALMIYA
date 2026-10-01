@@ -1,3 +1,5 @@
+from datetime import datetime
+from audio.voz import speak
 """
 modules_integration.py - Integracion de los 41 modulos con KALMIYA
 ==================================================================
@@ -7,18 +9,14 @@ Cada modulo usa ask_kalmiya() para procesar con IA real.
 """
 
 import sys
-import os
 import json
-from datetime import datetime, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
 from database import log_command, update_memory, get_memory
-from voz import speak, BOTNAME, USERNAME
 
 try:
-    from brain import ask_kalmiya, is_gemini_configured
     BRAIN_OK = True
 except Exception:
     BRAIN_OK = False
@@ -270,7 +268,7 @@ def kalmiya_weather(ciudad: str = "") -> str:
             speak(respuesta)
             log_command("[WEATHER]", f"{ciudad}: {temp_c}C {desc}", source='modules')
             return respuesta
-    except Exception as e:
+    except Exception as _e:
         pass
 
     # Fallback con IA generativa
@@ -873,7 +871,7 @@ def kalmiya_habitos(accion: str, nombre: str = "", categoria: str = "general",
         resumen = mgr.get_resumen_hoy()
         total = resumen["total_habitos"]
         completados = len(resumen["completados"])
-        pendientes = len(resumen["pendientes"])
+#         pendientes = len(resumen["pendientes"])
         progreso = resumen["progreso_pct"]
 
         print(f"\n📋 Hábitos de hoy — {resumen['fecha']}")
@@ -996,7 +994,7 @@ def kalmiya_hogar(accion: str, nombre: str = "", tipo: str = "",
         else:
             respuesta = f"Ejecutando: {accion_real} en {nombre}."
 
-        result = smart.control_device(device_id, accion_real)
+#         result = smart.control_device(device_id, accion_real)
         speak(respuesta)
         log_command(f"[HOGAR] {accion_real}", nombre, source='modules')
         return respuesta

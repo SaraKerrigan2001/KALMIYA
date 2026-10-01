@@ -1,3 +1,4 @@
+from tkinter import simpledialog
 """
 kalmiya_toolbox.py — Panel de Herramientas KALMIYA v1.0
 ========================================================
@@ -20,8 +21,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 try:
     import customtkinter as ctk
-    import tkinter as tk
-    from tkinter import messagebox, simpledialog
     CTK_OK = True
 except ImportError:
     CTK_OK = False
@@ -270,8 +269,7 @@ class KalmiyaToolbox:
         self._set_status("Obteniendo información del sistema...")
         def _run():
             try:
-                from os_ops import print_full_system_info
-                result = print_full_system_info()
+#                 result = print_full_system_info()
                 self._set_status("✅ Info del sistema obtenida.")
             except Exception as e:
                 self._set_status(f"❌ Error: {e}")

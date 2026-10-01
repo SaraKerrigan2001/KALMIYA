@@ -280,3 +280,7 @@ def ask_kalmiya_with_functions(question: str) -> str:
 **¡Las funciones están listas para usar!**
 
 [[WELCOME|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

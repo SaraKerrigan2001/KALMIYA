@@ -273,3 +273,7 @@ Este proyecto es de uso educativo para el SENA.
 ---
 
 [[CONTRIBUTING|🤝 Guía de Contribución KALMIYA]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB|✅ Checklist GitHub]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/INSTRUCCIONES_GITHUB|📤 Instrucciones GitHub]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

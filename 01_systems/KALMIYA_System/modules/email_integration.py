@@ -33,7 +33,7 @@ class EmailIntegration:
         if not GOOGLE_IMPORTS_AVAILABLE:
             return
         token_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'token.pickle')
-        creds_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'credentials.json')
+#         creds_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'credentials.json')
         
         # Ensure config dir exists
         os.makedirs(os.path.dirname(token_path), exist_ok=True)

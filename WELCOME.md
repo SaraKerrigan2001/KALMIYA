@@ -188,3 +188,7 @@ USER=Sara
 ---
 
 *KALMIYA v3.5 + JARVIS OS — Inteligencia de Clase S para Sara Kerrigan*
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

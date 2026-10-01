@@ -7,9 +7,7 @@ kalmiya_v4_features.py - Nuevas capacidades para la versión V4 (Nexus Core)
 - Optimización inteligente de recursos de sistema (RAM/Standby/Procesos).
 """
 
-import os
 import psutil
-import socket
 import subprocess
 from datetime import datetime
 from voz import speak

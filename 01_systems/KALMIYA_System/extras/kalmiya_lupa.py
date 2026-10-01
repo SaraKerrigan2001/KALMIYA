@@ -7,8 +7,6 @@ Usa STT/TTS completamente locales (privado, sin APIs).
 import customtkinter as ctk
 import tkinter as tk
 import threading
-import sys
-import os
 
 # Importar audio local (privado)
 try:
@@ -25,7 +23,7 @@ except ImportError:
             try:
                 audio = r.listen(source, timeout=5, phrase_time_limit=10)
                 return r.recognize_google(audio, language="es-ES")
-            except:
+            except Exception:
                 return None
     
     from voz import speak

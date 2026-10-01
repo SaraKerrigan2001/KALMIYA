@@ -15,3 +15,7 @@ created: 2026-06-13
 [[KALMIYA_DASHBOARD|📊 Dashboard]] | [[INDEX|← Índice]] | [[WELCOME|← Bienvenida]] | [[02_infrastructure/reports/README|Reports]] | [[02_infrastructure/Scripts/README|Scripts]] | [[02_infrastructure/scratch/README|Scratch]]
 
 **Componente**: Desarrollo | [[INDEX|← Volver]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_02_infrastructure]]

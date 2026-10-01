@@ -85,3 +85,7 @@ El skill **Plan** identifica las 3 cosas más importantes que debes hacer hoy pa
 ---
 **Creado:** 2026-08-12  
 **Estado:** Implementado ✅
+
+
+---
+**🏠 Volver al inicio:** [[INDEX]]

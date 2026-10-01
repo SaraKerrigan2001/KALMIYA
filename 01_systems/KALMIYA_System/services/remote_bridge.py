@@ -3,14 +3,12 @@
 # Permite que los telefonos se conecten a KALMIYA desde cualquier lugar sin WiFi local
 
 import os
-import sys
 import threading
 import subprocess
 import time
 import re
 import json
 import logging
-from typing import Optional
 
 logging.basicConfig(level=logging.INFO, format='[KALMIYA Remote] %(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)

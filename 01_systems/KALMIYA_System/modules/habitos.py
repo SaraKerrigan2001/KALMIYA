@@ -9,7 +9,6 @@ import json
 import os
 from datetime import datetime, timedelta, date
 from pathlib import Path
-from typing import Optional
 
 
 # Hábitos predefinidos sugeridos por KALMIYA

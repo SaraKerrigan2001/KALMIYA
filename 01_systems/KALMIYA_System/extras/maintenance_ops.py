@@ -1,5 +1,4 @@
 import os
-import shutil
 import subprocess as sp
 import psutil
 from voz import speak

@@ -342,3 +342,7 @@ El sistema ahora tiene:
 **Fecha**: 2026-08-12  
 **Versión**: KALMIYA v3.5 + JARVIS Enhancement  
 **Arquitectura**: Basada en @danielbrown.ia JARVIS OS
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

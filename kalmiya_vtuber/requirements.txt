@@ -1,0 +1,10 @@
+google-genai
+edge-tts
+playsound3
+python-dotenv
+pyvts
+pyautogui
+twitchio
+requests
+sounddevice
+soundfile

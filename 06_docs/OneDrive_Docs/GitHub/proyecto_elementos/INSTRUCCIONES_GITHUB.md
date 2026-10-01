@@ -169,3 +169,7 @@ Si tienes problemas:
 ---
 
 [[CONTRIBUTING|🤝 Guía de Contribución KALMIYA]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/CHECKLIST_GITHUB|✅ Checklist GitHub]] | [[06_docs/OneDrive_Docs/GitHub/proyecto_elementos/README|📄 README proyecto_elementos]]
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_06_docs]]

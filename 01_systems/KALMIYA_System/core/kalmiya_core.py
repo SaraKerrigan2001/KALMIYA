@@ -17,14 +17,11 @@ import threading
 import time
 import random
 import sys
-import os
-from datetime import datetime, timedelta
 
 # pyrefly: ignore [missing-import]
 import sounddevice as sd
 import speech_recognition as sr
 
-from database import init_db, log_command, save_thought, get_memory, update_memory
 
 # Inicializar base de datos
 init_db()
@@ -36,8 +33,7 @@ if hasattr(sys.stdout, 'reconfigure'):
 from voz import speak, BOTNAME, USERNAME
 from intelligence import kalmiya_intel
 from online_ops import search_on_google, play_on_youtube, search_on_wikipedia
-from os_ops import lock_system, shutdown_system, cancel_shutdown_timer
-from brain import (ask_kalmiya, is_ollama_running, is_gemini_configured,
+from brain import (ask_kalmiya, save_thought, is_ollama_running, is_gemini_configured,
                    get_pending_question, answer_kalmiya_question)
 
 try:
@@ -59,7 +55,6 @@ except Exception:
     FAMILY_OK = False
 
 try:
-    from sara_profile import get_profile_summary
     PROFILE_OK = True
 except Exception:
     PROFILE_OK = False
@@ -71,14 +66,14 @@ except Exception:
     MAINTENANCE_OK = False
 
 try:
-    from kalmiya_biometrics import (verificacion_biometrica_completa,
+    from services.kalmiya_biometrics import (verificar_identidad, 
                                      obtener_sesion_activa, estado_biometrico)
     BIOMETRICS_OK = True
 except Exception:
     BIOMETRICS_OK = False
 
 try:
-    from kalmiya_audio import (get_estado_audio, set_volumen_maestro,
+    from audio.kalmiya_audio import (set_volumen_maestro, get_volumen_maestro,
                                 subir_volumen, bajar_volumen,
                                 aplicar_perfil_audio, toggle_mute)
     AUDIO_OK = True
@@ -353,7 +348,7 @@ def _autonomous_loop():
     KALMIYA piensa, monitorea y actua sola.
     Intervalo de pensamientos ahora es dinámico según nivel de inteligencia.
     """
-    global _last_thought, _last_monitor, _last_question, _core_running
+    global _last_thought, _last_monitor, _last_question
 
     print(f"[{_ts()}] [CORE] Bucle autonomo iniciado.")
 
@@ -460,7 +455,7 @@ def process_command(query: str):
 
     # ── Comandos de funciones nuevas ──────────────────────────────────────────
     try:
-        from kalmiya_nuevas_funciones import (
+        from kalmiya.kalmiya_nuevas_funciones import (
             agregar_recordatorio, get_real_weather, reproducir_musica,
             iniciar_pomodoro, detener_pomodoro, traducir, leer_pdf,
             generar_password, limpiar_disco_inteligente, estadisticas_uso
@@ -780,7 +775,6 @@ def find_best_input_device():
                 try:
                     nc = d['max_input_channels']
                     sr_rate = int(d['default_samplerate'])
-                    import threading, numpy as np
                     result = [None]
                     def _test():
                         try:
@@ -847,7 +841,6 @@ def find_best_input_device():
 
 def listen_for_wakeword():
     """Bucle infinito de escucha pasiva. Siempre activo."""
-    global SLEEP_MODE
     _voice_net_backoff = 5  # backoff exponencial para errores de red
     r = sr.Recognizer()
 

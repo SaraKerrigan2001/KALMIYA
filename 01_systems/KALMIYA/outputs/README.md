@@ -54,3 +54,7 @@ Para consultar todos los outputs, ver: `01_systems/KALMIYA/INDEX.md`
 
 ---
 **Última actualización**: 2026-08-12
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_01_systems]]

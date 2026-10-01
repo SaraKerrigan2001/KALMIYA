@@ -105,3 +105,7 @@ ubicacion: 07_notes/KALMIYA_Biometria_y_Audio.md
 
 [[KALMIYA_DASHBOARD|📊 Dashboard]] | [[MODULOS_IMPLEMENTADOS|📦 Módulos]] | [[INDEX|📋 Índice]] | [[KALMIYA_FUNCIONES|⚙️ Funciones]]
 
+
+
+---
+**📂 Volver a carpeta:** [[INDEX_07_notes]]

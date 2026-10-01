@@ -2,10 +2,8 @@
 # Módulo de proyección familiar para KALMIYA AI
 # Muestra la interfaz de KALMIYA en los teléfonos de los familiares
 
-import os
 import threading
 import time
-import json
 import logging
 from datetime import datetime
 from collections import defaultdict

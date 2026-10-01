@@ -1,3 +1,4 @@
+from typing import List, Dict
 """
 KALMIYA Vector Store v3.6
 Sistema de memoria a largo plazo con embeddings y búsqueda semántica
@@ -8,9 +9,7 @@ import chromadb
 from chromadb.config import Settings
 from pathlib import Path
 import hashlib
-import json
 from datetime import datetime
-from typing import List, Dict, Optional
 import re
 
 class KalmiyaVectorStore:
@@ -197,7 +196,7 @@ class KalmiyaVectorStore:
                     if ':' in line:
                         key, value = line.split(':', 1)
                         metadata[key.strip()] = value.strip()
-            except:
+            except Exception:
                 pass
         
         # Extraer título del primer heading
