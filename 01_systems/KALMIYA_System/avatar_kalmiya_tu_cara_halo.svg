@@ -1,0 +1,111 @@
+<svg width="220" height="320" viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definiciones de gradientes y efectos -->
+  <defs>
+    <!-- Gradiente holográfico Cortana (azul/cian con toques morados) -->
+    <linearGradient id="cortanaHolo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d9ff;stop-opacity:0.95" />
+      <stop offset="40%" style="stop-color:#00aaff;stop-opacity:0.85" />
+      <stop offset="70%" style="stop-color:#6a0dad;stop-opacity:0.75" />
+      <stop offset="100%" style="stop-color:#0066cc;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- Gradiente piel blanca -->
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffe0bd;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffd1b0;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#ffcca0;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- Gradiente cabello crespo -->
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0f2a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0f071a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#05030d;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Efecto de brillo/holográfico -->
+    <filter id="holographic">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Efecto de resplandor azul -->
+    <filter id="blueGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Base holográfica circular -->
+  <ellipse cx="110" cy="290" rx="45" ry="10" fill="#00d9ff" opacity="0.4" filter="url(#blueGlow)"/>
+  
+  <!-- Anillos flotantes estilo Cortana -->
+  <ellipse cx="110" cy="260" rx="48" ry="10" fill="none" stroke="#00d9ff" stroke-width="2" opacity="0.6" transform="rotate(-25 110 260)"/>
+  <circle cx="110" cy="260" r="4" fill="#ffffff" opacity="0.8" filter="url(#blueGlow)"/>
+  
+  <ellipse cx="110" cy="240" rx="44" ry="9" fill="none" stroke="#00aaff" stroke-width="2" opacity="0.5" transform="rotate(35 110 240)"/>
+  <circle cx="110" cy="240" r="4" fill="#00d9ff" opacity="0.8" filter="url(#blueGlow)"/>
+  
+  <ellipse cx="110" cy="220" rx="40" ry="8" fill="none" stroke="#6a0dad" stroke-width="2" opacity="0.4" transform="rotate(-15 110 220)"/>
+  <circle cx="110" cy="220" r="4" fill="#ffffff" opacity="0.7" filter="url(#blueGlow)"/>
+  
+  <!-- Cuerpo principal estilo Cortana (forma fluida, semi-transparente) -->
+  <path d="M75,130 Q65,90 75,50 Q85,30 110,25 Q135,30 145,50 Q155,90 145,130 Q140,165 110,175 Q80,165 75,130 Z" 
+        fill="url(#cortanaHolo)" filter="url(#holographic)" opacity="0.85"/>
+  
+  <!-- Contorno de la forma Cortana -->
+  <path d="M80,120 Q70,85 80,55 Q90,35 110,30 Q130,35 140,55 Q150,85 140,120 Q135,155 110,165 Q85,155 80,120 Z" 
+        fill="none" stroke="#00d9ff" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Piel facial (blanca) - estilo Cortana con brillo holográfico -->
+  <path d="M88,55 Q83,80 90,110 Q95,135 110,145 Q125,135 132,110 Q138,80 133,55" 
+        fill="url(#skinGrad)" filter="url(#holographic)" opacity="0.9"/>
+  
+  <!-- Cabello crespo corto (estilo afro/crespo) -->
+  <path d="M85,50 Q80,30 88,38 Q95,25 110,28 Q125,25 132,38 Q140,30 135,50" 
+        fill="none" stroke="url(#hairGrad)" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+  <path d="M80,60 Q75,50 82,58 Q88,48 92,55 Q100,48 110,52 Q120,48 128,55 Q135,48 142,58 Q148,50 143,60" 
+        fill="none" stroke="url(#hairGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  
+  <!-- Ojos marrones (con brillo Azul/Cortana) -->
+  <ellipse cx="95" cy="75" rx="7" ry="10" fill="#5d4037" opacity="0.9"/>
+  <ellipse cx="97" cy="78" rx="2" ry="3" fill="white" opacity="0.9"/>
+  <ellipse cx="95" cy="75" rx="9" ry="12" fill="#00d9ff" opacity="0.15" filter="url(#blueGlow)"/>
+  
+  <ellipse cx="125" cy="75" rx="7" ry="10" fill="#5d4037" opacity="0.9"/>
+  <ellipse cx="127" cy="78" rx="2" ry="3" fill="white" opacity="0.9"/>
+  <ellipse cx="125" cy="75" rx="9" ry="12" fill="#00d9ff" opacity="0.15" filter="url(#blueGlow)"/>
+  
+  <!-- Cejas -->
+  <path d="M88,68 Q92,63 96,68" fill="none" stroke="#3e2723" stroke-width="1.5" opacity="0.7"/>
+  <path d="M114,68 Q118,63 122,68" fill="none" stroke="#3e2723" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Nariz -->
+  <path d="M110,88 Q110,93 112,95 Q114,93 114,88" fill="none" stroke="rgba(93,64,55,0.3)" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Boca -->
+  <path d="M105,105 Q110,112 115,105" fill="none" stroke="rgba(93,64,55,0.4)" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Partículas digitales estilo Cortana (alrededor de la cabeza) -->
+  <circle cx="60" cy="50" r="2" fill="#00d9ff" opacity="0.6" filter="url(#blueGlow)"/>
+  <circle cx="160" cy="60" r="2" fill="#00aaff" opacity="0.6" filter="url(#blueGlow)"/>
+  <circle cx="50" cy="70" r="2" fill="#6a0dad" opacity="0.5" filter="url(#blueGlow)"/>
+  <circle cx="170" cy="80" r="2" fill="#00d9ff" opacity="0.5" filter="url(#blueGlow)"/>
+  <circle cx="70" cy="30" r="3" fill="#ffffff" opacity="0.4" filter="url(#blueGlow)"/>
+  <circle cx="150" cy="40" r="2" fill="#00aaff" opacity="0.4" filter="url(#blueGlow)"/>
+  
+  <!-- Brillo central estilo Cortana -->
+  <circle cx="110" cy="85" r="15" fill="rgba(0,217,255,0.2)" filter="url(#blueGlow)"/>
+  <circle cx="110" cy="85" r="25" fill="rgba(106,13,173,0.15)" filter="url(#blueGlow)"/>
+  
+  <!-- Texto KALMIYA abajo -->
+  <text x="110" y="305" font-family="Arial" font-size="11" fill="#ffffff" text-anchor="middle" opacity="0.8">
+    KALMIYA
+  </text>
+</svg>

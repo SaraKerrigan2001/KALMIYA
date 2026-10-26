@@ -39,4 +39,4 @@ EXPOSE 8000 5900
 
 # Usar el script de entrada que arranca Xvfb y VNC antes del proceso principal
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["python", "01_systems/KALMIYA_System/api_server.py"]
+CMD ["python", "01_systems/KALMIYA_System/core/api_server.py"]

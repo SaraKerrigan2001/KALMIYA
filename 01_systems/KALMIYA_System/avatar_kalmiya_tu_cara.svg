@@ -1,0 +1,125 @@
+<svg width="220" height="320" viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definiciones de gradientes y efectos -->
+  <defs>
+    <!-- Gradiente principal: Morado/Rosa Cyberpunk -->
+    <linearGradient id="kalmiyaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a0dad;stop-opacity:0.85" />
+      <stop offset="40%" style="stop-color:#ff6ec7;stop-opacity:0.95" />
+      <stop offset="70%" style="stop-color:#800080;stop-opacity:0.85" />
+      <stop offset="100%" style="stop-color:#4b0082;stop-opacity:0.75" />
+    </linearGradient>
+    
+    <!-- Gradiente piel blanca -->
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffe0bd;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffd1b0;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#ffcca0;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- Gradiente cabello crespo negro -->
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a1a3a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a0f2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f071a;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Efecto de brillo/holográfico -->
+    <filter id="holographic">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Efecto de resplandor -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Base holográfica (círculo inferior) -->
+  <ellipse cx="110" cy="290" rx="50" ry="12" fill="#6a0dad" opacity="0.3" filter="url(#glow)"/>
+  
+  <!-- Anillos flotantes (estilo Cortana) -->
+  <!-- Anillo inferior morado -->
+  <ellipse cx="110" cy="260" rx="48" ry="10" fill="none" stroke="#6a0dad" stroke-width="2" opacity="0.5" transform="rotate(-20 110 260)"/>
+  <circle cx="110" cy="260" r="5" fill="#ff6ec7" opacity="0.8" filter="url(#glow)"/>
+  
+  <!-- Anillo medio rosa -->
+  <ellipse cx="110" cy="240" rx="45" ry="9" fill="none" stroke="#ff6ec7" stroke-width="2" opacity="0.5" transform="rotate(35 110 240)"/>
+  <circle cx="110" cy="240" r="5" fill="#6a0dad" opacity="0.8" filter="url(#glow)"/>
+  
+  <!-- Anillo superior azul -->
+  <ellipse cx="110" cy="220" rx="42" ry="8" fill="none" stroke="#ff6ec7" stroke-width="2" opacity="0.5" transform="rotate(-15 110 220)"/>
+  <circle cx="110" cy="220" r="5" fill="#ff6ec7" opacity="0.8" filter="url(#glow)"/>
+  
+  <!-- Cabeza principal (forma elíptica estilo Cortana) -->
+  <path d="M80,140 Q75,100 85,60 Q95,40 110,35 Q125,40 135,60 Q145,100 140,140 Q135,170 110,180 Q85,170 80,140 Z" 
+        fill="url(#kalmiyaGrad)" filter="url(#glow)" opacity="0.95"/>
+  
+  <!-- Contorno de la cara (estilo Cortana) -->
+  <path d="M85,130 Q80,90 90,55 Q100,35 110,30 Q120,35 130,55 Q140,90 135,130 Q130,165 110,175 Q90,165 85,130 Z" 
+        fill="none" stroke="#00ffff" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Cabello crespo corto (estilo afro/crespo) -->
+  <!--蓬松的短发效果 -->
+  <path d="M90,55 Q85,35 95,40 Q100,25 110,28 Q120,25 125,40 Q135,35 130,55" 
+        fill="none" stroke="url(#hairGrad)" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+  <path d="M82,65 Q78,50 85,55 Q90,45 95,52 Q100,42 110,45 Q120,42 125,52 Q130,45 135,55 Q142,50 138,65" 
+        fill="none" stroke="url(#hairGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M80,75 Q75,65 82,70 Q88,60 92,68 Q100,60 110,65 Q120,60 128,68 Q135,60 140,70 Q145,65 142,75" 
+        fill="none" stroke="url(#hairGrad)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  
+  <!-- Piel facial (blanca) -->
+  <path d="M90,65 Q88,90 92,120 Q95,145 110,155 Q125,145 128,120 Q132,90 130,65" 
+        fill="url(#skinGrad)" filter="url(#holographic)" opacity="0.9"/>
+  
+  <!-- Ojos marrones -->
+  <!-- Ojo izquierdo -->
+  <path d="M95,85 Q93,82 95,80 Q98,82 100,85 Q98,88 95,85 Z" 
+        fill="#5d4037" stroke="#3e2723" stroke-width="0.5" opacity="0.9"/>
+  <circle cx="97" cy="83" r="1.5" fill="white" opacity="0.8"/>
+  
+  <!-- Ojo derecho -->
+  <path d="M120,85 Q118,82 120,80 Q123,82 125,85 Q123,88 120,85 Z" 
+        fill="#5d4037" stroke="#3e2723" stroke-width="0.5" opacity="0.9"/>
+  <circle cx="122" cy="83" r="1.5" fill="white" opacity="0.8"/>
+  
+  <!-- Cejas -->
+  <path d="M92,78 Q95,75 98,78" fill="none" stroke="#3e2723" stroke-width="1.5" opacity="0.7"/>
+  <path d="M117,78 Q120,75 123,78" fill="none" stroke="#3e2723" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Nariz -->
+  <path d="M108,95 Q108,100 110,102 Q112,100 112,95" fill="none" stroke="rgba(93,64,55,0.3)" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Boca -->
+  <path d="M105,115 Q110,122 115,115" fill="none" stroke="rgba(93,64,55,0.4)" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="110" cy="118" r="1.5" fill="rgba(255,105,180,0.3)" filter="url(#glow)"/>
+  
+  <!-- Efectos de luz holográfica -->
+  <!-- Partículas flotantes -->
+  <circle cx="75" cy="80" r="2" fill="#ff6ec7" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="145" cy="90" r="2" fill="#ff6ec7" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="100" cy="50" r="3" fill="#6a0dad" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="120" cy="60" r="2" fill="#ff6ec7" opacity="0.5" filter="url(#glow)"/>
+  
+  <!-- Brillo central -->
+  <circle cx="110" cy="88" r="12" fill="rgba(255,105,180,0.2)" filter="url(#glow)"/>
+  <circle cx="110" cy="88" r="20" fill="rgba(255,105,180,0.15)" filter="url(#glow)"/>
+  
+  <!-- Texto KALMIYA -->
+  <text x="110" y="305" font-family="Arial" font-size="12" fill="#ffffff" text-anchor="middle" opacity="0.8">
+    KALMIYA
+  </text>
+  
+  <!-- Animación de brillo parpadeante (CSS equivalente) -->
+  <style>
+    .blink { animation: blink 2s infinite; }
+    @keyframes blink { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+  </style>
+</svg>

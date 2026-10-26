@@ -145,7 +145,7 @@ class KalmiyaChatV4:
         self._drag_y = 0
         self._thinking = False
         self._running = True
-        self._current_theme = "cyber_cyan"
+        self._current_theme = "cyber_pink"
         self._compact_mode = False
         self._always_on_top = True
         self._blink_state = True
@@ -456,30 +456,30 @@ class KalmiyaChatV4:
         # Aplicar offsets de cuerpo (balanceo + salto) + offset individual de orejas
         c.create_oval(8 + ear_left_offset + body_offset_x + rotation_skew, 0 + body_offset_y, 
                      22 + ear_left_offset + body_offset_x + rotation_skew, 35 + body_offset_y, 
-                     fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="ear")
+                     fill=t["robot_white"], outline="", width=1, tags="ear")
         c.create_oval(10 + ear_left_offset + body_offset_x + rotation_skew, 10 + body_offset_y, 
                      20 + ear_left_offset + body_offset_x + rotation_skew, 30 + body_offset_y, 
-                     fill=t["robot_accent"], outline="", tags="ear")
+                     fill="#ffffff", outline="", tags="ear")
         
         c.create_oval(68 + ear_right_offset + body_offset_x - rotation_skew, 0 + body_offset_y, 
                      82 + ear_right_offset + body_offset_x - rotation_skew, 35 + body_offset_y, 
-                     fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="ear")
+                     fill=t["robot_white"], outline="", width=1, tags="ear")
         c.create_oval(70 + ear_right_offset + body_offset_x - rotation_skew, 10 + body_offset_y, 
                      80 + ear_right_offset + body_offset_x - rotation_skew, 30 + body_offset_y, 
-                     fill=t["robot_accent"], outline="", tags="ear")
+                     fill="#ffffff", outline="", tags="ear")
         
         # ===== CABEZA (con inclinación + movimiento de cuerpo) =====
         c.create_oval(20 + head_offset_x + body_offset_x + rotation_skew, 25 + body_offset_y, 
                      70 + head_offset_x + body_offset_x - rotation_skew, 65 + body_offset_y, 
-                     fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="head")
+                     fill=t["robot_white"], outline="", width=1, tags="head")
         
         # Detalles decorativos (cabeza)
         c.create_line(28 + head_offset_x + body_offset_x, 32 + body_offset_y, 
                      35 + head_offset_x + body_offset_x, 36 + body_offset_y, 
-                     fill=t["robot_accent"], width=2, tags="head")
+                     fill="#ffffff", width=2, tags="head")
         c.create_line(55 + head_offset_x + body_offset_x, 36 + body_offset_y, 
                      62 + head_offset_x + body_offset_x, 32 + body_offset_y, 
-                     fill=t["robot_accent"], width=2, tags="head")
+                     fill="#ffffff", width=2, tags="head")
         
         # ===== OJOS (animables con parpadeo + movimiento de cuerpo) =====
         if self._blink_state:
@@ -493,10 +493,10 @@ class KalmiyaChatV4:
             # Brillos
             c.create_oval(29 + head_offset_x + body_offset_x, 40 + body_offset_y, 
                          40 + head_offset_x + body_offset_x, 50 + body_offset_y, 
-                         fill="#80e0ff", outline="", tags="eyes")
+                         fill="#ffffff", outline="", tags="eyes")
             c.create_oval(50 + head_offset_x + body_offset_x, 40 + body_offset_y, 
                          61 + head_offset_x + body_offset_x, 50 + body_offset_y, 
-                         fill="#80e0ff", outline="", tags="eyes")
+                         fill="#ffffff", outline="", tags="eyes")
             c.create_oval(31 + head_offset_x + body_offset_x, 42 + body_offset_y, 
                          38 + head_offset_x + body_offset_x, 48 + body_offset_y, 
                          fill="#ffffff", outline="", tags="eyes")
@@ -516,21 +516,21 @@ class KalmiyaChatV4:
         if self._is_talking:
             c.create_arc(30 + head_offset_x + body_offset_x, 46 + body_offset_y, 
                         60 + head_offset_x + body_offset_x, 64 + body_offset_y, 
-                        start=200, extent=140, outline=t["robot_accent"], 
+                        start=200, extent=140, outline="#ffffff", 
                         width=3, style="arc", tags="mouth")
         else:
             c.create_arc(32 + head_offset_x + body_offset_x, 48 + body_offset_y, 
                         58 + head_offset_x + body_offset_x, 62 + body_offset_y, 
-                        start=200, extent=140, outline=t["robot_accent"], 
+                        start=200, extent=140, outline="#ffffff", 
                         width=3, style="arc", tags="mouth")
         
         # ===== RUBOR (con movimiento de cuerpo) =====
         c.create_oval(21 + head_offset_x + body_offset_x, 48 + body_offset_y, 
                      28 + head_offset_x + body_offset_x, 54 + body_offset_y, 
-                     fill=t["robot_accent"], outline="", stipple="gray50", tags="blush")
+                     fill="#ffffff", outline="", stipple="gray50", tags="blush")
         c.create_oval(62 + head_offset_x + body_offset_x, 48 + body_offset_y, 
                      69 + head_offset_x + body_offset_x, 54 + body_offset_y, 
-                     fill=t["robot_accent"], outline="", stipple="gray50", tags="blush")
+                     fill="#ffffff", outline="", stipple="gray50", tags="blush")
         
         # ===== CUELLO (con movimiento de cuerpo) =====
         c.create_rectangle(39 + body_offset_x, 62 + body_offset_y, 
@@ -540,15 +540,15 @@ class KalmiyaChatV4:
         # ===== TORSO (con movimiento de cuerpo + rotación) =====
         c.create_oval(24 + body_offset_x + rotation_skew, 64 + body_offset_y, 
                      66 + body_offset_x - rotation_skew, 90 + body_offset_y, 
-                     fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="body")
+                     fill=t["robot_white"], outline="", width=1, tags="body")
         
         # Detalles hombros (con movimiento)
         c.create_oval(22 + body_offset_x + rotation_skew, 68 + body_offset_y, 
                      32 + body_offset_x + rotation_skew, 78 + body_offset_y, 
-                     fill=t["robot_accent"], outline=t["robot_dark"], width=1, tags="body")
+                     fill="#ffffff", outline=t["robot_dark"], width=1, tags="body")
         c.create_oval(58 + body_offset_x - rotation_skew, 68 + body_offset_y, 
                      68 + body_offset_x - rotation_skew, 78 + body_offset_y, 
-                     fill=t["robot_accent"], outline=t["robot_dark"], width=1, tags="body")
+                     fill="#ffffff", outline=t["robot_dark"], width=1, tags="body")
         
         # ===== CORE (con movimiento) =====
         c.create_oval(36 + body_offset_x, 72 + body_offset_y, 
@@ -568,7 +568,7 @@ class KalmiyaChatV4:
         
         c.create_oval(heart_base_x - heart_w, heart_base_y - heart_h, 
                      heart_base_x + heart_w, heart_base_y + heart_h, 
-                     fill=t["robot_accent"], outline="", tags="heart")
+                     fill="#ffb6d9", outline="", tags="heart")
         
         # Punta del corazón
         points = [
@@ -576,7 +576,7 @@ class KalmiyaChatV4:
             heart_base_x, heart_base_y + (6 * heart_scale),
             heart_base_x + heart_w, heart_base_y
         ]
-        c.create_polygon(points, fill=t["robot_accent"], outline="", tags="heart")
+        c.create_polygon(points, fill="#ffb6d9", outline="", tags="heart")
         
         # ===== BRAZOS (con movimiento + movimiento de cuerpo) =====
         # Posiciones: 0=arriba, 1=medio, 2=abajo
@@ -612,17 +612,17 @@ class KalmiyaChatV4:
         c.create_line(*left_arm[0], fill=t["robot_white"], width=8, 
                      capstyle="round", tags="arm") # type: ignore
         c.create_oval(left_arm[0][4] - 3, left_hand_y, left_arm[0][4] + 3, left_hand_y + 6, 
-                     fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="hand")
+                     fill=t["robot_white"], outline="", width=1, tags="hand")
         c.create_oval(left_arm[0][4] - 2, left_hand_y + 1, left_arm[0][4] + 2, left_hand_y + 5, 
-                     fill=t["robot_accent"], outline="", tags="hand")
+                     fill="#ffffff", outline="", tags="hand")
         
         # Brazo derecho
         c.create_line(*right_arm[0], fill=t["robot_white"], width=8, 
                      capstyle="round", tags="arm") # type: ignore
         c.create_oval(right_arm[0][4] - 3, right_hand_y, right_arm[0][4] + 3, right_hand_y + 6, 
-                     fill=t["robot_white"], outline=t["robot_dark"], width=2, tags="hand")
+                     fill=t["robot_white"], outline="", width=1, tags="hand")
         c.create_oval(right_arm[0][4] - 2, right_hand_y + 1, right_arm[0][4] + 2, right_hand_y + 5, 
-                     fill=t["robot_accent"], outline="", tags="hand")
+                     fill="#ffffff", outline="", tags="hand")
         
         # ===== PIERNAS (con movimiento de cuerpo + rotación) =====
         c.create_rectangle(30 + body_offset_x + rotation_skew, 88 + body_offset_y, 
@@ -635,18 +635,18 @@ class KalmiyaChatV4:
         # Rodillas
         c.create_oval(32 + body_offset_x, 92 + body_offset_y, 
                      38 + body_offset_x, 98 + body_offset_y, 
-                     fill=t["robot_accent"], outline="", tags="leg")
+                     fill="#ffffff", outline="", tags="leg")
         c.create_oval(52 + body_offset_x, 92 + body_offset_y, 
                      58 + body_offset_x, 98 + body_offset_y, 
-                     fill=t["robot_accent"], outline="", tags="leg")
+                     fill="#ffffff", outline="", tags="leg")
         
         # ===== ZAPATOS (con movimiento de cuerpo + rotación) =====
         c.create_oval(26 + body_offset_x + rotation_skew, 98 + body_offset_y, 
                      44 + body_offset_x + rotation_skew, 110 + body_offset_y, 
-                     fill=t["robot_accent"], outline=t["robot_dark"], width=2, tags="shoe")
+                     fill="#ffffff", outline="", width=1, tags="shoe")
         c.create_oval(46 + body_offset_x - rotation_skew, 98 + body_offset_y, 
                      64 + body_offset_x - rotation_skew, 110 + body_offset_y, 
-                     fill=t["robot_accent"], outline=t["robot_dark"], width=2, tags="shoe")
+                     fill="#ffffff", outline="", width=1, tags="shoe")
         
         # Brillos
         c.create_oval(30 + body_offset_x, 100 + body_offset_y, 

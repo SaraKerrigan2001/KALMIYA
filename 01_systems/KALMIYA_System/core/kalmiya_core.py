@@ -414,7 +414,7 @@ def _autonomous_loop():
 def process_command(query: str):
     """Procesa el comando escuchado tras el Wake Word."""
     # Verificar que el comando de voz no contiene patrones peligrosos
-    from kalmiya_restrictions import check_voice_command_safe
+    from kalmiya.kalmiya_restrictions import check_voice_command_safe
     seguro, motivo = check_voice_command_safe(query)
     if not seguro:
         print(f"[{_ts()}] [CORE] Comando de voz bloqueado por restricción: {motivo}")

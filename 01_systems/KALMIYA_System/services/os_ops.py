@@ -96,7 +96,7 @@ def load_obsidian_vault_path():
 
 def shutdown_system(minutes=0):
     """Programa el apagado del sistema."""
-    from kalmiya_restrictions import check_command_allowed, require_confirmation
+    from kalmiya.kalmiya_restrictions import check_command_allowed, require_confirmation
     _, mensaje, necesita = check_command_allowed("shutdown_system")
     if necesita and not require_confirmation(mensaje):
         speak("Apagado cancelado.")
@@ -115,7 +115,7 @@ def shutdown_system(minutes=0):
 
 def restart_system():
     """Reinicia el sistema."""
-    from kalmiya_restrictions import check_command_allowed, require_confirmation
+    from kalmiya.kalmiya_restrictions import check_command_allowed, require_confirmation
     _, mensaje, necesita = check_command_allowed("restart_system")
     if necesita and not require_confirmation(mensaje):
         speak("Reinicio cancelado.")

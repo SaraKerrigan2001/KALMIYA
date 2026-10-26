@@ -649,7 +649,7 @@ def ask_kalmiya(user_input: str, stream: bool = False, force_engine: str = '') -
                 tool_result = json.dumps(intel.analyze_network_security())
             elif func_name == "execute_kalmiya_function":
                 from kalmiya_functions import execute_kalmiya_function
-                from kalmiya_restrictions import check_command_allowed
+                from kalmiya.kalmiya_restrictions import check_command_allowed
                 target_func = str(func_args.get("function_name", ""))
                 
                 permitido, msg, requiere_confirm = check_command_allowed(target_func)

@@ -16,13 +16,14 @@ services:
     container_name: kalmiya_dashboard
     ports:
       - "8000:8000"  # Dashboard / API Server
-      - "5900:5900"  # VNC Server (Opción 3 - GUI Virtual)
+      - "15900:5900"  # VNC Server (Opción 3 - GUI Virtual)
     volumes:
       # Mapear el directorio actual para persistir logs y skills
       - .:/app
     environment:
       - DASHBOARD_HOST=0.0.0.0
       - DASHBOARD_PORT=8000
+      - PYTHONPATH=/app/01_systems/KALMIYA_System
     env_file:
       - 01_systems/KALMIYA_System/.env
     depends_on:

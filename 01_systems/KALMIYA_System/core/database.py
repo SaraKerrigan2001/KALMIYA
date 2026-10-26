@@ -16,7 +16,7 @@ import logging
 from datetime import datetime
 from psycopg2 import IntegrityError, Error as PostgresError
 from psycopg2 import pool as pg_pool
-from kalmiya_restrictions import (
+from kalmiya.kalmiya_restrictions import (
     validate_source,
     validate_command_history_row,
     validate_memory_row,

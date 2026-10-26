@@ -140,16 +140,8 @@ def emit_sync_event(event_type: str, data: dict):
         pass
 
 # Montar interfaz web nueva (ui_web/dist) si existe
-static_dir = os.path.join(os.path.dirname(__file__), "ui_web", "dist")
-if os.path.exists(static_dir):
-    app.mount("/static", StaticFiles(directory=static_dir), name="static")
-
-@app.get("/")
-async def get_index():
-    index_file = os.path.join(os.path.dirname(__file__), "ui_web", "dist", "index.html")
-    if os.path.exists(index_file):
-        return FileResponse(index_file)
-    return {"status": "online", "message": "KALMIYA Neural Core API Active. Mobile Bridge is ready on /ws"}
+base_dir = os.path.dirname(os.path.dirname(__file__))
+static_dir = os.path.join(base_dir, "ui_web", "dist")
 
 @app.get("/api/system/status")
 async def get_system_status():
@@ -159,6 +151,14 @@ async def get_system_status():
         "system": intel.get_system_info(),
         "state": kalmiya_state
     }
+
+if os.path.exists(static_dir):
+    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
+else:
+    @app.get("/")
+    async def get_index():
+        return {"status": "online", "message": "KALMIYA Neural Core API Active. Mobile Bridge is ready on /ws"}
+
 
 if __name__ == "__main__":
     uvicorn.run("api_server:app", host="0.0.0.0", port=8000, reload=True)

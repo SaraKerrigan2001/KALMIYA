@@ -2,315 +2,321 @@
   "messages": [
     {
       "sender": "KALMIYA",
-      "text": "💫 Chat reiniciado. ¿Qué hacemos ahora?",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:54.432196"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 78 mensajes...",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:54.437625"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.766247"
+      "timestamp": "2026-10-26T15:10:59.971920"
     },
     {
       "sender": "KALMIYA",
       "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.793189"
+      "timestamp": "2026-10-26T15:10:59.988291"
     },
     {
       "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 101 mensajes...",
+      "text": "📜 Cargando últimos 99 mensajes...",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.798665"
-    },
-    {
-      "sender": "Sara Kerigan",
-      "text": "Que hora es hoy ?",
-      "is_bot": false,
-      "timestamp": "2026-09-15T16:25:55.801532"
-    },
-    {
-      "sender": "Agente main_assistant",
-      "text": "Lo siento, Sara, pero no puedo obtener la hora en este momento. Parece que la función que utilizo para ejecutar código Python está experimentando problemas.",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.806801"
+      "timestamp": "2026-10-26T15:11:00.010586"
     },
     {
       "sender": "KALMIYA",
-      "text": "¡Hola Sara Kerigan! 👋 Soy KALMIYA V4.0. Ahora con temas de color, animaciones y muchas mejoras. ¿Qué quieres hacer hoy? ✨",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.814839"
+      "timestamp": "2026-10-26T15:11:00.045109"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:00.060737"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 122 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:00.077033"
     },
     {
       "sender": "KALMIYA",
       "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.824693"
+      "timestamp": "2026-10-26T15:11:00.114247"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:00.136849"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 145 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:00.162162"
     },
     {
       "sender": "KALMIYA",
       "text": "🗑️ ¡Listo! Todo limpio. ¿En qué te ayudo?",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.829797"
+      "timestamp": "2026-10-26T15:11:00.186315"
     },
     {
       "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 53 mensajes...",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.834617"
-    },
-    {
-      "sender": "Sara Kerigan",
-      "text": "Hola",
-      "is_bot": false,
-      "timestamp": "2026-09-15T16:25:55.837210"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.841954"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hola Sara Kerigan! 👋 Soy KALMIYA V4.0. Ahora con temas de color, animaciones y muchas mejoras. ¿Qué quieres hacer hoy? ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.849929"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.859612"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "🌟 ¡Perfecto! Espacio limpio. ¿Qué te gustaría saber?",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.866682"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 53 mensajes...",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.871384"
-    },
-    {
-      "sender": "Sara Kerigan",
-      "text": "Hola",
-      "is_bot": false,
-      "timestamp": "2026-09-15T16:25:55.874154"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.878999"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hola Sara Kerigan! 👋 Soy KALMIYA V4.0. Ahora con temas de color, animaciones y muchas mejoras. ¿Qué quieres hacer hoy? ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.886829"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "💫 Chat reiniciado. ¿Qué hacemos ahora?",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.891565"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 78 mensajes...",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.896306"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.906825"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.912497"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 101 mensajes...",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:55.917628"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:56.953291"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "💫 Chat reiniciado. ¿Qué hacemos ahora?",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:56.980921"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 124 mensajes...",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:56.986139"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:56.995779"
+      "timestamp": "2026-10-26T15:11:00.210152"
     },
     {
       "sender": "KALMIYA",
       "text": "🗑️ ¡Listo! Todo limpio. ¿En qué te ayudo?",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.000532"
+      "timestamp": "2026-10-26T15:11:00.224267"
     },
     {
       "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 53 mensajes...",
+      "text": "📜 Cargando últimos 169 mensajes...",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.005220"
-    },
-    {
-      "sender": "Sara Kerigan",
-      "text": "Hola",
-      "is_bot": false,
-      "timestamp": "2026-09-15T16:25:57.008167"
+      "timestamp": "2026-10-26T15:11:00.235474"
     },
     {
       "sender": "KALMIYA",
-      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.013879"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hola Sara Kerigan! 👋 Soy KALMIYA V4.0. Ahora con temas de color, animaciones y muchas mejoras. ¿Qué quieres hacer hoy? ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.021761"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.031293"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "🌟 ¡Perfecto! Espacio limpio. ¿Qué te gustaría saber?",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.036355"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 53 mensajes...",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.041325"
-    },
-    {
-      "sender": "Sara Kerigan",
-      "text": "Hola",
-      "is_bot": false,
-      "timestamp": "2026-09-15T16:25:57.043912"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.048566"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hola Sara Kerigan! 👋 Soy KALMIYA V4.0. Ahora con temas de color, animaciones y muchas mejoras. ¿Qué quieres hacer hoy? ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.057067"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "💫 Chat reiniciado. ¿Qué hacemos ahora?",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.062255"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 78 mensajes...",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.066944"
-    },
-    {
-      "sender": "KALMIYA",
-      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
-      "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.076755"
+      "timestamp": "2026-10-26T15:11:00.258884"
     },
     {
       "sender": "KALMIYA",
       "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.081571"
+      "timestamp": "2026-10-26T15:11:00.270030"
     },
     {
       "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 101 mensajes...",
+      "text": "📜 Cargando últimos 192 mensajes...",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.086978"
+      "timestamp": "2026-10-26T15:11:00.286873"
     },
     {
       "sender": "KALMIYA",
       "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.096442"
+      "timestamp": "2026-10-26T15:11:03.057528"
     },
     {
       "sender": "KALMIYA",
       "text": "💫 Chat reiniciado. ¿Qué hacemos ahora?",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.101721"
+      "timestamp": "2026-10-26T15:11:03.128959"
     },
     {
       "sender": "KALMIYA",
-      "text": "📜 Cargando últimos 124 mensajes...",
+      "text": "📜 Cargando últimos 215 mensajes...",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:25:57.108209"
-    },
-    {
-      "sender": "Sara Kerigan",
-      "text": "Hola",
-      "is_bot": false,
-      "timestamp": "2026-09-15T16:26:03.060688"
+      "timestamp": "2026-10-26T15:11:03.138452"
     },
     {
       "sender": "KALMIYA",
-      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
+      "text": "📜 Cargando últimos 76 mensajes...",
       "is_bot": true,
-      "timestamp": "2026-09-15T16:26:03.581377"
+      "timestamp": "2026-10-26T15:11:03.150744"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.165610"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.179380"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 99 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.188102"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.206235"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.216200"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 122 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.227795"
     },
     {
       "sender": "KALMIYA",
       "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
       "is_bot": true,
-      "timestamp": "2026-09-15T17:20:34.503467"
+      "timestamp": "2026-10-26T15:11:03.254560"
     },
     {
       "sender": "KALMIYA",
-      "text": "He iniciado la interfaz de visión óptica en una ventana separada. ¡Salúdame a la cámara!",
+      "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
       "is_bot": true,
-      "timestamp": "2026-09-15T17:20:42.265666"
+      "timestamp": "2026-10-26T15:11:03.265284"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 145 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.275504"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "🗑️ ¡Listo! Todo limpio. ¿En qué te ayudo?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.284098"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.307552"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "🗑️ ¡Listo! Todo limpio. ¿En qué te ayudo?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.319579"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 169 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.339580"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.360302"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "✨ ¡Chat limpiado! Conversación nueva. ¿Qué necesitas?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.378951"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 192 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.395582"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.435366"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "💫 Chat reiniciado. ¿Qué hacemos ahora?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.472030"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "📜 Cargando últimos 215 mensajes...",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:03.502257"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "🌟 ¡Perfecto! Espacio limpio. ¿Qué te gustaría saber?",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:11:07.747380"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:16:10.087279"
+    },
+    {
+      "sender": "Sara Kerigan",
+      "text": "Hola",
+      "is_bot": false,
+      "timestamp": "2026-10-26T15:17:09.784858"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:17:10.343444"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:44:03.453659"
+    },
+    {
+      "sender": "Sara Kerigan",
+      "text": "Hola",
+      "is_bot": false,
+      "timestamp": "2026-10-26T15:44:15.836767"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:44:16.405323"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:48:59.178667"
+    },
+    {
+      "sender": "Sara Kerigan",
+      "text": "Hola",
+      "is_bot": false,
+      "timestamp": "2026-10-26T15:49:05.391938"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:49:05.974973"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Bienvenida Sara Kerigan! 🌟 KALMIYA V4.0 está aquí con todas las funciones mejoradas. Presiona Ctrl+H para ver los atajos. 💜",
+      "is_bot": true,
+      "timestamp": "2026-10-26T15:53:22.092597"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "¡Hey Sara Kerigan! 🚀 Nueva versión V4.0 con temas, animaciones y más. ¡Prueba el botón 🎨 para cambiar colores! ✨",
+      "is_bot": true,
+      "timestamp": "2026-10-26T16:04:45.225906"
+    },
+    {
+      "sender": "Sara Kerigan",
+      "text": "Hola",
+      "is_bot": false,
+      "timestamp": "2026-10-26T16:04:51.659746"
+    },
+    {
+      "sender": "KALMIYA",
+      "text": "Sistema Multi-Agente no disponible. Por favor, revisa las dependencias.",
+      "is_bot": true,
+      "timestamp": "2026-10-26T16:04:52.189686"
     }
   ]
 }
