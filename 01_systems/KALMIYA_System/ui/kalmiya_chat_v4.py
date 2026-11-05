@@ -1,18 +1,28 @@
 """
-kalmiya_chat_ultra.py — Chat KALMIYA v3.7 ULTRA
-================================================
-Versión mejorada con TODAS las actualizaciones:
-- Avatar animado (parpadeo, movimiento)
-- Temas de color intercambiables
-- Botones de voz y comandos
-- Notificaciones visuales
+"""
+kalmiya_chat_v4.py — Chat KALMIYA v4.0
+=======================================
+Versión completa con:
+- Avatar estilo Cortana (piel blanca, cabello crespo, ojos marrones)
+- Sistema de 8 temas de color
+- 14 animaciones del avatar
+- Reconocimiento facial (Sara Kerrigan)
+- Sonidos integrados
+- 3 avatares disponibles
+- Ventana redimensionable
+- Acceso a Internet (AI_MODE auto)
 - Historial persistente
-- Modo compacto/expandido
-- Atajos de teclado
 - Y mucho más...
 
 Tamaño: 550x750 px
 RAM: ~140 MB
+
+Características v4.0:
+✅ Punto azul quitado del avatar
+✅ Tema por defecto: cyber_pink
+✅ Reconocimiento facial: Sara Kerrigan (María Paula)
+✅ AI_MODE: auto (cascada a nube)
+✅ Camera: CAP_DSHOW para mejor compatibilidad
 """
 
 import customtkinter as ctk
