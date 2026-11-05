@@ -34,7 +34,7 @@ try:
 except ImportError:
     DEEPFACE_AVAILABLE = False
     DeepFace = None # type: ignore
-    print("[VISION] deepface no instalado (opcional para emociones). Instala: pip install deepface")
+    # deepface es opcional para emociones
 
 
 class KalmiyaVision:
@@ -159,7 +159,7 @@ class KalmiyaVision:
         print(f"[VISION] Capturando {num_samples} muestras...")
         print("[VISION] Presiona ESPACIO para capturar, Q para salir")
         
-        cap = cv2.VideoCapture(self.camera_index)
+        cap = cv2.VideoCapture(self.camera_index, cv2.CAP_DSHOW)
         if not cap.isOpened():
             print("[VISION] Error: No se pudo abrir la cámara")
             return False
@@ -350,7 +350,7 @@ class KalmiyaVision:
         print(f"\n[VISION] Iniciando sesión de reconocimiento...")
         print(f"[VISION] Presiona Q para salir")
         
-        cap = cv2.VideoCapture(self.camera_index)
+        cap = cv2.VideoCapture(self.camera_index, cv2.CAP_DSHOW)
         if not cap.isOpened():
             print("[VISION] Error: No se pudo abrir la cámara")
             return

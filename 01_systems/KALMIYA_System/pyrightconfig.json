@@ -1,0 +1,23 @@
+{
+  "include": [
+    "**/*.py"
+  ],
+  "extraPaths": [
+    ".",
+    "core",
+    "intelligence",
+    "services",
+    "kalmiya",
+    "modules",
+    "utils",
+    "extras",
+    "memory",
+    "audio",
+    "vision",
+    "integrations"
+  ],
+  "reportMissingImports": "warning",
+  "pythonVersion": "3.14",
+  "pythonPlatform": "Windows"
+}
+

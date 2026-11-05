@@ -35,6 +35,16 @@ UI_DIR = KALMIYA_DIR / "ui"
 
 sys.path.insert(0, str(UI_DIR))
 sys.path.insert(0, str(KALMIYA_DIR))
+for sub in ['services', 'core', 'audio']:
+    sub_path = str(KALMIYA_DIR / sub)
+    if sub_path not in sys.path:
+        sys.path.insert(0, sub_path)
+
+try:
+    import kalmiya.kalmiya_tools_schema as _kts
+    sys.modules.setdefault('kalmiya_tools_schema', _kts)
+except Exception:
+    pass
 
 # ── Definición de modos ───────────────────────────────────────────────────
 MODES = {

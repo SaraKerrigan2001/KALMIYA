@@ -37,6 +37,12 @@ for sub in ['services', 'core', 'audio']:
         sys.path.insert(0, sub_path)
 
 try:
+    import kalmiya.kalmiya_tools_schema as _kts
+    sys.modules.setdefault('kalmiya_tools_schema', _kts)
+except Exception:
+    pass
+
+try:
     import psutil
     PSUTIL_OK = True
 except ImportError:
@@ -939,7 +945,9 @@ class KalmiyaChatV4:
                             # Simulamos que cada agente responde en tiempo real
                             agent_response = f"[{key.upper()}]: {msgs[-1].content}\n"
                             final_response += agent_response
-                            self.root.after(0, self._add_message, f"Agente {key}", msgs[-1].content, True)
+                            sender_name = BOTNAME if key == "main_assistant" else f"Agente {key}"
+                            self.root.after(0, self._add_message, sender_name, msgs[-1].content, True)
+                self.root.after(0, self._save_history)
 
         except Exception as e:
             final_response = f"Ups, tuve un problema con el Grafo: {str(e)} 😅"
@@ -1098,7 +1106,7 @@ Esc - Minimizar ventana
                 
                 # Ejecutar en proceso independiente para evitar bloqueos de UI
                 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-                script = f"import sys; sys.path.insert(0, r'{root_dir}'); from vision.camera_recognition import KalmiyaVision; KalmiyaVision().start_recognition_session(60, False)"
+                script = f"import sys; sys.path.insert(0, r'{root_dir}'); from vision.camera_recognition import KalmiyaVision; KalmiyaVision().start_recognition_session(0, False)"
                 subprocess.Popen([sys.executable, "-c", script])
             except Exception as e:
                 print(f"Error in vision: {e}")

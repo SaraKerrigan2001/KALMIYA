@@ -2,6 +2,22 @@
     "python.defaultInterpreterPath": "c:\\Users\\maria\\env\\.venv313\\Scripts\\python.exe",
     "python.analysis.extraPaths": [
         "c:\\Users\\maria\\env\\.venv313\\Lib\\site-packages",
-        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System"
-    ]
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\core",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\intelligence",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\services",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\kalmiya",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\modules",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\utils",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\extras",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\memory",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\audio",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\vision",
+        "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\integrations"
+    ],
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "warning"
+    },
+    "python.terminal.useEnvFile": true
 }

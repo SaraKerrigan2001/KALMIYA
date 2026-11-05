@@ -1,0 +1,23 @@
+{
+  "include": [
+    "01_systems/KALMIYA_System/**/*.py"
+  ],
+  "extraPaths": [
+    ".venv313/Lib/site-packages",
+    "01_systems/KALMIYA_System",
+    "01_systems/KALMIYA_System/core",
+    "01_systems/KALMIYA_System/intelligence",
+    "01_systems/KALMIYA_System/services",
+    "01_systems/KALMIYA_System/kalmiya",
+    "01_systems/KALMIYA_System/modules",
+    "01_systems/KALMIYA_System/utils",
+    "01_systems/KALMIYA_System/extras",
+    "01_systems/KALMIYA_System/memory",
+    "01_systems/KALMIYA_System/audio",
+    "01_systems/KALMIYA_System/vision",
+    "01_systems/KALMIYA_System/integrations"
+  ],
+  "reportMissingImports": "warning",
+  "pythonVersion": "3.13",
+  "pythonPlatform": "Windows"
+}

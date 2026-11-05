@@ -9,6 +9,13 @@
     "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\modules",
     "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\utils",
     "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\extras",
-    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\memory"
-  ]
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\memory",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\audio",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\vision",
+    "c:\\Users\\maria\\env\\01_systems\\KALMIYA_System\\integrations"
+  ],
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "warning"
+  }
 }

@@ -31,7 +31,10 @@ from modules.advanced_capabilities import (
     PersonalityStyleEngine,
     ResponsePredictionEngine,
 )
-from kalmiya_tools_schema import GEMINI_TOOLS, OPENAI_TOOLS
+try:
+    from kalmiya_tools_schema import GEMINI_TOOLS, OPENAI_TOOLS
+except ImportError:
+    from kalmiya.kalmiya_tools_schema import GEMINI_TOOLS, OPENAI_TOOLS
 from _logging import get_logger
 
 logger = get_logger(__name__)
@@ -544,7 +547,7 @@ def _ask_gemini(user_input: str, extra_context: str = '') -> str:
                 
             return parts[0]['text'].strip()
         except requests.exceptions.HTTPError as e:
-            if e.response.status_code == 404:
+            if e.response is not None and e.response.status_code == 404:
                 last_error = f"Modelo {model_name} no encontrado (404)"
                 continue
             raise e
@@ -774,7 +777,7 @@ def _route_to_engine(user_input: str, engine: str, stream: bool, extra_context: 
                 logger.info(f"[BRAIN] Intentando {nombre}...")
                 return fn(user_input, extra_context)
             except requests.exceptions.HTTPError as e:
-                if e.response.status_code == 429:
+                if e.response is not None and e.response.status_code == 429:
                     logger.warning(f"[BRAIN] {nombre} — cuota agotada (429), probando siguiente...")
                     continue
                 logger.warning(f"[BRAIN] {nombre} falló ({e}), probando siguiente...")

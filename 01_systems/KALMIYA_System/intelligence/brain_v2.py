@@ -13,8 +13,12 @@ from decouple import config
 # Apuntar a la raíz de KALMIYA_System para poder importar database, os_ops, etc.
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from database import log_command, save_thought
 from _logging import get_logger
-from kalmiya_tools_schema import OPENAI_TOOLS
+try:
+    from kalmiya_tools_schema import OPENAI_TOOLS
+except ImportError:
+    from kalmiya.kalmiya_tools_schema import OPENAI_TOOLS
 
 logger = get_logger(__name__)
 
@@ -29,27 +33,27 @@ except ImportError as e:
     logger.warning(f"[BRAIN v2] Faltan dependencias de LangChain: {e}")
 
 # Configuración básica (API Keys y Modelos)
-def _clean_key(key: str) -> str:
-    key = (key or "").strip()
+def _clean_key(key: object) -> str:
+    key = str(key or "").strip()
     if key.startswith('TU_') and key.endswith('_AQUI'):
         return ''
     if key == 'TU_API_KEY_AQUI':
         return ''
     return key
 
-AI_MODEL           = config('AI_MODEL',           default='llama3.2')
-GEMINI_KEY         = _clean_key(config('GEMINI_API_KEY',      default=''))
-CLAUDE_KEY         = _clean_key(config('CLAUDE_API_KEY',      default=''))
-CLAUDE_MODEL       = config('CLAUDE_MODEL',        default='claude-opus-4-8')
-GROQ_KEY           = _clean_key(config('GROQ_API_KEY',        default=''))
-GROQ_MODEL         = config('GROQ_MODEL',          default='llama-3.3-70b-versatile')
-OPENROUTER_KEY     = _clean_key(config('OPENROUTER_API_KEY',  default=''))
-OPENROUTER_MODEL   = config('OPENROUTER_MODEL',    default='meta-llama/llama-3.3-70b-instruct:free')
-COHERE_KEY         = _clean_key(config('COHERE_API_KEY',      default=''))
-COHERE_MODEL       = config('COHERE_MODEL',        default='command-r-plus')
-AI_MODE            = config('AI_MODE',             default='auto')
-BOTNAME            = config('BOTNAME',             default='KALMIYA')
-USERNAME           = config('USER',                default='Sara')
+AI_MODEL           = str(config('AI_MODEL',           default='llama3.2'))
+GEMINI_KEY         = _clean_key(str(config('GEMINI_API_KEY',      default='')))
+CLAUDE_KEY         = _clean_key(str(config('CLAUDE_API_KEY',      default='')))
+CLAUDE_MODEL       = str(config('CLAUDE_MODEL',        default='claude-opus-4-8'))
+GROQ_KEY           = _clean_key(str(config('GROQ_API_KEY',        default='')))
+GROQ_MODEL         = str(config('GROQ_MODEL',          default='llama-3.3-70b-versatile'))
+OPENROUTER_KEY     = _clean_key(str(config('OPENROUTER_API_KEY',  default='')))
+OPENROUTER_MODEL   = str(config('OPENROUTER_MODEL',    default='meta-llama/llama-3.3-70b-instruct:free'))
+COHERE_KEY         = _clean_key(str(config('COHERE_API_KEY',      default='')))
+COHERE_MODEL       = str(config('COHERE_MODEL',        default='command-r-plus'))
+AI_MODE            = str(config('AI_MODE',             default='auto'))
+BOTNAME            = str(config('BOTNAME',             default='KALMIYA'))
+USERNAME           = str(config('USER',                default='Sara'))
 
 _conversation_history: list[dict] = []
 MAX_HISTORY = 30
@@ -65,7 +69,7 @@ def _build_system_prompt(extra_context: str = '') -> str:
     except Exception:
         return f"Eres {BOTNAME}, un asistente inteligente creado por {USERNAME}."
 
-def _convert_history_to_langchain(user_input: str, system_prompt: str) -> list:
+def _convert_history_to_langchain(user_input: str, system_prompt: str) -> list[object]:
     """Convierte el historial de KALMIYA al formato de mensajes de LangChain."""
     messages = [SystemMessage(content=system_prompt)]
     
@@ -159,7 +163,10 @@ def _route_to_engine_langchain(user_input: str, engine: str, extra_context: str 
             func_args = tool_call.get('args', {})
             return f"[TOOL_CALL_REQUIRED]:{func_name}:{json.dumps(func_args)}"
             
-        return response.content.strip()
+        result = response.content
+        if isinstance(result, list):
+            return ' '.join(str(part) for part in result).strip()
+        return str(result).strip()
     except Exception as e:
         logger.error(f"[BRAIN v2] Error invocando modelo: {e}")
         # Fallback a local reasoning clásico si falla la nube
@@ -178,7 +185,7 @@ def ask_kalmiya(user_input: str, force_engine: str = '') -> str:
     if len(_conversation_history) > MAX_HISTORY:
         _conversation_history = _conversation_history[-MAX_HISTORY:]
         
-    engine = force_engine.lower() if force_engine else AI_MODE.lower()
+    engine = str(force_engine).lower() if force_engine else str(AI_MODE).lower()
     
     # Si es auto, priorizamos ollama, luego gemini, luego groq
     if engine == 'auto':
