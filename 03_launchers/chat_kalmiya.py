@@ -3,19 +3,15 @@
 """
 chat_kalmiya.py — Launcher unificado del Chat KALMIYA
 ======================================================
-Reemplaza los 7 launchers individuales en un solo punto de entrada.
+Launcher principal para Chat KALMIYA V4.0
 
 Modos disponibles:
-    default    — Chat estándar (KalmiyaChat)
-    simple     — Chat con tkinter puro (KalmiyaChatSimple)
-    optimized  — Balance diseño/rendimiento (KalmiyaChatOptimized)
-    ultra      — Todas las mejoras v3.7 (KalmiyaChatUltra)
-    v2         — Diseño futurista (KalmiyaChatV2)
+    v4         — Chat V4.0 (Integración Total Definitiva)
 
 Uso:
-    python chat_kalmiya.py                    # modo default
-    python chat_kalmiya.py --mode ultra       # modo ultra
-    python chat_kalmiya.py --mode ultra -d    # modo ultra con debug
+    python chat_kalmiya.py                    # modo v4 (por defecto)
+    python chat_kalmiya.py --mode v4          # modo v4 explícito
+    python chat_kalmiya.py --mode v4 -d       # modo v4 con debug
     python chat_kalmiya.py --list             # listar modos disponibles
 """
 
