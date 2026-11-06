@@ -1,34 +1,67 @@
 ---
-title: "Notas del Sistema"
-tags: [notes, observations, context]
+title: "Índice de Notas"
+tags: [notes, index, reference]
 ---
 
-# 07_notes — Notas y Referencias
+# 📚 Índice de Notas KALMIYA
 
-[[INDEX|← Índice]] | [[WELCOME|Inicio]]
-
-Aquí se almacenan observaciones importantes, notas de contexto y referencias de uso del sistema.
-
----
-
-## 📝 Contenido Actual
-
-- [[KALMIYA_Biometria_y_Audio|🔒 Biometría y Audio]] — Información sobre biometría, audio y verificación
+**📅 Última actualización:** 2026-11-05
 
 ---
 
-## 💡 Recomendación
+## 📁 Estructura de Carpetas
 
-Usa esta carpeta para registrar:
+### 🖥️ [[Sistemas]]
+Notas técnicas sobre sistemas, arquitectura y configuración.
+
+**Contenido:**
+- Configuración de sistemas
+- Arquitectura de software
+- Documentación técnica
+
+### 🚀 [[Proyectos]]
+Proyectos activos y en desarrollo.
+
+**Contenido:**
+- Proyectos de KALMIYA
+- Características implementadas
+- Planificación
+
+### 📖 [[Aprendizajes]]
+Aprendizajes, lecciones y conocimientos adquiridos.
+
+**Contenido:**
 - Aprendizajes técnicos
-- Decisiones de arquitectura
-- Contexto que no debe perderse
-- Observaciones de comportamiento del sistema
+- Lecciones aprendidas
+- Mejores prácticas
 
 ---
 
-[[INDEX|← Volver al índice]]
+## 📝 Notas Individuales
 
+### 📊 [[INDEX_07_notes|Índice de Archivos]]
+Lista completa de archivos de notas.
+
+### 🔒 [[KALMIYA_Biometria_y_Audio|Biometría y Audio]]
+Información sobre biometría, audio y verificación.
 
 ---
+
+## 🎯 Cómo Usar Esta Carpeta
+
+1. **Organiza por categorías** - Usa las carpetas para clasificar tus notas
+2. **Usa etiquetas** - Agrega etiquetas a tus notas para facilitar la búsqueda
+3. **Enlaza entre notas** - Usa dobles corchetes para crear conexiones
+4. **Mantén actualizado** - Revisa y actualiza las notas regularmente
+
+---
+
+## 🔗 Enlaces Rápidos
+
+- [[INDEX|Volver al Índice Principal]]
+- [[01_systems\KALMIYA_System\README|KALMIYA System]]
+- [[WELCOME|Inicio]]
+
+---
+
 **📂 Volver a carpeta:** [[INDEX_07_notes]]
